@@ -25,6 +25,7 @@ import ScrollToTop from "./helpers/scroll";
 import { MagicMotion } from "react-magic-motion";
 import { motion } from "framer-motion";
 import Nosotros from "./components/nosotros/Nosotros.jsx";
+import Clientes from "./components/nosotros/Clientes/Clientes.jsx";
 
 function App() {
   const containerVariants = {
@@ -129,9 +130,10 @@ function App() {
                   <ProductsCategoryProvider>
                     <>
                       <NavBar />
-                      <div className={`flex flex-col items-center w-full`}>
+                      <div className={`flex px-2 flex-col items-center w-full`}>
                         <Nosotros />
                       </div>
+                        <Clientes/>
                       <Footer />
                       <WspLogo />
                     </>

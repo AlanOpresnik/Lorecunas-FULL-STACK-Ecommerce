@@ -1,7 +1,16 @@
 import React, { useEffect } from "react";
 import nosotrosFamiliaImg from "../../img/nosotrosFamilia.jpeg";
-import nosotrosEspecialistas from "../../img/nosotrosEspecialistas.jpg"
-import nosotrosFabrica from "../../img/nosotrosFabrica.jpg"
+import nosotrosEspecialistas from "../../img/nosotrosEspecialistas.jpg";
+import nosotrosFabrica from "../../img/nosotrosFabrica.jpg";
+import nosotrosFabrica3 from "../../img/nosotrosFabrica3.webp";
+import nosotrosFabrica2 from "../../img/nosotrosFabrica2.jpeg";
+import nosotrosFabrica4 from "../../img/nosotrosFabrica.4.webp";
+import Clientes from "./Clientes/Clientes";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+
+import { Pagination } from "swiper/modules";
 
 const Nosotros = () => {
   useEffect(() => {
@@ -30,7 +39,7 @@ const Nosotros = () => {
 
   return (
     <section className="text-gray-600 body-font mt-[10rem] md:mt-[10rem] max-w-[1250px]">
-      <div className="familia border-b-2 container mx-auto flex px-5 py-16 md:flex-row flex-col items-center">
+      <div className="familia border-b-2 container mx-auto flex px-5 py-6 md:flex-row flex-col items-center">
         <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-6 items-center text-center">
           <h3 className="title-font border-b-2 border-[#FE98CB] w-fit sm:text-4xl text-4xl mb-4 font-medium text-gray-900">
             ¿Quienes Somos?
@@ -61,7 +70,7 @@ const Nosotros = () => {
         </div>
 
         <div className="lg:w-1/2 lg:text-left text-center">
-          <p className="title-font border-b-2 border-[#FE98CB] w-fit sm:text-[1.98rem] text-4xl mb-4 font-medium text-gray-900">
+          <p className="title-font border-b-2 pb-4 border-[#FE98CB] w-fit sm:text-[1.98rem] text-4xl mb-4 font-medium text-gray-900">
             Estamos recomendados por especialistas
           </p>
           <p className="mb-8 leading-relaxed">
@@ -85,14 +94,48 @@ const Nosotros = () => {
             hexagon try-hard chambray.
           </p>
         </div>
-        <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 ">
-          <img
-            className="object-cover object-center rounded-lg h-[400px] md:h-[550px]"
-            alt="hero"
-            src={nosotrosFabrica}
-          />
+        <div className="lg:max-w-lg lg:w-full md:w-1/2 w-[20rem] ">
+          <Swiper
+            pagination={{
+              dynamicBullets: true,
+            }}
+            modules={[Pagination]}
+            className="mySwiper rounded mt-[1rem]"
+          >
+            <SwiperSlide>
+              <img
+                className="object-cover object-center rounded-lg h-[400px] md:h-[550px]"
+                alt="hero"
+                src={nosotrosFabrica}
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img
+                className="object-cover object-center rounded-lg h-[400px] md:h-[550px]"
+                alt="hero"
+                src={nosotrosFabrica2}
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img
+                className="object-cover object-center rounded-lg h-[400px] md:h-[550px]"
+                alt="hero"
+                src={nosotrosFabrica3}
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img
+                className="object-cover object-center rounded-lg h-[400px] md:h-[550px]"
+                alt="hero"
+                src={nosotrosFabrica4}
+              />
+            </SwiperSlide>
+          </Swiper>
         </div>
       </div>
+      <h1 className="title-font border-t-2 py-6 text-center sm:text-4xl text-4xl mb-4 font-medium text-gray-900">
+        Nuestros clientes te cuentan su experiencia
+      </h1>
     </section>
   );
 };
