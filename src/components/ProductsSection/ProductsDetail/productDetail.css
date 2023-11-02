@@ -1,0 +1,31 @@
+.swiperOfertDetails{
+    margin-top: 1rem;
+    width: 35rem !important;
+    margin-left: 0 !important;
+}
+
+.swiperOfertDetails .swiper-pagination-bullets{
+    bottom: 00px !important;
+}
+
+.swiperProduct {
+    z-index: 0 !important;
+}
+
+@media (max-width: 768px){
+
+    .modalContainer{
+        justify-content: center;
+        width: auto !important;
+        margin: auto !important;
+    }
+}
+
+
+
+.swiperImg .swiper-pagination {
+    position: relative;
+    margin-top: .5rem;
+    z-index: 9999999;
+}
+

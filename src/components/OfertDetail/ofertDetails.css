@@ -1,0 +1,9 @@
+.swiperOfertDetails{
+    margin-top: 1rem;
+    width: 35rem !important;
+    margin-left: 0 !important;
+}
+
+.swiperOfertDetails .swiper-pagination-bullets{
+    bottom: 00px !important;
+}
