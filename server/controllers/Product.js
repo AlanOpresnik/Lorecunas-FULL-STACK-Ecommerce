@@ -193,6 +193,18 @@ const getProductDetails = async (req, res) => {
       .json({ message: "Error al obtener los detalles de el product" });
   }
 };
+const filtrarProduct = async (req, res) => {
+  try {
+    const filtro = req.params.product;
+    const productos = await Product.find({ category: { $regex: new RegExp(filtro, "i") } });
+
+    console.log("Productos que contienen el filtro en el título:", productos);
+    res.status(200).json(productos);
+  } catch (err) {
+    console.error("Error al buscar productos:", err);
+    res.status(500).send("Error al buscar productos");
+  }
+};
 
 module.exports = {
   prueba,
@@ -203,5 +215,6 @@ module.exports = {
   getProductDestacado,
   marcarProductoComoDestacado,
   eliminarProductoDestacado,
-  getProductDetails
+  getProductDetails,
+  filtrarProduct
 };

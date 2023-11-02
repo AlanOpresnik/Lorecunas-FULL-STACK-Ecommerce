@@ -8,6 +8,8 @@ import Banner from "./components/banner/banner";
 import { BannerProvider } from "./context/BannerContext.jsx";
 import { OfertsProvider } from "./context/OfertsContext";
 import { ProductsDestacadosProvider } from "./context/ProductsDestacadosContext";
+import { ProductsCategoryProvider } from "./context/ProductsCategoryFilter.jsx";
+import ProductsCategoryFiltrados from "./components/productsFilterCategory/productsSectionCategory/products/ProductsCategoryFiltrados.jsx";
 import InfoIcons from "./components/InfoIcons/InfoIcons";
 import CardSection from "./components/CardSection/CardSection";
 import Oferts from "./components/OfertsSection/Oferts";
@@ -22,6 +24,7 @@ import { useLocation } from "react-router-dom";
 import ScrollToTop from "./helpers/scroll";
 import { MagicMotion } from "react-magic-motion";
 import { motion } from "framer-motion";
+import Nosotros from "./components/nosotros/Nosotros.jsx";
 
 function App() {
   const containerVariants = {
@@ -71,12 +74,10 @@ function App() {
                 path="/ofertDetail/:id"
                 element={
                   <>
-                    
-                      <NavBar />
-                      <OfertDetail />
-                      <Footer />
-                      <WspLogo />
-                   
+                    <NavBar />
+                    <OfertDetail />
+                    <Footer />
+                    <WspLogo />
                   </>
                 }
               />
@@ -104,6 +105,37 @@ function App() {
                     <Footer />
                     <WspLogo />
                   </>
+                }
+              />
+              <Route
+                path="/productos/:category"
+                element={
+                  <ProductsCategoryProvider>
+                    <>
+                      <NavBar />
+                      <div className={`flex flex-col items-center w-full`}>
+                        <ProductsCategoryFiltrados />
+                      </div>
+                      <Footer />
+                      <WspLogo />
+                    </>
+                  </ProductsCategoryProvider>
+                }
+              />
+
+              <Route
+                path="/nosotros"
+                element={
+                  <ProductsCategoryProvider>
+                    <>
+                      <NavBar />
+                      <div className={`flex flex-col items-center w-full`}>
+                        <Nosotros />
+                      </div>
+                      <Footer />
+                      <WspLogo />
+                    </>
+                  </ProductsCategoryProvider>
                 }
               />
             </Routes>

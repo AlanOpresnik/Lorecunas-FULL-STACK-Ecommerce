@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useProductsDestacados } from "../../../context/ProductsDestacadosContext"; // Asegúrate de que la ruta sea correcta
+import {useProductsCategory} from "../../../../context/ProductsCategoryFilter"
 import { Link } from "react-router-dom"; // Importa el componente Link
-import AsideCategory from "../../asideCategory/AsideCategory";
+import AsideCategory from "../../../asideCategory/AsideCategory";
+import { motion } from "framer-motion";
 
-const ProductDestacadoCard = () => {
+const ProductCategoryCard = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const { productDestacado, loading } = useProductsDestacados();
-  console.log(productDestacado);
+  const { productCategory, loading, fetchProductsCategorys } = useProductsCategory();
+if(productCategory.length >= 0) {
+  fetchProductsCategorys()
+}
   if (loading) {
     return <p>Cargando Productos...</p>;
   }
   
   return (
+
       <div className="bg-white">
         <div className="mx-auto max-w-2xl px-4 py-2 lg:py-4 sm:px-6 sm:py-12 lg:max-w-7xl lg:px-8">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900"></h2>
@@ -20,7 +24,7 @@ const ProductDestacadoCard = () => {
             <AsideCategory />
             <div className="col-span-4 lg:col-span-4">
                 <div className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-                  {productDestacado.map((product) => (
+                  {productCategory.map((product) => (
                     <div
                       key={product._id}
                       className="group relative shadow transition-shadow hover:shadow-lg p-6 pt-0 rounded px-0"
@@ -58,12 +62,14 @@ const ProductDestacadoCard = () => {
               </>
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+            
               <div className="col-span-1 lg:col-span-1">
                 <AsideCategory />
               </div>
+             
               <div className="col-span-4 lg:col-span-4">
                 <div className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-                  {productDestacado.map((product) => (
+                  {productCategory.map((product) => (
                     <div
                       key={product._id}
                       className="group relative shadow transition-shadow hover:shadow-lg p-6 pt-0 rounded px-0"
@@ -102,6 +108,8 @@ const ProductDestacadoCard = () => {
           )}
         </div>
       </div>
-    )}
 
-export default ProductDestacadoCard;
+    )}
+    
+
+export default ProductCategoryCard;

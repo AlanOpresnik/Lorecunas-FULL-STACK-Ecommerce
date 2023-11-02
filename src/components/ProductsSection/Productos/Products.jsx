@@ -17,7 +17,7 @@ const ProductDestacados = () => {
   };
 
   return (
-    <motion.div initial="hidden" animate="visible" variants={containerVariants}>
+    <motion.div initial="hidden" animate="visible"  variants={containerVariants}>
       <ProductsSection />
       <ProductCard />
     </motion.div>

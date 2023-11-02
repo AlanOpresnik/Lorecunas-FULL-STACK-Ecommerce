@@ -11,5 +11,6 @@ router.get('/getProductsDestacados', productController.getProductDestacado);
 router.put('/marcar-producto-destacado/:productId', productController.marcarProductoComoDestacado);
 router.delete('/eliminar-producto-destacado/:productId', productController.eliminarProductoDestacado);
 router.get("/getProductDetail/:id", productController.getProductDetails)
+router.get("/getProductFiltrado/:product", productController.filtrarProduct)
 
 module.exports = router;
