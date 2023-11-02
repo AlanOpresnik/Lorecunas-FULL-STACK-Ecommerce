@@ -61,7 +61,7 @@ const CardSection = () => {
           </button>
         </div>
       </div>
-      <div className=" relative mb-20 ">
+      <div className=" relative mb-20 w-[24.1rem] ">
         <img
           style={{
             borderRadius: "1rem",
