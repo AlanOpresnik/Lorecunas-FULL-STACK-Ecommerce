@@ -7,7 +7,7 @@ import butaca from "../../img/butaca.jpg"
 const CardSection = () => {
   return (
     <div className="flex justify-center gap-8 flex-wrap mt-12">
-      <div className=" relative">
+      <div className=" relative w-[24.1rem]">
         <img
           style={{
             borderRadius: "1rem",
@@ -34,7 +34,7 @@ const CardSection = () => {
           </button>
         </div>
       </div>
-      <div className=" relative">
+      <div className=" relative w-[24.1rem]">
         <img
           style={{
             borderRadius: "1rem",
