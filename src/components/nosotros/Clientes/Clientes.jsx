@@ -61,12 +61,14 @@ const Clientes = () => {
                           ha llenado de alegría y comodidad la vida de nuestro
                           pequeño tesoro
                         </p>
-                        <div className="flex items-center mt-4 gap-3">
+                        <div className="flex items-center gap-3 mt-6 md:mt-6 xl:mt-24  ">
+                    
+                    
                           <img
                             className="max-w-[70px] h-[70px] rounded-full"
                             src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=576&h=576&q=80"
                           />
-                          <p class=" text-base font-semibold leading-none text-gray-800">
+                          <p class=" text-base md: font-semibold leading-none text-gray-800">
                             Anna Smith
                           </p>
                         </div>
@@ -104,7 +106,9 @@ const Clientes = () => {
                           que ha hecho que la llegada de nuestro hijo sea aún
                           más especial y confortable
                         </p>
-                        <div className="flex items-center mt-4 gap-3">
+                        <div className="flex items-center gap-3 mt-6 md:mt-6 xl:mt-24  ">
+  
+  
                           <img
                             className="max-w-[70px] h-[70px] rounded-full"
                             src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=576&h=576&q=80"
@@ -147,7 +151,9 @@ const Clientes = () => {
                           descansará de manera segura y cómoda nos llena de
                           felicidad
                         </p>
-                        <div className="flex items-center mt-4 gap-3">
+                        <div className="flex items-center gap-3 mt-6 md:mt-6 xl:mt-24  ">
+  
+  
                           <img
                             className="max-w-[70px] h-[70px] rounded-full"
                             src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=576&h=576&q=80"
@@ -189,7 +195,9 @@ const Clientes = () => {
                           Ver a nuestro bebé durmiendo en ella nos llena de
                           alegría y gratitud por haberla comprado.
                         </p>
-                        <div className="flex items-center mt-4 gap-3">
+                        <div className="flex items-center gap-3 mt-6 md:mt-6 xl:mt-24  ">
+  
+  
                           <img
                             className="max-w-[70px] h-[70px] rounded-full"
                             src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=576&h=576&q=80"
@@ -231,7 +239,9 @@ const Clientes = () => {
                           ser una adquisición maravillosa. Gracias por tu apoyo
                           en esta emocionante etapa de nuestras vidas.
                         </p>
-                        <div className="flex items-center mt-4 gap-3">
+                        <div className="flex items-center gap-3 mt-6 md:mt-6 xl:mt-24  ">
+  
+  
                           <img
                             className="max-w-[70px] h-[70px] rounded-full"
                             src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=576&h=576&q=80"
@@ -274,7 +284,9 @@ const Clientes = () => {
                           felices por la elección que hicimos y agradecidos por
                           tu ayuda en este proceso.
                         </p>
-                        <div className="flex items-center mt-4 gap-3">
+                        <div className="flex items-center gap-3 mt-6 md:mt-6 xl:mt-24  ">
+  
+  
                           <img
                             className="max-w-[70px] h-[70px] rounded-full"
                             src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=576&h=576&q=80"
