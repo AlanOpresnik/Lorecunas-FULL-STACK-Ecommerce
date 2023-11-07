@@ -4,7 +4,8 @@ import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Modal, Box, Typography, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { motion,AnimatePresence  } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import toast from "react-hot-toast";
 
 // Import Swiper styles
 import "swiper/css";
@@ -21,7 +22,6 @@ const OfertDetail = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0); // Store the selected image index
   const [modalImages, setModalImages] = useState([]);
-
 
   const openModal = (index) => {
     setCurrentImageIndex(index);
@@ -41,8 +41,8 @@ const OfertDetail = () => {
       transition: { type: "spring", damping: 11, stiffness: 100 },
     },
     exit: {
-      y: -60, 
-      opacity: 0, 
+      y: -60,
+      opacity: 0,
     },
   };
 
@@ -82,6 +82,10 @@ const OfertDetail = () => {
     openModal(image); // Open the modal with the selected image
   };
 
+   const agregarFav = (nuevoFavorito) => {
+  toast.error("no se puede agregar una oferta a favoritos")
+  };
+
   const firstSwiperRef = useRef(null);
   const secondSwiperRef = useRef(null);
 
@@ -115,56 +119,55 @@ const OfertDetail = () => {
               ))}
           </Swiper>
           <AnimatePresence>
-          {isModalOpen && (
-            <Modal
-              open={isModalOpen}
-              onClose={closeModal}
-              style={style}
-              className="modalContainer"
-            >
-              <motion.div
-                variants={napoletanoGrosoCard}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-               
+            {isModalOpen && (
+              <Modal
+                open={isModalOpen}
+                onClose={closeModal}
+                style={style}
+                className="modalContainer"
               >
                 <motion.div
                   variants={napoletanoGrosoCard}
-                  className="bg-white p-4 rounded-lg shadow-md w-[300px] sm:w-[480px] md:w-[580px] lg:w-[700px] mx-auto   flex flex-col"
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
                 >
-                  <div className="flex justify-between items-center mb-4">
-                    <button
-                      onClick={closeModal}
-                      className="bg-slate-50 px-4 py-2 hover:bg-slate-200 rounded font-bold ml-auto"
-                    >
-                      <CloseIcon />
-                    </button>
-                  </div>
-                  <Swiper
-                    slidesPerView={1}
-                    spaceBetween={30}
-                    modules={[Pagination]}
-                    pagination={{ clickable: true }}
-                    navigation
-                    className="mySwiper swiperImg w-[270px] sm:w-[430px] md:w-[550px] lg:w-[660px] mx-auto"
-                    initialSlide={selectedImageIndex} // Show the selected image in the modal
+                  <motion.div
+                    variants={napoletanoGrosoCard}
+                    className="bg-white p-4 rounded-lg shadow-md w-[300px] sm:w-[480px] md:w-[580px] lg:w-[700px] mx-auto   flex flex-col"
                   >
-                    {data.ofertDetails &&
-                      data.ofertDetails.images.map((img, i) => (
-                        <SwiperSlide key={i}>
-                          <img
-                            className=" w-[570px] h-[320px] sm:w-[585px] md:w-[580px] lg:w-[680px] sm:h-[450px] object-cover rounded-lg"
-                            src={img}
-                            alt={`Image ${i}`}
-                          />
-                        </SwiperSlide>
-                      ))}
-                  </Swiper>
+                    <div className="flex justify-between items-center mb-4">
+                      <button
+                        onClick={closeModal}
+                        className="bg-slate-50 px-4 py-2 hover:bg-slate-200 rounded font-bold ml-auto"
+                      >
+                        <CloseIcon />
+                      </button>
+                    </div>
+                    <Swiper
+                      slidesPerView={1}
+                      spaceBetween={30}
+                      modules={[Pagination]}
+                      pagination={{ clickable: true }}
+                      navigation
+                      className="mySwiper swiperImg w-[270px] sm:w-[430px] md:w-[550px] lg:w-[660px] mx-auto"
+                      initialSlide={selectedImageIndex} // Show the selected image in the modal
+                    >
+                      {data.ofertDetails &&
+                        data.ofertDetails.images.map((img, i) => (
+                          <SwiperSlide key={i}>
+                            <img
+                              className=" w-[570px] h-[320px] sm:w-[585px] md:w-[580px] lg:w-[680px] sm:h-[450px] object-cover rounded-lg"
+                              src={img}
+                              alt={`Image ${i}`}
+                            />
+                          </SwiperSlide>
+                        ))}
+                    </Swiper>
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            </Modal>
-          )}
+              </Modal>
+            )}
           </AnimatePresence>
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             <p className="text-xs text-[#ff9fce]">
@@ -271,7 +274,11 @@ const OfertDetail = () => {
               <button className="flex ml-auto text-white bg-[#ff9fce] border-0 py-2 px-6 focus:outline-none hover:bg-[#ffd5ea] rounded">
                 Comprar
               </button>
-              <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+
+              <button
+                onClick={() => agregarFav(data)}
+                className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
+              >
                 <svg
                   fill="currentColor"
                   stroke-linecap="round"

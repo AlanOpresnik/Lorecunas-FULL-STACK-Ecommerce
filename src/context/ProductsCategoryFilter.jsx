@@ -13,10 +13,12 @@ export const ProductsCategoryProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const { category } = useParams();
 
-
+  useEffect(() => {
     const fetchProductsCategorys = async () => {
       try {
-        const response = await axios.get(`http://localhost:3900/api/products/getProductFiltrado/${category}`);
+        const response = await axios.get(
+          `http://localhost:3900/api/products/getProductFiltrado/${category}`
+        );
         setProductCategory(response.data);
         setLoading(false);
       } catch (error) {
@@ -25,10 +27,12 @@ export const ProductsCategoryProvider = ({ children }) => {
       }
     };
 
+    fetchProductsCategorys();
+  }, [category]);
 
   return (
     <ProductsCategoryContext.Provider
-      value={{ productCategory, loading, fetchProductsCategorys }}
+      value={{ productCategory, loading }}
     >
       {children}
     </ProductsCategoryContext.Provider>

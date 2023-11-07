@@ -8,14 +8,18 @@ export const useProductsDestacados = () => {
 };
 
 export const ProductsDestacadosProvider = ({ children }) => {
+
   const [productDestacado, setProductDestacado] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:3900/api/products/getProducts");
+        const response = await axios.get(
+          "http://localhost:3900/api/products/getProducts"
+        );
         setProductDestacado(response.data.products);
+
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -23,13 +27,21 @@ export const ProductsDestacadosProvider = ({ children }) => {
       }
     };
 
-    fetchProducts(); 
-  }, []); 
+    fetchProducts();
+  }, []);
+
+  
+
+  const handleDeleteProduct = (id) => {
+    try {
+      axios.delete(`http://localhost:3900/api/products/deleteProduct/${id}`);
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
   return (
-    <ProductsDestacadosContext.Provider
-      value={{ productDestacado, loading }}
-    >
+    <ProductsDestacadosContext.Provider value={{ productDestacado, loading , handleDeleteProduct}}>
       {children}
     </ProductsDestacadosContext.Provider>
   );

@@ -26,6 +26,12 @@ import { MagicMotion } from "react-magic-motion";
 import { motion } from "framer-motion";
 import Nosotros from "./components/nosotros/Nosotros.jsx";
 import Clientes from "./components/nosotros/Clientes/Clientes.jsx";
+import ResultProductsCard from "./components/navbar/search/resultProducts/resultProductsCard.jsx";
+import toast, { Toaster } from "react-hot-toast";
+import Login from "./pages/login.jsx";
+import Admin from "./pages/admin.jsx";
+import NavbarAdmin from "./pages/admin/adminComponents/NavbarAdmin.jsx";
+import CargarProdForm from "./pages/admin/adminComponents/CargarProdForm.jsx";
 
 function App() {
   const containerVariants = {
@@ -76,6 +82,7 @@ function App() {
                 element={
                   <>
                     <NavBar />
+                    <Toaster style={{ zIndex: 999999999999 }} />
                     <OfertDetail />
                     <Footer />
                     <WspLogo />
@@ -87,13 +94,17 @@ function App() {
                 element={
                   <>
                     <ProductsDestacadosProvider>
-                      <NavBar />
-                      <div className={`flex flex-col items-center w-full`}>
-                        <ProductDestacados />
-                      </div>
-                      <Footer />
-                      <WspLogo />
+                      <>
+                        <NavBar />
+                        <div className={`flex flex-col items-center w-full`}>
+                          <ProductDestacados />
+                        </div>
+                        <Footer />
+                        <WspLogo />
+                      </>
+                      ;
                     </ProductsDestacadosProvider>
+                    ;
                   </>
                 }
               />
@@ -101,6 +112,7 @@ function App() {
                 path="/productDetail/:id"
                 element={
                   <>
+                    <Toaster style={{ zIndex: 999999999999 }} />
                     <NavBar />
                     <ProductDetail />
                     <Footer />
@@ -113,6 +125,7 @@ function App() {
                 element={
                   <ProductsCategoryProvider>
                     <>
+                    
                       <NavBar />
                       <div className={`flex flex-col items-center w-full`}>
                         <ProductsCategoryFiltrados />
@@ -133,11 +146,61 @@ function App() {
                       <div className={`flex px-2 flex-col items-center w-full`}>
                         <Nosotros />
                       </div>
-                        <Clientes/>
+                      <div className=" px-2 max-w-[1524px] mx-auto  items-center">
+                        <Clientes />
+                      </div>
                       <Footer />
                       <WspLogo />
                     </>
                   </ProductsCategoryProvider>
+                }
+              />
+
+              <Route
+                path="/admin/login"
+                element={
+                  <ProductsCategoryProvider>
+                    <>
+                      <NavBar />
+                      <div className={`flex px-2 flex-col items-center w-full`}>
+                        <Login />
+                      </div>
+
+                      <Footer />
+                      <WspLogo />
+                    </>
+                  </ProductsCategoryProvider>
+                }
+              />
+
+              <Route
+                path="/adminLorecunas/logeado/estadoDelIncioSucces=a878373734674674238283283723467426712"
+                element={
+                  
+                  <ProductsDestacadosProvider>
+                    <div className="p-0">
+                    <Toaster/>
+                      <NavbarAdmin />
+                      <div className={`flex px-2 flex-col items-center w-full`}>
+                        <Admin />
+                      </div>
+                    </div>
+                  </ProductsDestacadosProvider>
+                }
+              />
+
+              <Route
+                path="/adminLorecunas/logeado/estadoDelIncioSucces=a878373734674674238283283723467426712/cargarProductos"
+                element={
+                  <ProductsDestacadosProvider>
+                    <div className="p-0">
+                    <Toaster/>
+                      <NavbarAdmin />
+                      <div className={`flex px-2 flex-col items-center w-full`}>
+                        <CargarProdForm />
+                      </div>
+                    </div>
+                  </ProductsDestacadosProvider>
                 }
               />
             </Routes>

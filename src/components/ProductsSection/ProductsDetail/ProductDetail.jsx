@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Modal, Box, Typography, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { motion, AnimatePresence } from "framer-motion";
+import toast from "react-hot-toast";
 
 // Import Swiper styles
 import "swiper/css";
@@ -12,7 +13,7 @@ import "swiper/css/pagination";
 import "./productDetail.css";
 
 // import required modules
-import { Pagination } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -82,6 +83,35 @@ const ProductDetail = () => {
     openModal(image); // Open the modal with the selected image
   };
 
+  const agregarFav = (nuevoFavorito) => {
+    const favoritosGuardados =
+      JSON.parse(localStorage.getItem("favoritos")) || [];
+
+    // Verificar si ya existe un favorito con el mismo ID
+    const existeFavorito = favoritosGuardados.some(
+      (favorito) =>
+        favorito.productDetail._id === nuevoFavorito.productDetail._id
+    );
+
+    if (existeFavorito) {
+      toast.error("Este producto ya está en favoritos.", {
+        duration: 1500,
+        position: "top-right",
+        iconTheme: {
+          primary: "red",
+        },
+      });
+    } else {
+      favoritosGuardados.push(nuevoFavorito);
+      localStorage.setItem("favoritos", JSON.stringify(favoritosGuardados));
+      toast("Producto agregado a favoritos ❤️", {
+        duration: 1500,
+        position: "top-right",
+        disableHover: true,
+      });
+    }
+  };
+
   const firstSwiperRef = useRef(null);
   const secondSwiperRef = useRef(null);
 
@@ -108,7 +138,7 @@ const ProductDetail = () => {
                   <img
                     alt="ecommerce"
                     className={` cursor-pointer lg:w-full w-full lg:h-auto object-cover object-center rounded-lg h-[300px] md:min-h-[500px] md:max-h-[500px]`}
-                    src={img}
+                    src={`http://localhost:3900/uploadsProducts/${img.filename}`}
                     onClick={() => handleThumbnailClick(i)}
                   />
                 </SwiperSlide>
@@ -123,45 +153,44 @@ const ProductDetail = () => {
                 className="modalContainer"
               >
                 <motion.div
-                variants={napoletanoGrosoCard}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-               
-              >
-                <motion.div
                   variants={napoletanoGrosoCard}
-                  className="bg-white p-4 rounded-lg shadow-md w-[300px] sm:w-[480px] md:w-[580px] lg:w-[700px] mx-auto   flex flex-col"
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
                 >
-                   <div className="flex justify-between items-center mb-4">
-                    <button
-                      onClick={closeModal}
-                      className="bg-slate-50 px-4 py-2 hover:bg-slate-200 rounded font-bold ml-auto"
-                    >
-                      <CloseIcon />
-                    </button>
-                  </div>
-                  <Swiper
-                    slidesPerView={1}
-                    spaceBetween={30}
-                    modules={[Pagination]}
-                    pagination={{ clickable: true }}
-                    navigation
-                    initialSlide={selectedImageIndex}
-                    className="mySwiper swiperImg w-[270px] sm:w-[430px] md:w-[550px] lg:w-[660px] mx-auto"
+                  <motion.div
+                    variants={napoletanoGrosoCard}
+                    className="bg-white p-4 rounded-lg shadow-md w-[300px] sm:w-[480px] md:w-[580px] lg:w-[700px] mx-auto   flex flex-col"
                   >
-                    {data.productDetail &&
-                      data.productDetail.images.map((img, i) => (
-                        <SwiperSlide key={i}>
-                          <img
-                            className=" w-[570px] h-[320px] sm:w-[585px] md:w-[580px] lg:w-[680px] sm:h-[450px] object-cover rounded-lg"
-                            src={img}
-                            alt={`Image ${i}`}
-                          />
-                        </SwiperSlide>
-                      ))}
-                  </Swiper>
-                </motion.div>
+                    <div className="flex justify-between items-center mb-4">
+                      <button
+                        onClick={closeModal}
+                        className="bg-slate-50 px-4 py-2 hover:bg-slate-200 rounded font-bold ml-auto"
+                      >
+                        <CloseIcon />
+                      </button>
+                    </div>
+                    <Swiper
+                      slidesPerView={1}
+                      spaceBetween={30}
+                      modules={[Pagination, Navigation]}
+                      pagination={{ clickable: true }}
+                      navigation
+                      initialSlide={selectedImageIndex}
+                      className="mySwiper swiperImg w-[270px] sm:w-[430px] md:w-[550px] lg:w-[660px] mx-auto"
+                    >
+                      {data.productDetail &&
+                        data.productDetail.images.map((img, i) => (
+                          <SwiperSlide key={i}>
+                            <img
+                              className=" w-[570px] h-[320px] sm:w-[585px] md:w-[580px] lg:w-[680px] sm:h-[450px] object-cover rounded-lg"
+                              src={`http://localhost:3900/uploadsProducts/${img.filename}`}
+                              alt={`Image ${i}`}
+                            />
+                          </SwiperSlide>
+                        ))}
+                    </Swiper>
+                  </motion.div>
                 </motion.div>
               </Modal>
             )}
@@ -274,7 +303,10 @@ const ProductDetail = () => {
               <button className="flex ml-auto text-white bg-[#ff9fce] border-0 py-2 px-6 focus:outline-none hover:bg-[#ffd5ea] rounded">
                 Comprar
               </button>
-              <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+              <button
+                onClick={() => agregarFav(data)}
+                className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
+              >
                 <svg
                   fill="currentColor"
                   stroke-linecap="round"
@@ -311,7 +343,7 @@ const ProductDetail = () => {
                 >
                   <img
                     className={`h-[120px] object-cover select-none w-[120px] rounded hover:opacity-75 cursor-pointer`}
-                    src={img}
+                    src={`http://localhost:3900/uploadsProducts/${img.filename}`}
                     alt={`Image ${i + 1}`}
                   />
                 </SwiperSlide>

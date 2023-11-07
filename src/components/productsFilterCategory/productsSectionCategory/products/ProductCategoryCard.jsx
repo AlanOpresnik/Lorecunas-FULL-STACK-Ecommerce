@@ -6,10 +6,8 @@ import { motion } from "framer-motion";
 
 const ProductCategoryCard = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const { productCategory, loading, fetchProductsCategorys } = useProductsCategory();
-if(productCategory.length >= 0) {
-  fetchProductsCategorys()
-}
+  const { productCategory, loading } = useProductsCategory();
+
   if (loading) {
     return <p>Cargando Productos...</p>;
   }
@@ -31,7 +29,7 @@ if(productCategory.length >= 0) {
                     >
                       <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none transition-opacity group-hover:opacity-75 lg:h-80">
                         <img
-                          src={product.images[0]}
+                          src={`http://localhost:3900/uploadsProducts/${product.images[0].filename}`}
                           alt={product.title}
                           className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                         />
@@ -76,7 +74,7 @@ if(productCategory.length >= 0) {
                     >
                       <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none transition-opacity group-hover:opacity-75 lg:h-80">
                         <img
-                          src={product.images[0]}
+                          src={`http://localhost:3900/uploadsProducts/${product.images[0].filename}`}
                           alt={product.title}
                           className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                         />

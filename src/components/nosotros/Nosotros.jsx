@@ -134,7 +134,7 @@ const Nosotros = () => {
         </div>
       </div>
       <h1 className="title-font border-t-2 py-6 text-center sm:text-4xl text-4xl mb-4 font-medium text-gray-900">
-        Nuestros clientes te cuentan su experiencia
+        Nuestros <span className="text-[#FE98CB]">clientes</span> te cuentan su experiencia
       </h1>
     </section>
   );

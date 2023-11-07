@@ -1,4 +1,8 @@
 const Product = require("../models/Products");
+const { promisify } = require("util");
+
+const fs = require("fs");
+const path = require("path");
 
 const prueba = (req, res) => {
   return res.status(200).send({
@@ -28,12 +32,25 @@ const postProduct = async (req, res) => {
   // Obtener información del formulario
   const params = req.body;
 
+  // Obtener la información de las imágenes cargadas
+  const images = req.files.map((file) => ({
+    fieldname: file.fieldname,
+    originalname: file.originalname,
+    encoding: file.encoding,
+    mimetype: file.mimetype,
+    destination: file.destination,
+    filename: file.filename,
+    path: file.path,
+    size: file.size,
+  }));
+
   // Crear una instancia de Product con los datos del formulario
   const newProduct = new Product({
     title: params.title,
     description: params.description,
     price: params.price,
-    images: params.images, // Asegúrate de que las imágenes se envíen en el formulario
+    images: images,
+    category: params.category,
   });
 
   try {
@@ -71,9 +88,9 @@ const editProduct = async (req, res) => {
     product.title = req.body.title || product.title;
     product.description = req.body.description || product.description;
     product.price = req.body.price || product.price;
-    product.category = req.body.category || product.category
-    product.ofert = req.body.ofert || product.ofert
-    product.destacado = req.body.destacado || product.destacado
+    product.category = req.body.category || product.category;
+    product.ofert = req.body.ofert || product.ofert;
+    product.destacado = req.body.destacado || product.destacado;
 
     const updatedProduct = await product.save();
 
@@ -92,32 +109,157 @@ const editProduct = async (req, res) => {
 };
 
 const removeOneProduct = async (req, res) => {
-  //encontrar product a eliminar
   const product = req.params.id;
 
   try {
-    // Buscar el producto por su ID y eliminarlo
-    const removedProduct = await Product.findByIdAndRemove(product);
+    const removedProduct = await Product.findById(product);
+
     if (!removedProduct) {
       return res.status(404).json({
         status: "error",
         message: "Producto no encontrado",
       });
     }
+
+    if (removedProduct.images && Array.isArray(removedProduct.images)) {
+      removedProduct.images.forEach((image) => {
+        const imagePath = path.join(
+          __dirname,
+          "../uploadsProducts",
+          image.filename
+        );
+
+        fs.unlink(imagePath, (err) => {
+          if (err) {
+            console.error(
+              `Error al eliminar la imagen ${image.filename}: ${err}`
+            );
+          }
+        });
+      });
+    }
+
+    const removedProductFromDB = await Product.findByIdAndRemove(product);
+
+    if (!removedProductFromDB) {
+      return res.status(404).json({
+        status: "error",
+        message: "Producto no se pudo eliminar de la base de datos",
+      });
+    }
+
     return res.status(200).json({
       status: "success",
       message: "Producto eliminado con éxito",
-      productRemove: removedProduct,
+      productRemove: removedProductFromDB,
     });
   } catch (error) {
+    console.error("Error al eliminar el producto:", error);
     return res.status(500).json({
       status: "error",
-      msg: "el producto no se puede eliminar",
-      error,
+      msg: "El producto no se puede eliminar",
+      error: error.message,
     });
   }
 };
 
+const removeProductImage = async (req, res) => {
+  const productId = req.params.id; // ID del producto
+  const imageId = req.params.image; // ID de la imagen a eliminar
+
+  try {
+    // Busca el producto por ID
+    const product = await Product.findById(productId);
+
+    if (!product) {
+      return res.status(404).json({
+        status: "error",
+        message: "Producto no encontrado",
+      });
+    }
+
+    // Busca la imagen en el producto por su ID
+    const imageToRemove = product.images.find((image) => image._id == imageId);
+
+    if (!imageToRemove) {
+      return res.status(404).json({
+        status: "error",
+        message: "Imagen no encontrada en el producto",
+      });
+    }
+
+    // Obtiene la ruta del archivo de imagen a eliminar
+    const imagePath = path.join(
+      __dirname,
+      "../uploadsProducts",
+      imageToRemove.filename
+    );
+
+    // Promisify la función fs.unlink para eliminar el archivo de imagen
+    const unlinkAsync = promisify(fs.unlink);
+
+    // Elimina el archivo de imagen físicamente
+    await unlinkAsync(imagePath);
+
+    // Elimina la imagen del producto en la base de datos
+    product.images = product.images.filter((image) => image._id != imageId);
+
+    // Guarda el producto actualizado en la base de datos
+    const updatedProduct = await product.save();
+
+    return res.status(200).json({
+      status: "success",
+      message: "Imagen eliminada con éxito",
+    });
+  } catch (error) {
+    console.error("Error al eliminar la imagen:", error);
+    return res.status(500).json({
+      status: "error",
+      message: "Error al eliminar la imagen",
+    });
+  }
+};
+const uploadProductImage = async (req, res) => {
+  const productId = req.params.id;
+
+  try {
+    const product = await Product.findById(productId);
+
+    if (!product) {
+      return res.status(404).json({
+        status: "error",
+        message: "Producto no encontrado",
+      });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({
+        status: "error",
+        message: "No se han proporcionado imágenes para subir",
+      });
+    }
+
+    const uploadedImage = req.file;
+
+    // Asegúrate de que tu modelo de datos maneje la información de la imagen adecuadamente
+    product.images.push({ filename: uploadedImage.filename });
+
+    const updatedProduct = await product.save();
+
+    return res.status(201).json({
+      status: "success",
+      message: "Imagen subida con éxito",
+      updatedProduct,
+      image: uploadedImage.filename,
+    });
+  } catch (error) {
+    console.error("Error al subir la imagen:", error);
+    return res.status(500).json({
+      status: "error",
+      message: "Error al subir la imagen",
+    });
+  }
+};
 const getProductDestacado = (req, res) => {
   Product.find({ destacado: true })
     .then((productosDestacados) => {
@@ -129,7 +271,7 @@ const getProductDestacado = (req, res) => {
 };
 
 const marcarProductoComoDestacado = (req, res) => {
-  const productId = req.params.productId; // Asegúrate de obtener el ID del producto desde la solicitud
+  const productId = req.params.id; // Asegúrate de obtener el ID del producto desde la solicitud
 
   Product.updateOne({ _id: productId }, { destacado: true })
     .then((result) => {
@@ -196,8 +338,24 @@ const getProductDetails = async (req, res) => {
 const filtrarProduct = async (req, res) => {
   try {
     const filtro = req.params.product;
-    const productos = await Product.find({ category: { $regex: new RegExp(filtro, "i") } });
+    const productos = await Product.find({
+      category: { $regex: new RegExp(filtro, "i") },
+    });
 
+    console.log("Productos que contienen el filtro en el título:", productos);
+    res.status(200).json(productos);
+  } catch (err) {
+    console.error("Error al buscar productos:", err);
+    res.status(500).send("Error al buscar productos");
+  }
+};
+
+const searchProduct = async (req, res) => {
+  try {
+    const search = req.params.search;
+    const productos = await Product.find({
+      title: { $regex: new RegExp(search, "i") },
+    });
     console.log("Productos que contienen el filtro en el título:", productos);
     res.status(200).json(productos);
   } catch (err) {
@@ -216,5 +374,8 @@ module.exports = {
   marcarProductoComoDestacado,
   eliminarProductoDestacado,
   getProductDetails,
-  filtrarProduct
+  filtrarProduct,
+  searchProduct,
+  removeProductImage,
+  uploadProductImage,
 };

@@ -13,11 +13,16 @@ const ProductSchema = Schema({
     type: Number,
     required: true,
   },
-  images: [
-    {
-      type: String, 
-    },
-  ],
+  images: [{
+    fieldname: String,
+    originalname: String,
+    encoding: String,
+    mimetype: String,
+    destination: String,
+    filename: String,
+    path: String,
+    size: Number,
+  }],
   category:{
     type: String,
   },
