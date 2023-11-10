@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { useProductsDestacados } from "../../../context/ProductsDestacadosContext";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const ProductAdminCard = ({ prod }) => {
   const { handleDeleteProduct } = useProductsDestacados();
@@ -54,7 +55,13 @@ const ProductAdminCard = ({ prod }) => {
       );
 
       // Cerrar el modal de edición
+    
       setIsEditing(false);
+      Swal.fire({
+        title: "Producto editado con exito",
+        text: `el producto ${editedProduct.title} fue editado correctamente `,
+        icon: "success"
+      });
     } catch (error) {
       console.error("Error al actualizar el producto", error);
     }
@@ -90,10 +97,6 @@ const ProductAdminCard = ({ prod }) => {
 
   const handleUploadImage = async () => {
     try {
-      if (!selectedImage) {
-        alert("Selecciona una imagen primero.");
-        return;
-      }
 
       const formData = new FormData();
       formData.append("image", selectedImage);
@@ -118,30 +121,33 @@ const ProductAdminCard = ({ prod }) => {
   };
 
   return (
-    <div className="flex gap-6">
+    <div className="flex gap-6 overflow-x-auto max-w-[600px]">
+    <div>
+      <img
+        className="max-w-[120px]"
+        src={`http://localhost:3900/uploadsProducts/${prod.images[0].filename}`}
+        alt={`Product ${prod._id}`}
+      />
+    </div>
+    <div className="flex flex-col items-center lg:flex-row lg:items-start w-full">
       <div>
-        <img
-          className="max-w-[120px]"
-          src={`http://localhost:3900/uploadsProducts/${prod.images[0].filename}`}
-          alt={`Product ${prod._id}`}
-        />
+        <p className="text-lg font-bold">{prod.title}</p>
+        <p className="text-sm text-gray-500 line-clamp-2">
+          {prod.description}
+        </p>
       </div>
-      <div className="w-[450px] flex items-center">
-        <div>
-          <p className="text-lg font-bold">{prod.title}</p>
-          <p className="text-sm text-gray-500 line-clamp-2">
-            {prod.description}
-          </p>
-        </div>
-        <div className="flex">
-          <Button onClick={handleEditClick}>
-            <ModeEditIcon />
-          </Button>
-          <Button onClick={() => handleDeleteProduct(prod._id)}>
-            <DeleteIcon sx={{ color: "red" }} />
-          </Button>
-        </div>
+      <div className="flex mt-2 lg:mt-0">
+        <Button onClick={handleEditClick}>
+          <ModeEditIcon />
+        </Button>
+        <Button onClick={() => handleDeleteProduct(prod._id)}>
+          <DeleteIcon sx={{ color: "red" }} />
+        </Button>
       </div>
+    </div>
+
+
+
       {/* Modal de edición */}
       <Modal
         className=" overflow-y-auto"
@@ -279,6 +285,19 @@ const ProductAdminCard = ({ prod }) => {
                 }}
               >
                 Guardar cambios
+              </Button>
+              <Button
+              className=" bg-red-400"
+                onClick={() => {
+                  setIsEditing(false)
+                }}
+                sx={{
+                    bgcolor: "red",
+                    color:"white",
+                    "&:hover":{backgroundColor:"rgb(248 113 113)"}
+                }}
+              >
+               Cancelar
               </Button>
             </div>
           </div>

@@ -28,6 +28,27 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+const getProductosByCategoria = async (req, res) => {
+  const productId = req.params.id;
+
+  try {
+    // Buscar el producto por ID
+    const producto = await Product.findOne({ _id: productId });
+
+    if (!producto) {
+      return res.status(404).json({ error: 'Producto no encontrado' });
+    }
+
+    // Filtrar productos por categoría
+    const productosRelacionados = await Product.find({ category: producto.category }).exec();
+
+    res.json(productosRelacionados);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error en el servidor' });
+  }
+};
+
 const postProduct = async (req, res) => {
   // Obtener información del formulario
   const params = req.body;
@@ -378,4 +399,5 @@ module.exports = {
   searchProduct,
   removeProductImage,
   uploadProductImage,
+  getProductosByCategoria
 };

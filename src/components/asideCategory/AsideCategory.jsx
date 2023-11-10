@@ -5,11 +5,15 @@ import { Button } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 
-const AsideCategory = () => {
+const AsideCategory = ({ productDestacado }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [category, setCategory] = useState("");
   const [categoriaFiltrada, setCategoriaFiltrada] = useState({});
+  const hasOutletProducts =
+    Array.isArray(productDestacado) &&
+    productDestacado.some((product) => product.category == "OUTLET");
+
   const navigate = useNavigate();
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -36,6 +40,7 @@ const AsideCategory = () => {
         console.error("Error al filtrar productos:", error);
       });
   };
+
   const openCategoryList = () => {
     setShowMenu(true);
 
@@ -108,7 +113,7 @@ const AsideCategory = () => {
                     to={category}
                     onClick={handleClickCategory}
                   >
-                    Cunas Funcionales
+                    Cunas Funcionales completas
                   </Button>
                   <Button
                     sx={{
@@ -118,7 +123,7 @@ const AsideCategory = () => {
                     to={category}
                     onClick={handleClickCategory}
                   >
-                    Instructivos
+                    Cunas funcionales solas
                   </Button>
                   <Button
                     sx={{
@@ -158,7 +163,7 @@ const AsideCategory = () => {
                     to={category}
                     onClick={handleClickCategory}
                   >
-                    HOTSALE
+                    Cunas colecho completas
                   </Button>
                   <Button
                     sx={{
@@ -168,7 +173,7 @@ const AsideCategory = () => {
                     to={category}
                     onClick={handleClickCategory}
                   >
-                    OFERTAS
+                    Cunas colecho solas
                   </Button>
                   <Button
                     sx={{
@@ -179,8 +184,31 @@ const AsideCategory = () => {
                     to={category}
                     onClick={handleClickCategory}
                   >
-                    DECORACION
+                    Promos Dormitorios
                   </Button>
+                  <Button
+                    sx={{
+                      color: "rgb(75 85 99)",
+                      textAlign: "center",
+                    }}
+                    className="p-1 border-b-2 hover:text-[#FE98CB]"
+                    to={category}
+                    onClick={handleClickCategory}
+                  >
+                    Accesorios
+                  </Button>
+                  {hasOutletProducts && (
+                    <Button
+                      sx={{
+                        color: "rgb(75 85 99)",
+                      }}
+                      className="p-1 border-b-2 hover:text-[#FE98CB]"
+                      to={category}
+                      onClick={handleClickCategory}
+                    >
+                      Outlet
+                    </Button>
+                  )}
                 </div>
               </motion.div>
             </>
@@ -189,7 +217,7 @@ const AsideCategory = () => {
       ) : (
         <>
           <h1 className="font-bold border-b-4">Categorias</h1>
-          <div className="flex flex-col py-4">
+          <div className="flex flex-col items-start py-4 ">
             <Link
               className="p-1 border-b-2 text-center text-md text-gray-500 border-none  hover:text-[#FE98CB]"
               sx={{
@@ -200,12 +228,10 @@ const AsideCategory = () => {
               TODAS
             </Link>
             <Button
+              className="p-1 border-b-2  hover:text-[#FE98CB]"
               sx={{
                 color: "rgb(75 85 99)",
-                textAlign: "center",
               }}
-              className="p-1 border-b-2 hover:text-[#FE98CB]"
-              to={category}
               onClick={handleClickCategory}
             >
               Roperos
@@ -213,31 +239,28 @@ const AsideCategory = () => {
             <Button
               sx={{
                 color: "rgb(75 85 99)",
-                textAlign: "center",
               }}
-              className="p-1 border-b-2 hover:text-[#FE98CB]"
+              className="p-1 border-b-2 text-start  hover:text-[#FE98CB] text-start "
               to={category}
               onClick={handleClickCategory}
             >
-              Cunas Funcionales
+              Cunas Funcionales completas
             </Button>
             <Button
               sx={{
                 color: "rgb(75 85 99)",
-                textAlign: "center",
               }}
-              className="p-1 border-b-2 hover:text-[#FE98CB]"
+              className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
               to={category}
               onClick={handleClickCategory}
             >
-              Instructivos
+              Cunas funcionales solas
             </Button>
             <Button
               sx={{
                 color: "rgb(75 85 99)",
-                textAlign: "center",
               }}
-              className="p-1 border-b-2 hover:text-[#FE98CB]"
+              className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
               to={category}
               onClick={handleClickCategory}
             >
@@ -246,9 +269,8 @@ const AsideCategory = () => {
             <Button
               sx={{
                 color: "rgb(75 85 99)",
-                textAlign: "center",
               }}
-              className="p-1 border-b-2 hover:text-[#FE98CB]"
+              className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
               to={category}
               onClick={handleClickCategory}
             >
@@ -258,7 +280,7 @@ const AsideCategory = () => {
               sx={{
                 color: "rgb(75 85 99)",
               }}
-              className="p-1 border-b-2 hover:text-[#FE98CB]"
+              className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
               to={category}
               onClick={handleClickCategory}
             >
@@ -268,38 +290,60 @@ const AsideCategory = () => {
               sx={{
                 color: "rgb(75 85 99)",
               }}
-              className="p-1 border-b-2 hover:text-[#FE98CB]"
+              className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
               to={category}
               onClick={handleClickCategory}
             >
-              HOT/SALE
+              Cunas colecho completas
             </Button>
             <Button
               sx={{
                 color: "rgb(75 85 99)",
               }}
-              className="p-1 border-b-2 hover:text-[#FE98CB]"
+              className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
               to={category}
               onClick={handleClickCategory}
             >
-              OFERTAS
+              Cunas colecho solas
             </Button>
             <Button
               sx={{
                 color: "rgb(75 85 99)",
                 textAlign: "center",
               }}
-              className="p-1 border-b-2 hover:text-[#FE98CB]"
+              className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
               to={category}
               onClick={handleClickCategory}
             >
-              DECORACION
+              Promos Dormitorios
             </Button>
+            <Button
+              sx={{
+                color: "rgb(75 85 99)",
+                textAlign: "center",
+              }}
+              className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
+              to={category}
+              onClick={handleClickCategory}
+            >
+              Accesorios
+            </Button>
+            {hasOutletProducts && (
+              <Button
+                sx={{
+                  color: "rgb(75 85 99)",
+                }}
+                className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
+                to={category}
+                onClick={handleClickCategory}
+              >
+                Outlet
+              </Button>
+            )}
           </div>
         </>
       )}
     </div>
   );
 };
-
 export default AsideCategory;

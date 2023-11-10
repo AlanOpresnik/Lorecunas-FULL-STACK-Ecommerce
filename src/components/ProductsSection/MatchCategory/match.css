@@ -1,0 +1,7 @@
+.matchSwiper .swiper-wrapper {
+    height: 420px !important;
+}
+
+.matchSwiper .swiper-pagination{
+    bottom: -4px;
+}

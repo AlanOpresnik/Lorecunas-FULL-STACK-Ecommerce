@@ -10,6 +10,7 @@ router.post('/postProduct', upload.array('images', 5), productController.postPro
 
 // Otras rutas
 router.get("/getProducts", productController.getAllProducts);
+router.get("/getMatchProductsCategory/:id", productController.getProductosByCategoria)
 router.put("/editProduct/:id", productController.editProduct);
 router.delete("/deleteProduct/:id", productController.removeOneProduct);
 router.delete("/products/:id/images/:image", productController.removeProductImage);

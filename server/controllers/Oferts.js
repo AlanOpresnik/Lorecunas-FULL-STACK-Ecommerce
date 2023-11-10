@@ -1,5 +1,8 @@
 const Ofert = require("../models/Oferts");
+const { promisify } = require("util");
 
+const fs = require("fs");
+const path = require("path");
 const prueba = (req, res) => {
   return res.status(200).send({
     msg: "dfafadf",
@@ -27,12 +30,24 @@ const postOfert = async (req, res) => {
   // Obtener información del formulario
   const params = req.body;
 
+  // Obtener la información de las imágenes cargadas
+  const images = req.files.map((file) => ({
+    fieldname: file.fieldname,
+    originalname: file.originalname,
+    encoding: file.encoding,
+    mimetype: file.mimetype,
+    destination: file.destination,
+    filename: file.filename,
+    path: file.path,
+    size: file.size,
+  }));
+
   // Crear una instancia de Product con los datos del formulario
   const newOfert = new Ofert({
     title: params.title,
     description: params.description,
     price: params.price,
-    images: params.images,
+    images: images,
     category: params.category, // Asegúrate de que las imágenes se envíen en el formulario
   });
 
@@ -69,21 +84,12 @@ const editOfert = async (req, res) => {
     }
 
     // Verifica y actualiza solo si req.body contiene valores
-    if (req.body.title) {
-      ofert.title = req.body.title;
-    }
-    if (req.body.description) {
-      ofert.description = req.body.description;
-    }
-    if (req.body.price) {
-      ofert.price = req.body.price;
-    }
-    if (req.body.images) {
-      ofert.images = req.body.images;
-    }
-    if (req.body.category) {
-      ofert.category = req.body.category;
-    }
+    ofert.title = req.body.title || ofert.title;
+    ofert.description = req.body.description || ofert.description;
+    ofert.price = req.body.price || ofert.price;
+    ofert.category = req.body.category || ofert.category;
+    ofert.ofert = req.body.ofert || ofert.ofert;
+    ofert.destacado = req.body.destacado || ofert.destacado;
 
     const updatedOfert = await ofert.save();
 
@@ -97,7 +103,7 @@ const editOfert = async (req, res) => {
     return res.status(500).json({
       status: "error",
       message: "Error al editar la oferta",
-      error: error
+      error: error,
     });
   }
 };
@@ -115,16 +121,142 @@ const removeOneOfert = async (req, res) => {
         message: "oferta no encontrado",
       });
     }
+
+    if (removedOfert.images && Array.isArray(removedOfert.images)) {
+      removedOfert.images.forEach((image) => {
+        const imagePath = path.join(
+          __dirname,
+          "../uploadsProducts",
+          image.filename
+        );
+        fs.unlink(imagePath, (err) => {
+          if (err) {
+            console.error(
+              `Error al eliminar la imagen ${image.filename}: ${err}`
+            );
+          }
+        });
+      });
+    }
+    const removedOfertFromDB = await Ofert.findByIdAndRemove(ofert);
+    if (!removedOfertFromDB) {
+      return res.status(404).json({
+        status: "error",
+        message: "Oferta no se pudo eliminar de la base de datos",
+      });
+    }
+
     return res.status(200).json({
       status: "success",
-      message: "Producto eliminado con éxito",
-      removedOfert: removedOfert,
+      message: "oferta eliminado con éxito",
+      ofertRemove: removedOfertFromDB,
     });
   } catch (error) {
+    console.error("Error al eliminar la oferta:", error);
     return res.status(500).json({
       status: "error",
-      msg: "el producto no se puede eliminar",
-      error,
+      msg: "la oferta no se puede eliminar",
+      error: error.message,
+    });
+  }
+};
+
+const removeOfertImage = async (req, res) => {
+  const ofertId = req.params.id; // ID del producto
+  const imageId = req.params.image; // ID de la imagen a eliminar
+
+  try {
+    // Busca el producto por ID
+    const ofert = await Ofert.findById(ofertId);
+
+    if (!ofert) {
+      return res.status(404).json({
+        status: "error",
+        message: "Oferta no encontrado",
+      });
+    }
+
+    // Busca la imagen en el producto por su ID
+    const imageToRemove = ofert.images.find((image) => image._id == imageId);
+
+    if (!imageToRemove) {
+      return res.status(404).json({
+        status: "error",
+        message: "Imagen no encontrada en la oferta",
+      });
+    }
+
+    // Obtiene la ruta del archivo de imagen a eliminar
+    const imagePath = path.join(
+      __dirname,
+      "../uploadsProducts",
+      imageToRemove.filename
+    );
+
+    // Promisify la función fs.unlink para eliminar el archivo de imagen
+    const unlinkAsync = promisify(fs.unlink);
+
+    // Elimina el archivo de imagen físicamente
+    await unlinkAsync(imagePath);
+
+    // Elimina la imagen del producto en la base de datos
+    ofert.images = ofert.images.filter((image) => image._id != imageId);
+
+    // Guarda el producto actualizado en la base de datos
+    const updatedOfert = await ofert.save();
+
+    return res.status(200).json({
+      status: "success",
+      message: "Imagen eliminada con éxito",
+      updatedOfert,
+    });
+  } catch (error) {
+    console.error("Error al eliminar la imagen:", error);
+    return res.status(500).json({
+      status: "error",
+      message: "Error al eliminar la imagen",
+    });
+  }
+};
+
+const uploadOfertImage = async (req, res) => {
+  const ofertId = req.params.id;
+
+  try {
+    const ofert = await Ofert.findById(ofertId);
+
+    if (!ofert) {
+      return res.status(404).json({
+        status: "error",
+        message: "oferta no encontrado",
+      });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({
+        status: "error",
+        message: "No se han proporcionado imágenes para subir",
+      });
+    }
+
+    const uploadedImage = req.file;
+
+    // Asegúrate de que tu modelo de datos maneje la información de la imagen adecuadamente
+    ofert.images.push({ filename: uploadedImage.filename });
+
+    const updatedOfert = await ofert.save();
+
+    return res.status(201).json({
+      status: "success",
+      message: "Imagen subida con éxito",
+      updatedOfert,
+      image: uploadedImage.filename,
+    });
+  } catch (error) {
+    console.error("Error al subir la imagen:", error);
+    return res.status(500).json({
+      status: "error",
+      message: "Error al subir la imagen",
     });
   }
 };
@@ -155,7 +287,7 @@ const getOfertDetails = async (req, res) => {
 };
 
 const uploadImageOfert = (req, res) => {
-    const ofertId = req.params.id;
+  const ofertId = req.params.id;
   Ofert.findById(ofertId)
     .exec()
     .then((oferta) => {
@@ -172,12 +304,10 @@ const uploadImageOfert = (req, res) => {
     })
     .then((ofertaActualizada) => {
       // La oferta se ha actualizado correctamente
-      return res
-        .status(200)
-        .json({
-          message: "Imagen agregada con éxito",
-          oferta: ofertaActualizada,
-        });
+      return res.status(200).json({
+        message: "Imagen agregada con éxito",
+        oferta: ofertaActualizada,
+      });
     })
     .catch((error) => {
       // Manejar cualquier error que ocurra
@@ -191,4 +321,7 @@ module.exports = {
   editOfert,
   removeOneOfert,
   getOfertDetails,
+  removeOfertImage,
+  uploadOfertImage,
+  uploadImageOfert,
 };

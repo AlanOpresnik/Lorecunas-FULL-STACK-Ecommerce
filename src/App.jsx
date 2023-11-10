@@ -32,6 +32,10 @@ import Login from "./pages/login.jsx";
 import Admin from "./pages/admin.jsx";
 import NavbarAdmin from "./pages/admin/adminComponents/NavbarAdmin.jsx";
 import CargarProdForm from "./pages/admin/adminComponents/CargarProdForm.jsx";
+import CargarOfertaForm from "./pages/admin/adminComponents/CargarOfertaForm.jsx";
+import OfertAdminCard from "./pages/admin/adminComponents/OfertAdminCard.jsx";
+import OfertsAdminSection from "./pages/admin/adminComponents/OfertsAdminSection.jsx";
+import MatchCategory from "./components/ProductsSection/MatchCategory/MatchCategory.jsx";
 
 function App() {
   const containerVariants = {
@@ -115,6 +119,9 @@ function App() {
                     <Toaster style={{ zIndex: 999999999999 }} />
                     <NavBar />
                     <ProductDetail />
+                    <div className=" max-w-[1380px] mx-auto">
+                      <MatchCategory />
+                    </div>
                     <Footer />
                     <WspLogo />
                   </>
@@ -125,7 +132,6 @@ function App() {
                 element={
                   <ProductsCategoryProvider>
                     <>
-                    
                       <NavBar />
                       <div className={`flex flex-col items-center w-full`}>
                         <ProductsCategoryFiltrados />
@@ -176,13 +182,48 @@ function App() {
               <Route
                 path="/adminLorecunas/logeado/estadoDelIncioSucces=a878373734674674238283283723467426712"
                 element={
-                  
+                  <div classname={"px-0"}>
                   <ProductsDestacadosProvider>
                     <div className="p-0">
-                    <Toaster/>
+                      <Toaster />
+                      <NavbarAdmin />
+                      <div className={`flex  flex-col items-center w-full`}>
+                        <Admin />
+                      </div>
+                    </div>
+                  </ProductsDestacadosProvider>
+                  </div>
+                }
+              />
+
+              <Route
+                path="/adminLorecunas/logeado/estadoDelIncioSucces=a878373734674674238283283723467426712/cargarProductos"
+                element={
+                  <div classname={"px-0"}>
+
+                  <ProductsDestacadosProvider>
+                    <div className="">
+                      <Toaster />
+                      <NavbarAdmin />
+                      <div className={`flex flex-col items-center w-full`}>
+                        <CargarProdForm />
+                      </div>
+                    </div>
+                    
+                  </ProductsDestacadosProvider>
+                  </div>
+                }
+              />
+
+              <Route
+                path="/adminLorecunas/logeado/estadoDelIncioSucces=a878373734674674238283283723467426712/ofertas"
+                element={
+                  <ProductsDestacadosProvider>
+                    <div className="p-0">
+                      <Toaster />
                       <NavbarAdmin />
                       <div className={`flex px-2 flex-col items-center w-full`}>
-                        <Admin />
+                        <CargarOfertaForm />
                       </div>
                     </div>
                   </ProductsDestacadosProvider>
@@ -190,17 +231,17 @@ function App() {
               />
 
               <Route
-                path="/adminLorecunas/logeado/estadoDelIncioSucces=a878373734674674238283283723467426712/cargarProductos"
+                path="/adminLorecunas/logeado/estadoDelIncioSucces=a878373734674674238283283723467426712/mis-ofertas"
                 element={
-                  <ProductsDestacadosProvider>
+                  <OfertsProvider>
                     <div className="p-0">
-                    <Toaster/>
+                      <Toaster />
                       <NavbarAdmin />
                       <div className={`flex px-2 flex-col items-center w-full`}>
-                        <CargarProdForm />
+                        <OfertsAdminSection />
                       </div>
                     </div>
-                  </ProductsDestacadosProvider>
+                  </OfertsProvider>
                 }
               />
             </Routes>

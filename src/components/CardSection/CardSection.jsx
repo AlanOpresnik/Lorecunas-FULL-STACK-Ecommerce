@@ -26,9 +26,9 @@ const CardSection = () => {
           className="absolute flex flex-col items-start content-center top-0 left-0 right-0 p-4 text-white"
         >
           <h2 className="text-2xl font-bold mb-2 text-[#ff9fce]">
-            Cochecitos
+            Accesorios
           </h2>
-          <p className="text-sm font-bold">De paseo</p>
+          <p className="text-sm font-bold">para dormitorios</p>
           <button className="bg-[#ff9fce] ml-[-4px] hover:bg-[#fabfdb] text-xs text-white  py-2 px-4 mt-4 rounded-full">
             Ver Más
           </button>
@@ -40,7 +40,7 @@ const CardSection = () => {
             borderRadius: "1rem",
           }}
           className="w-full h-[16rem]"
-          src={butaca}
+          src={"https://http2.mlstatic.com/D_NQ_NP_659418-MLA54741084711_032023-O.webp"}
           alt="Imagen de fondo"
         />
 
@@ -53,10 +53,10 @@ const CardSection = () => {
           className="absolute flex flex-col items-start content-center top-0 left-0 right-0 p-4 text-white"
         >
           <h2  style={{ zIndex: 10 }} className="text-2xl font-bold mb-2 text-[#ff9fce]">
-            Butacas
+            Chifoniers
           </h2>
-          <p className="text-sm font-bold">De seguridad</p>
-          <button className="bg-[#ff9fce] hover:bg-[#fabfdb] text-xs text-white  py-2 px-4 mt-4 rounded-full">
+          <p className="text-sm font-bold">Para tu dormitorio</p>
+          <button href={"https://www.argentina.gob.ar/noticias/impulso-un-nuevo-reglamento-para-reforzar-la-seguridad-de-cunas"} className="bg-[#ff9fce] hover:bg-[#fabfdb] text-xs text-white  py-2 px-4 mt-4 rounded-full">
             Ver Más
           </button>
         </div>

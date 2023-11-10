@@ -19,7 +19,7 @@ const ProductDestacadoCard = () => {
           <h2 className="text-2xl font-bold tracking-tight text-gray-900"></h2>
           {isMobile ? (
             <>
-            <AsideCategory />
+            <AsideCategory productDestacado={productDestacado} />
             <div className="col-span-4 lg:col-span-4">
                 <div className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
                   {productDestacado.map((product) => (
@@ -61,7 +61,7 @@ const ProductDestacadoCard = () => {
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
               <div className="col-span-1 lg:col-span-1">
-                <AsideCategory />
+              <AsideCategory productDestacado={productDestacado} />
               </div>
               <div className="col-span-4 lg:col-span-4">
                 <div className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">

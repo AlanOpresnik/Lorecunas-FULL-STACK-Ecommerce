@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const ProductsDestacadosContext = createContext();
 
@@ -8,7 +9,6 @@ export const useProductsDestacados = () => {
 };
 
 export const ProductsDestacadosProvider = ({ children }) => {
-
   const [productDestacado, setProductDestacado] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -30,18 +30,34 @@ export const ProductsDestacadosProvider = ({ children }) => {
     fetchProducts();
   }, []);
 
-  
-
   const handleDeleteProduct = (id) => {
-    try {
-      axios.delete(`http://localhost:3900/api/products/deleteProduct/${id}`);
-    } catch (error) {
-      console.log(error)
-    }
+    Swal.fire({
+      title: "Estas seguro que deseas eliminar este producto?",
+      showDenyButton: true,
+      confirmButtonText: "Si, eliminar",
+      denyButtonText: `Canecelar`,
+      icon:"error",
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        try {
+          axios.delete(
+            `http://localhost:3900/api/products/deleteProduct/${id}`
+          );
+          Swal.fire({title:"el producto se elimino correctamente", icon:"success"});
+        } catch (error) {
+          console.log(error);
+        }
+      } else if (result.isDenied) {
+        return;
+      }
+    });
   };
 
   return (
-    <ProductsDestacadosContext.Provider value={{ productDestacado, loading , handleDeleteProduct}}>
+    <ProductsDestacadosContext.Provider
+      value={{ productDestacado, loading, handleDeleteProduct }}
+    >
       {children}
     </ProductsDestacadosContext.Provider>
   );

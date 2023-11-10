@@ -233,14 +233,14 @@ export default function Navbar() {
                 {prodFavoritos && prodFavoritos.length > 0 ? (
                   prodFavoritos.map((prodFav) => (
                     <div
-                      className="flex border-b flex-col justify-center max-w-[320px]"
+                      className="flex border-b flex-col justify-center  max-w-[320px]"
                       key={prodFav.productDetail.title}
                     >
-                      <div className="flex  items-center ">
+                      <div className="flex  items-center overflow-hidden ">
                         <FavCard prodFav={prodFav} />
                         <Button
                           sx={{
-                            paddingRight: "50px",
+                            paddingRight: "0px",
                             fontSize: "10px",
                             color: "#cccc",
                           }}
@@ -275,7 +275,7 @@ export default function Navbar() {
         {window.innerWidth <= 768 ? (
           <Swiper
             spaceBetween={20}
-            slidesPerView={3}
+            slidesPerView={2}
             modules={[Pagination, Navigation]}
             pagination={{ clickable: true }}
             Navigation={true}
@@ -287,32 +287,47 @@ export default function Navbar() {
                 to={"/cunas-funcionales"}
                 className="text-[#FE98CB] text-sm p-0 m-0 whitespace-nowrap"
               >
-                Cunas funcionales
+                Cunas funcionales completas
               </Link>
             </SwiperSlide>
             <SwiperSlide>
               <Link to={"/cuna-melamina"} className="text-[#FE98CB] text-sm">
-                Cunas melamina
+                Cunas funcionales solas
               </Link>
             </SwiperSlide>
             <SwiperSlide>
               <a href="/a" className="text-[#FE98CB] text-sm">
-                Cunas futuristas
+                Acolchados y chichoneras
               </a>
             </SwiperSlide>
             <SwiperSlide>
               <a href="/a" className="text-[#FE98CB] text-sm">
-                Promociones
+                Dormitorios completos
               </a>
             </SwiperSlide>
             <SwiperSlide>
               <a href="/a" className="text-[#FE98CB] text-sm">
-                Cochesitos
+                Cajoneras
               </a>
             </SwiperSlide>
             <SwiperSlide>
               <a href="/a" className="text-[#FE98CB] text-sm">
-                Juguetes
+                Cunas colecho completas
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="/a" className="text-[#FE98CB] text-sm">
+                Cunas colecho solas
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="/a" className="text-[#FE98CB] text-sm">
+                Promos dormitorios
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="/a" className="text-[#FE98CB] text-sm">
+                Accesorios
               </a>
             </SwiperSlide>
           </Swiper>
@@ -320,36 +335,33 @@ export default function Navbar() {
           <>
             <div className="flex justify-center gap-6 text-lg text-[#FE98CB]">
               <a href="/a" className="text-center">
-                Cunas funcionales
+                Cajoneras
               </a>
               <a href="/a" className="text-center">
-                Cunas melamina
+                Cunas colecho completas
               </a>
               <a href="/a" className="text-center">
-                Cunas futuristas
+                Cunas colecho solas
               </a>
               <a href="/a" className="text-center">
-                Promociones
+                Promo dormitorios
               </a>
               <a href="/a" className="text-center">
-                Cochesitos
-              </a>
-              <a href="/a" className="text-center">
-                Juguetes
+                Accesorios
               </a>
             </div>
             <div className="flex justify-center gap-6 text-lg text-[#FE98CB]">
               <a href="/a" className="text-center">
-                Cunas funcionales
+                Cunas funcionales completas
               </a>
               <a href="/a" className="text-center">
-                Cunas melamina
+                Cunas funcionales solas
               </a>
               <a href="/a" className="text-center">
-                Cunas futuristas
+                Acolchados y chichoneras
               </a>
               <a href="/a" className="text-center pb-3">
-                Promociones
+                Dormitorios completos
               </a>
             </div>
           </>

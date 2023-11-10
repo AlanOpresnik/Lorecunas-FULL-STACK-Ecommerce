@@ -112,7 +112,7 @@ const OfertDetail = () => {
                   <img
                     alt="ecommerce"
                     className={` cursor-pointer lg:w-full w-full lg:h-auto object-cover object-center rounded-lg h-[300px] md:min-h-[500px] md:max-h-[500px]`}
-                    src={img}
+                    src={`http://localhost:3900/uploadsProducts/${img.filename}`}
                     onClick={() => handleThumbnailClick(i)}
                   />
                 </SwiperSlide>
@@ -158,7 +158,7 @@ const OfertDetail = () => {
                           <SwiperSlide key={i}>
                             <img
                               className=" w-[570px] h-[320px] sm:w-[585px] md:w-[580px] lg:w-[680px] sm:h-[450px] object-cover rounded-lg"
-                              src={img}
+                              src={`http://localhost:3900/uploadsProducts/${img.filename}`}
                               alt={`Image ${i}`}
                             />
                           </SwiperSlide>
@@ -315,7 +315,7 @@ const OfertDetail = () => {
                 >
                   <img
                     className={`h-[120px] object-cover select-none w-[120px] rounded hover:opacity-75 cursor-pointer`}
-                    src={img}
+                    src={`http://localhost:3900/uploadsProducts/${img.filename}`}
                     alt={`Image ${i + 1}`}
                   />
                 </SwiperSlide>
