@@ -13,7 +13,7 @@ export const BannerProvider = ({ children }) => {
 
   useEffect(() => {
     try {
-      axios.get('http://localhost:3900/api/banners/getBanners').then((res) => {
+      axios.get(import.meta.env.VITE_API_GET_BANNER).then((res) => {
         setBanners(res.data.banners);
         setLoading(false);
       });
