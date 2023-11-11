@@ -12,6 +12,7 @@ export const BannerProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log(import.meta.env.VITE_API_GET_BANNER)
     try {
       axios.get(import.meta.env.VITE_API_GET_BANNER).then((res) => {
         setBanners(res.data.banners);

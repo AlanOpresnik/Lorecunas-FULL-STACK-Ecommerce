@@ -19,7 +19,12 @@ import NewsLetterDivider from "./components/newsLetterDivider/NewsLetterDivider"
 import WspLogo from "./components/WspLogo/WspLogo";
 import ProductDetail from "./components/ProductsSection/ProductsDetail/ProductDetail";
 import ProductDestacados from "./components/ProductsSection/Productos/Products";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import ScrollToTop from "./helpers/scroll";
 import { MagicMotion } from "react-magic-motion";
@@ -183,15 +188,15 @@ function App() {
                 path="/adminLorecunas/logeado/estadoDelIncioSucces=a878373734674674238283283723467426712"
                 element={
                   <div classname={"px-0"}>
-                  <ProductsDestacadosProvider>
-                    <div className="p-0">
-                      <Toaster />
-                      <NavbarAdmin />
-                      <div className={`flex  flex-col items-center w-full`}>
-                        <Admin />
+                    <ProductsDestacadosProvider>
+                      <div className="p-0">
+                        <Toaster />
+                        <NavbarAdmin />
+                        <div className={`flex  flex-col items-center w-full`}>
+                          <Admin />
+                        </div>
                       </div>
-                    </div>
-                  </ProductsDestacadosProvider>
+                    </ProductsDestacadosProvider>
                   </div>
                 }
               />
@@ -200,17 +205,15 @@ function App() {
                 path="/adminLorecunas/logeado/estadoDelIncioSucces=a878373734674674238283283723467426712/cargarProductos"
                 element={
                   <div classname={"px-0"}>
-
-                  <ProductsDestacadosProvider>
-                    <div className="">
-                      <Toaster />
-                      <NavbarAdmin />
-                      <div className={`flex flex-col items-center w-full`}>
-                        <CargarProdForm />
+                    <ProductsDestacadosProvider>
+                      <div className="">
+                        <Toaster />
+                        <NavbarAdmin />
+                        <div className={`flex flex-col items-center w-full`}>
+                          <CargarProdForm />
+                        </div>
                       </div>
-                    </div>
-                    
-                  </ProductsDestacadosProvider>
+                    </ProductsDestacadosProvider>
                   </div>
                 }
               />
@@ -244,6 +247,8 @@ function App() {
                   </OfertsProvider>
                 }
               />
+
+              <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </div>
         </div>
