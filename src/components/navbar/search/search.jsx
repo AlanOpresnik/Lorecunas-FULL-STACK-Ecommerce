@@ -22,7 +22,7 @@ const Search = () => {
     if (search) {
       // Realiza una solicitud a tu API para obtener sugerencias de búsqueda
       axios(
-        `http://localhost:3900/api/products/getSearchProducts/${search}`
+        import.meta.env.VITE_API_GET_SEARCH_PRODUCTS+search
       ).then((res) => {
         setProducts(res.data);
       });
