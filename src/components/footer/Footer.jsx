@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../img/logo.jpg";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -16,8 +17,7 @@ const Footer = () => {
             <img className="w-full md:w-[120px] lg:w-full" src={logo} />
           </a>
           <p className="mt-2 text-sm text-gray-500">
-            Hace mas de 16 años brindando la mejor atencion y calidad del
-            mercado
+            Hace mas de 20 años brindamos la mejor atencion, calidad y precio del mercado
           </p>
         </div>
 
@@ -34,17 +34,17 @@ const Footer = () => {
               </li>
               <li>
                 <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA] uppercase">
-                  Cunas Melamina
+                  Dormitorios
                 </a>
               </li>
               <li>
                 <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
-                  CUNAS FUTURISTAS
+                  ROPEROS
                 </a>
               </li>
               <li>
                 <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA] uppercase ">
-                  juguetes
+                  PROMOS
                 </a>
               </li>
             </nav>
@@ -70,9 +70,9 @@ const Footer = () => {
                 </a>
               </li>
               <li className="flex items-center justify-center md:justify-start">
-                <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <a phoneNumber="+541169393427"  className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
                   <LocalPhoneIcon sx={{ width: "18px", height: "18px" }} />{" "}
-                  +1158122033
+                  +1169393427
                 </a>
               </li>
             </nav>
@@ -110,24 +110,24 @@ const Footer = () => {
             </h2>
             <nav className="list-none mb-10">
               <li>
-                <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <Link to={'/'} className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
                   INICIO
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <Link to={"/productos"} className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
                   PRODUCTOS
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <Link to={"/"} className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
                   OFERTAS
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <Link to={"/nosotros"} className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
                   NOSOTROS
-                </a>
+                </Link>
               </li>
             </nav>
           </div>
@@ -150,7 +150,7 @@ const Footer = () => {
       <div className="bg-gray-100">
         <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
           <p className="text-gray-500 text-sm text-center sm:text-left">
-            © 2020 Lorecunas —
+            © 2023 Lorecunas —
             <a
               href="https://www.instagram.com/lorecunas/?hl=es"
               className="text-gray-600 ml-1"
