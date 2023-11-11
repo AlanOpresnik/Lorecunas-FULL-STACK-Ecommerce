@@ -103,7 +103,7 @@ function App() {
                 }
               />
               <Route
-                path="/productos"
+                path="https://lorecunas-full-stack-ecommerce.vercel.app/productos"
                 element={
                   <>
                     <ProductsDestacadosProvider>
