@@ -40,7 +40,7 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
 };
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: (
@@ -234,6 +234,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+   <RouterProvider router={router} />
   </React.StrictMode>
 );
