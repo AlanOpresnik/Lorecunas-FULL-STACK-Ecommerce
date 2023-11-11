@@ -206,7 +206,7 @@ export default function Navbar() {
           </li>
           <li className="mx-4 my-6 md:my-0">
             <Link
-              to={"/productos"}
+              to={"https://lorecunas-full-stack-ecommerce.vercel.app/productos"}
               className="sm:text-xs lg:text-base uppercase hover:text-[#FE98CB] duration-500"
             >
               Productos
