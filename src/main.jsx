@@ -9,6 +9,7 @@ import {
   RouterProvider,
   Route,
   Link,
+  createHashRouter,
 } from "react-router-dom";
 import { BannerProvider } from "./context/BannerContext.jsx";
 import Banner from "./components/banner/banner.jsx";
