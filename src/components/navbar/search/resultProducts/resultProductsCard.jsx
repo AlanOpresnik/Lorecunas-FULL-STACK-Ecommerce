@@ -9,7 +9,7 @@ const ResultProductsCard = ({ prod }) => {
         <img
           alt="Product"
           className="h-[120px] w-[250px] object-cover rounded-lg"
-          src={`http://localhost:3900/uploadsProducts/${prod.images[0].filename}`}
+          src={import.meta.env.VITE_API_FAV_DRAWER+prod.images[0].filename}
         />
       </div>
       <div className="mt-3 flex flex-col w-full md:w-[200px]">
