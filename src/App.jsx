@@ -49,6 +49,10 @@ function App() {
   };
   return (
     <Router>
+    <ProductsDestacadosProvider>
+    <ProductsCategoryProvider>
+    <OfertsProvider>
+    <BannerProvider>
       {" "}
       {/* Envuelve tu componente App con un Router */}
       <ScrollToTop />
@@ -249,10 +253,16 @@ function App() {
               />
 
               <Route path="*" element={<Navigate to="/" />} />
+              
             </Routes>
+            
           </div>
         </div>
       </div>
+      </BannerProvider>
+      </OfertsProvider>
+      </ProductsCategoryProvider>
+      </ProductsDestacadosProvider>
     </Router>
   );
 }
