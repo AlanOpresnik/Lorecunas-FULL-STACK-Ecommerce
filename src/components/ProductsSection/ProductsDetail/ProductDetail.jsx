@@ -124,7 +124,7 @@ const ProductDetail = () => {
         variants={containerVariants}
         className="container px-5 md:py-24 mx-auto"
       >
-        <motion.div className="h-[auto] lg:w-full mx-auto flex flex-wrap">
+        <motion.div className="h-[auto] lg:w-[95%] mx-auto flex flex-wrap">
           <Swiper
             slidesPerView={1}
             spaceBetween={30}

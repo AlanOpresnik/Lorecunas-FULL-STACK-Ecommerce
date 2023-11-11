@@ -43,6 +43,16 @@ import OfertsAdminSection from "./pages/admin/adminComponents/OfertsAdminSection
 import MatchCategory from "./components/ProductsSection/MatchCategory/MatchCategory.jsx";
 
 function App() {
+  
+  const ScrollToTop = () => {
+    const { pathname } = useLocation();
+  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+  
+    return null;
+  };
 
   return (
     <p>1</p>

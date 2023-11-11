@@ -10,6 +10,7 @@ import {
   Route,
   Link,
   createHashRouter,
+  useLocation,
 } from "react-router-dom";
 import { BannerProvider } from "./context/BannerContext.jsx";
 import Banner from "./components/banner/banner.jsx";
@@ -36,11 +37,14 @@ import Admin from "./pages/admin.jsx";
 import CargarProdForm from "./pages/admin/adminComponents/CargarProdForm.jsx";
 import CargarOfertaForm from "./pages/admin/adminComponents/CargarOfertaForm.jsx";
 import OfertsAdminSection from "./pages/admin/adminComponents/OfertsAdminSection.jsx";
+import ScrollToTop from "./scrollTop.jsx";
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
 };
+
+
 const router = createHashRouter([
   {
     path: "/",
@@ -68,6 +72,7 @@ const router = createHashRouter([
                 </OfertsProvider>
                 <NewsLetterDivider />
                 <WspLogo />
+                <ScrollToTop/>
               </div>
               <Footer />
             </motion.div>
@@ -85,6 +90,7 @@ const router = createHashRouter([
         <OfertDetail />
         <Footer />
         <WspLogo />
+        <ScrollToTop/>
       </>
     ),
   },
@@ -102,6 +108,7 @@ const router = createHashRouter([
             <WspLogo />
           </>
           ;
+          <ScrollToTop/>
         </ProductsDestacadosProvider>
         ;
       </>
@@ -119,6 +126,7 @@ const router = createHashRouter([
         </div>
         <Footer />
         <WspLogo />
+        <ScrollToTop/>
       </>
     ),
   },
@@ -134,6 +142,7 @@ const router = createHashRouter([
           <Footer />
           <WspLogo />
         </>
+        <ScrollToTop/>
       </ProductsCategoryProvider>
     ),
   },
@@ -152,6 +161,7 @@ const router = createHashRouter([
           <Footer />
           <WspLogo />
         </>
+        <ScrollToTop/>
       </ProductsCategoryProvider>
     ),
   },
@@ -168,6 +178,7 @@ const router = createHashRouter([
           <Footer />
           <WspLogo />
         </>
+        <ScrollToTop/>
       </ProductsCategoryProvider>
     ),
   },
@@ -183,6 +194,7 @@ const router = createHashRouter([
               <Admin />
             </div>
           </div>
+          <ScrollToTop/>
         </ProductsDestacadosProvider>
       </div>
     ),
@@ -199,6 +211,7 @@ const router = createHashRouter([
               <CargarProdForm />
             </div>
           </div>
+          <ScrollToTop/>
         </ProductsDestacadosProvider>
       </div>
     ),
@@ -214,6 +227,7 @@ const router = createHashRouter([
             <CargarOfertaForm />
           </div>
         </div>
+        <ScrollToTop/>
       </ProductsDestacadosProvider>
     )
   },
@@ -228,6 +242,7 @@ const router = createHashRouter([
             <OfertsAdminSection />
           </div>
         </div>
+        <ScrollToTop/>
       </OfertsProvider>
     )
   }
@@ -236,5 +251,6 @@ const router = createHashRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
    <RouterProvider router={router} />
+   <App/>
   </React.StrictMode>
 );
