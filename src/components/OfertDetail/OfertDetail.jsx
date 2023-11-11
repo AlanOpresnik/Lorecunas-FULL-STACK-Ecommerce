@@ -65,7 +65,7 @@ const OfertDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3900/api/oferts/getOfertDetails/${id}`)
+      .get(import.meta.env.VITE_API_OFERTS_GET_DETAILS+id)
       .then((res) => {
         if (res.data && res.data.ofertDetails) {
           setData(res.data);
@@ -112,7 +112,7 @@ const OfertDetail = () => {
                   <img
                     alt="ecommerce"
                     className={` cursor-pointer lg:w-full w-full lg:h-auto object-cover object-center rounded-lg h-[300px] md:min-h-[500px] md:max-h-[500px]`}
-                    src={`http://localhost:3900/uploadsProducts/${img.filename}`}
+                    src={import.meta.env.VITE_API_FAV_DRAWER+img.filename}
                     onClick={() => handleThumbnailClick(i)}
                   />
                 </SwiperSlide>
@@ -151,14 +151,14 @@ const OfertDetail = () => {
                       pagination={{ clickable: true }}
                       navigation
                       className="mySwiper swiperImg w-[270px] sm:w-[430px] md:w-[550px] lg:w-[660px] mx-auto"
-                      initialSlide={selectedImageIndex} // Show the selected image in the modal
+                      initialSlide={selectedImageIndex}
                     >
                       {data.ofertDetails &&
                         data.ofertDetails.images.map((img, i) => (
                           <SwiperSlide key={i}>
                             <img
                               className=" w-[570px] h-[320px] sm:w-[585px] md:w-[580px] lg:w-[680px] sm:h-[450px] object-cover rounded-lg"
-                              src={`http://localhost:3900/uploadsProducts/${img.filename}`}
+                              src={import.meta.env.VITE_API_FAV_DRAWER+img.filename}
                               alt={`Image ${i}`}
                             />
                           </SwiperSlide>
@@ -315,7 +315,7 @@ const OfertDetail = () => {
                 >
                   <img
                     className={`h-[120px] object-cover select-none w-[120px] rounded hover:opacity-75 cursor-pointer`}
-                    src={`http://localhost:3900/uploadsProducts/${img.filename}`}
+                    src={import.meta.env.VITE_API_FAV_DRAWER+img.filename}
                     alt={`Image ${i + 1}`}
                   />
                 </SwiperSlide>

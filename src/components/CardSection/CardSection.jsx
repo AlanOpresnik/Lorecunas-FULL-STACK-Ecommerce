@@ -2,6 +2,7 @@ import React from "react";
 import cochesito from "../../img/cochechito.jpeg"
 import dormitorio from "../../img/dormitorio.avif";
 import butaca from "../../img/butaca.jpg"
+import { Link } from "react-router-dom";
 
 
 const CardSection = () => {
@@ -29,9 +30,9 @@ const CardSection = () => {
             Accesorios
           </h2>
           <p className="text-sm font-bold">para dormitorios</p>
-          <button className="bg-[#ff9fce] ml-[-4px] hover:bg-[#fabfdb] text-xs text-white  py-2 px-4 mt-4 rounded-full">
+          <Link to={"/productos/ACCESORIOS"} className="bg-[#ff9fce] ml-[-4px] hover:bg-[#fabfdb] text-xs text-white  py-2 px-4 mt-4 rounded-full">
             Ver Más
-          </button>
+          </Link>
         </div>
       </div>
       <div className=" relative w-[24.1rem]">
@@ -56,9 +57,9 @@ const CardSection = () => {
             Chifoniers
           </h2>
           <p className="text-sm font-bold">Para tu dormitorio</p>
-          <button href={"https://www.argentina.gob.ar/noticias/impulso-un-nuevo-reglamento-para-reforzar-la-seguridad-de-cunas"} className="bg-[#ff9fce] hover:bg-[#fabfdb] text-xs text-white  py-2 px-4 mt-4 rounded-full">
+          <Link to={"/productos/chifoniers"} className="bg-[#ff9fce] hover:bg-[#fabfdb] text-xs text-white  py-2 px-4 mt-4 rounded-full">
             Ver Más
-          </button>
+          </Link>
         </div>
       </div>
       <div className=" relative mb-20 w-[24.1rem] ">
@@ -83,9 +84,9 @@ const CardSection = () => {
             Dormitorios
           </h2>
           <p className="text-sm font-bold">Completos</p>
-          <button className="bg-[#ff9fce] hover:bg-[#fabfdb] text-xs text-white  py-2 px-4 mt-4 rounded-full">
+          <Link to={"/productos/DORMITORIOS%20COMPLETOS"} className="bg-[#ff9fce] hover:bg-[#fabfdb] text-xs text-white  py-2 px-4 mt-4 rounded-full">
             Ver Más
-          </button>
+          </Link>
         </div>
       </div>
     </div>

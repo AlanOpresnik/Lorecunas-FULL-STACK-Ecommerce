@@ -284,85 +284,85 @@ export default function Navbar() {
           >
             <SwiperSlide className="">
               <Link
-                to={"/cunas-funcionales"}
+                to={"/productos/CUNAS%20FUNCIONALES%20COMPLETAS"}
                 className="text-[#FE98CB] text-sm p-0 m-0 whitespace-nowrap"
               >
                 Cunas funcionales completas
               </Link>
             </SwiperSlide>
             <SwiperSlide>
-              <Link to={"/cuna-melamina"} className="text-[#FE98CB] text-sm">
+              <Link to={"/productos/CUNAS%20FUNCIONALES%20SOLAS"} className="text-[#FE98CB] text-sm">
                 Cunas funcionales solas
               </Link>
             </SwiperSlide>
             <SwiperSlide>
-              <a href="/a" className="text-[#FE98CB] text-sm">
+              <Link to={"/productos/ACOLCHADOS%20Y%20CHICHONERAS"} className="text-[#FE98CB] text-sm">
                 Acolchados y chichoneras
-              </a>
+              </Link>
             </SwiperSlide>
             <SwiperSlide>
-              <a href="/a" className="text-[#FE98CB] text-sm">
+              <Link to={"/productos/DORMITORIOS%20COMPLETOS"} className="text-[#FE98CB] text-sm">
                 Dormitorios completos
-              </a>
+              </Link>
             </SwiperSlide>
             <SwiperSlide>
-              <a href="/a" className="text-[#FE98CB] text-sm">
+              <Link to={"/productos/cajoneras"} className="text-[#FE98CB] text-sm">
                 Cajoneras
-              </a>
+              </Link>
             </SwiperSlide>
             <SwiperSlide>
-              <a href="/a" className="text-[#FE98CB] text-sm">
+              <Link to={"/productos/CUNAS%20COLECHO%20COMPLETAS"} className="text-[#FE98CB] text-sm">
                 Cunas colecho completas
-              </a>
+              </Link>
             </SwiperSlide>
             <SwiperSlide>
-              <a href="/a" className="text-[#FE98CB] text-sm">
+              <Link to={"/productos/CUNAS%20COLECHO%20SOLAS"} className="text-[#FE98CB] text-sm">
                 Cunas colecho solas
-              </a>
+              </Link>
             </SwiperSlide>
             <SwiperSlide>
-              <a href="/a" className="text-[#FE98CB] text-sm">
+              <Link to={"/productos/PROMOS%20DORMITORIOS"} className="text-[#FE98CB] text-sm">
                 Promos dormitorios
-              </a>
+              </Link>
             </SwiperSlide>
             <SwiperSlide>
-              <a href="/a" className="text-[#FE98CB] text-sm">
+              <Link to={"/productos/accesorios"} className="text-[#FE98CB] text-sm">
                 Accesorios
-              </a>
+              </Link>
             </SwiperSlide>
           </Swiper>
         ) : (
           <>
             <div className="flex justify-center gap-6 text-lg text-[#FE98CB]">
-              <a href="/a" className="text-center">
+            <Link to={"/productos/cajoneras"} className="text-center">
                 Cajoneras
-              </a>
-              <a href="/a" className="text-center">
+              </Link>
+              <Link to={"/productos/CUNAS%20COLECHO%20COMPLETAS"} className="text-center">
                 Cunas colecho completas
-              </a>
-              <a href="/a" className="text-center">
+              </Link>
+              <Link to={"/productos/CUNAS%20COLECHO%20SOLAS"} className="text-center">
                 Cunas colecho solas
-              </a>
-              <a href="/a" className="text-center">
+              </Link>
+              <Link to={"/productos/PROMOS%20DORMITORIOS"} className="text-center">
                 Promo dormitorios
-              </a>
-              <a href="/a" className="text-center">
+              </Link>
+              <Link to={"/productos/accesorios"} className="text-center">
                 Accesorios
-              </a>
+              </Link>
             </div>
             <div className="flex justify-center gap-6 text-lg text-[#FE98CB]">
-              <a href="/a" className="text-center">
+              <Link  to={"/productos/CUNAS%20FUNCIONALES%20COMPLETAS"} className="text-center">
                 Cunas funcionales completas
-              </a>
-              <a href="/a" className="text-center">
+              </Link>
+              <Link to={"/productos/CUNAS%20FUNCIONALES%20SOLAS"} className="text-center">
                 Cunas funcionales solas
-              </a>
-              <a href="/a" className="text-center">
+              </Link>
+              <Link to={"/productos/ACOLCHADOS%20Y%20CHICHONERAS"} className="text-center">
                 Acolchados y chichoneras
-              </a>
-              <a href="/a" className="text-center pb-3">
+              </Link>
+              <Link to={"/productos/DORMITORIOS%20COMPLETOS"} className="text-center pb-3">
                 Dormitorios completos
-              </a>
+              </Link>
             </div>
           </>
         )}

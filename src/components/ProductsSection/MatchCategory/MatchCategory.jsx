@@ -18,7 +18,7 @@ const MatchCategory = () => {
     try {
       axios
         .get(
-          `http://localhost:3900/api/products/getMatchProductsCategory/${id}`
+          import.meta.env.VITE_API_GET_MATCH_PRODUUCTS+id
         )
         .then((res) => {
           setMatchs(res.data);
@@ -81,7 +81,7 @@ const MatchCategory = () => {
               <div className="group relative shadow transition-shadow hover:shadow-lg p-6 pt-0 rounded px-0 w-[320px]">
                 <div className="h-60 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none transition-opacity group-hover:opacity-75 lg:h-60">
                   <img
-                    src={`http://localhost:3900/uploadsProducts/${product.images[0].filename}`}
+                    src={import.meta.env.VITE_API_FAV_DRAWER+product.images[0].filename}
                     alt={product.title}
                     className="h-full w-full object-cover object-center lg:h-full lg:w-[320px]"
                   />

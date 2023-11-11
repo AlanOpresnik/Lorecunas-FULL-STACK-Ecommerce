@@ -11,13 +11,13 @@ export const useProductsDestacados = () => {
 export const ProductsDestacadosProvider = ({ children }) => {
   const [productDestacado, setProductDestacado] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const apiUrl = import.meta.env.VITE_API;
+  const apiDelete = import.meta.env.VITE_API_DELETE;
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3900/api/products/getProducts"
-        );
+        const response = await axios.get(apiUrl);
+
         setProductDestacado(response.data.products);
 
         setLoading(false);
@@ -36,15 +36,16 @@ export const ProductsDestacadosProvider = ({ children }) => {
       showDenyButton: true,
       confirmButtonText: "Si, eliminar",
       denyButtonText: `Canecelar`,
-      icon:"error",
+      icon: "error",
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         try {
-          axios.delete(
-            `http://localhost:3900/api/products/deleteProduct/${id}`
-          );
-          Swal.fire({title:"el producto se elimino correctamente", icon:"success"});
+          axios.delete(apiDelete + id);
+          Swal.fire({
+            title: "el producto se elimino correctamente",
+            icon: "success",
+          });
         } catch (error) {
           console.log(error);
         }

@@ -22,7 +22,7 @@ const OfertCard = () => {
               >
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none transition-opacity group-hover:opacity-75 lg:h-80">
                   <img
-                   src={`http://localhost:3900/uploadsProducts/${ofert.images[0].filename}`}
+                   src={import.meta.env.VITE_API_FAV_DRAWER+ofert.images[0].filename}
                     alt={ofert.title}
                     className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                   />

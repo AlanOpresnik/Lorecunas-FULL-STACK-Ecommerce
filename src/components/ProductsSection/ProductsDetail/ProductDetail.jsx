@@ -66,7 +66,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3900/api/products/getProductDetail/${id}`)
+      .get(import.meta.env.VITE_API_GET_PRODUCT_DETAIL+id)
       .then((res) => {
         if (res.data && res.data.productDetail) {
           setData(res.data);
@@ -138,7 +138,7 @@ const ProductDetail = () => {
                   <img
                     alt="ecommerce"
                     className={` cursor-pointer lg:w-full w-full lg:h-auto object-cover object-center rounded-lg h-[300px] md:min-h-[500px] md:max-h-[500px]`}
-                    src={`http://localhost:3900/uploadsProducts/${img.filename}`}
+                    src={import.meta.env.VITE_API_FAV_DRAWER+img.filename}
                     onClick={() => handleThumbnailClick(i)}
                   />
                 </SwiperSlide>
@@ -184,7 +184,7 @@ const ProductDetail = () => {
                           <SwiperSlide key={i}>
                             <img
                               className=" w-[570px] h-[320px] sm:w-[585px] md:w-[580px] lg:w-[680px] sm:h-[450px] object-cover rounded-lg"
-                              src={`http://localhost:3900/uploadsProducts/${img.filename}`}
+                              src={import.meta.env.VITE_API_FAV_DRAWER+img.filename}
                               alt={`Image ${i}`}
                             />
                           </SwiperSlide>
@@ -343,7 +343,7 @@ const ProductDetail = () => {
                 >
                   <img
                     className={`h-[120px] object-cover select-none w-[120px] rounded hover:opacity-75 cursor-pointer`}
-                    src={`http://localhost:3900/uploadsProducts/${img.filename}`}
+                    src={import.meta.env.VITE_API_FAV_DRAWER+img.filename}
                     alt={`Image ${i + 1}`}
                   />
                 </SwiperSlide>

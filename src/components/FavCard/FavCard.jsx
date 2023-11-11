@@ -14,7 +14,7 @@ const FavCard = ({ prodFav, toggleDrawer }) => {
         <div className=" ">
           <img
             className="rounded min-w-[100px] w-[100px] h-[80px]"
-            src={`http://localhost:3900/uploadsProducts/${prodFav.productDetail.images[0].filename}`}
+            src={import.meta.env.VITE_API_FAV_DRAWER+prodFav.productDetail.images[0].filename}
           />
         </div>
         <div className="max-h-20 overflow-hidden">

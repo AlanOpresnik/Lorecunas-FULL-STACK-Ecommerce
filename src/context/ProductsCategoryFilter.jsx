@@ -12,13 +12,13 @@ export const ProductsCategoryProvider = ({ children }) => {
   const [productCategory, setProductCategory] = useState([]);
   const [loading, setLoading] = useState(true);
   const { category } = useParams();
+  const apiCategoryFilter = import.meta.env.VITE_API_FILTER;
 
   useEffect(() => {
     const fetchProductsCategorys = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3900/api/products/getProductFiltrado/${category}`
-        );
+        const response = await axios.get(apiCategoryFilter + category);
+
         setProductCategory(response.data);
         setLoading(false);
       } catch (error) {
@@ -31,9 +31,7 @@ export const ProductsCategoryProvider = ({ children }) => {
   }, [category]);
 
   return (
-    <ProductsCategoryContext.Provider
-      value={{ productCategory, loading }}
-    >
+    <ProductsCategoryContext.Provider value={{ productCategory, loading }}>
       {children}
     </ProductsCategoryContext.Provider>
   );

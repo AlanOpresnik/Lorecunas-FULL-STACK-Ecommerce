@@ -132,7 +132,7 @@ const Footer = () => {
             </nav>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-end">
+        <div className="flex flex-col items-center justify-end mt-6 md:mt-0">
         <h4 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">ESTAMOS UBICADOS EN</h4>
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.1943169570636!2d-58.730572323462475!3d-34.62452945859889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbe250320443d%3A0xf133d4e47ac97fe8!2sLore%20Cunas!5e0!3m2!1ses-419!2sar!4v1698936758923!5m2!1ses-419!2sar"

@@ -11,10 +11,10 @@ export const useOferts = () => {
 export const OfertsProvider = ({ children }) => {
   const [oferts, setOferts] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const apiOferts = import.meta.env.VITE_API_OFERTS_GET;
   const fetchOfert = async () => {
     try {
-      const response = await axios.get("http://localhost:3900/api/oferts/getOferts");
+      const response = await axios.get(apiOferts);
       setOferts(response.data.oferts);
       setLoading(false);
     } catch (error) {
@@ -29,13 +29,15 @@ export const OfertsProvider = ({ children }) => {
 
   const fetchImagesForOfert = async (ofertId) => {
     try {
-      const response = await axios.get(`http://localhost:3900/api/oferts/ofert/${ofertId}/images`);
+      const response = await axios.get(
+        `http://localhost:3900/api/oferts/ofert/${ofertId}/images`
+      );
       return response.data.images;
     } catch (error) {
       console.error(error);
     }
   };
-  
+
   const uploadImageForOfert = async (ofertId, formData) => {
     try {
       const response = await axios.post(
@@ -47,40 +49,49 @@ export const OfertsProvider = ({ children }) => {
           },
         }
       );
-  
+
       return response.data.editedOfert;
     } catch (error) {
       console.error("Error al subir la imagen:", error);
     }
   };
-  
-  
+
   const handleDeleteOfert = async (id) => {
     Swal.fire({
       title: "Estas seguro que deseas eliminar esta oferta?",
       showDenyButton: true,
       confirmButtonText: "Si, eliminar",
       denyButtonText: `Canecelar`,
-      icon:"error",
+      icon: "error",
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         try {
           axios.delete(`http://localhost:3900/api/oferts/deleteOfert/${id}`);
-          Swal.fire({title:"la oferta se elimino correctamente", icon:"success",});
+          Swal.fire({
+            title: "la oferta se elimino correctamente",
+            icon: "success",
+          });
         } catch (error) {
           console.log(error);
-        } 
+        }
       } else if (result.isDenied) {
         return;
       }
     });
   };
-   
-
 
   return (
-    <OfertsContext.Provider value={{ oferts, loading, fetchOfert, handleDeleteOfert, fetchImagesForOfert , uploadImageForOfert }}>
+    <OfertsContext.Provider
+      value={{
+        oferts,
+        loading,
+        fetchOfert,
+        handleDeleteOfert,
+        fetchImagesForOfert,
+        uploadImageForOfert,
+      }}
+    >
       {children}
     </OfertsContext.Provider>
   );
