@@ -50,7 +50,7 @@ const ProductAdminCard = ({ prod }) => {
     try {
       // Enviar los datos editados a través de la solicitud PUT
       await axios.put(
-        `http://localhost:3900/api/products/editProduct/${editedProduct._id}`,
+        import.meta.env.VITE_API_PUT_PRODUCT+editedProduct._id,
         editedProduct
       );
 
@@ -79,7 +79,7 @@ const ProductAdminCard = ({ prod }) => {
 
       // Realiza una solicitud DELETE al servidor para eliminar la imagen
       await axios.delete(
-        `http://localhost:3900/api/products/products/${editedProduct._id}/images/${imageId}`
+        `https://lorecunas-backend.onrender.com/api/products/products/${editedProduct._id}/images/${imageId}`
       );
 
       // Actualiza el estado con las imágenes actualizadas
@@ -102,7 +102,7 @@ const ProductAdminCard = ({ prod }) => {
       formData.append("image", selectedImage);
 
       const response = await axios.post(
-        `http://localhost:3900/api/products/products/${editedProduct._id}/images`,
+        `https://lorecunas-backend.onrender.com/api/products/products/${editedProduct._id}/images`,
         formData,
         {
           headers: {
@@ -125,7 +125,7 @@ const ProductAdminCard = ({ prod }) => {
     <div>
       <img
         className="max-w-[120px]"
-        src={`http://localhost:3900/uploadsProducts/${prod.images[0].filename}`}
+        src={import.meta.env.VITE_API_FAV_DRAWER+prod.images[0].filename}
         alt={`Product ${prod._id}`}
       />
     </div>
@@ -236,7 +236,7 @@ const ProductAdminCard = ({ prod }) => {
                   onClick={() => handleRemoveImage(index)}
                 >
                   <img
-                    src={`http://localhost:3900/uploadsProducts/${image.filename}`}
+                    src={import.meta.env.VITE_API_FAV_DRAWER+image.filename}
                     alt={`Image ${index}`}
                     className="w-full h-full object-cover"
                   />

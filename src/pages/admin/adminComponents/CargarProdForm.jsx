@@ -55,7 +55,7 @@ const CargarProdForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3900/api/products/postProduct",
+        import.meta.env.VITE_API_POST_PRODUCT,
         formDataToSend
       );
       setFormData({

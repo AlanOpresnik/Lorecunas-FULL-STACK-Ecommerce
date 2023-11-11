@@ -16,7 +16,7 @@ const OfertsAdminSection = () => {
           </h3>
           {oferts.length > 0
             ? oferts.map((ofert, index) => (
-                <div className="mt-6">
+                <div className="mt-6" key={ofert._id}>
                   <OfertAdminCard key={ofert._id} ofert={ofert} index={index} />
                 </div>
               ))

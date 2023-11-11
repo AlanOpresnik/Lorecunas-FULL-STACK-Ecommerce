@@ -54,7 +54,7 @@ const CargarOfertaForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3900/api/oferts/postOfert",
+        import.meta.env.VITE_API_POST_OFERT,
         formDataToSend
       );
       console.log("Datos enviados con éxito", response.data);
@@ -211,9 +211,10 @@ const CargarOfertaForm = () => {
             </div>
           </div>
           {/* Previsualización de imágenes */}
-          <div className="flex gap-6">
+          <div className="flex gap-6" >
             {imagePreviews.map((preview, index) => (
               <img
+              key={index}
                 src={preview}
                 alt={`Preview ${index}`}
                 className="max-w-[120px] flex"
