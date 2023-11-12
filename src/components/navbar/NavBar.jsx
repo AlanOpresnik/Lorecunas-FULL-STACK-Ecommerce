@@ -99,7 +99,7 @@ export default function Navbar() {
           <span className="text-2xl font-[Poppins] cursor-pointer xl:w-[350px]">
             <Link to={"/"}>
               <img
-                className="h-12 sm:h-16 md:h-16"
+                className="h-12 sm:h-16 md:h-16 w-auto"
                 src={logo}
                 alt="logo lorecunas"
               />
@@ -109,7 +109,7 @@ export default function Navbar() {
             <SearchMobile />
           </div>
           <div className="relative block mt-3 md:hidden">
-            <Button sx={{ color: "#FE98CB" }} onClick={toggleDrawer(true)}>
+            <Button aria-label="Abrir lista de favoritos"  sx={{ color: "#FE98CB" }} onClick={toggleDrawer(true)}>
               <FavoriteIcon />
             </Button>
             <Drawer
@@ -121,7 +121,7 @@ export default function Navbar() {
               <div className="shadow  px-4" style={{ width: 170 }}>
                 <div className="mt-4 flex justify-between items-center mb-3">
                   <h3 className="text-[#FE98CB] font-bold">FAVORITOS</h3>
-                  <Button className="" onClick={toggleDrawer(false)}>
+                  <Button aria-label="cerrar lista de favoritos" className="" onClick={toggleDrawer(false)}>
                     <CloseIcon sx={{ color: "#FE98CB", fontSize: "22px" }} />
                   </Button>
                 </div>
@@ -213,7 +213,7 @@ export default function Navbar() {
             </Link>
           </li>
           <div className="relative hidden md:block">
-            <Button sx={{ color: "#FE98CB" }} onClick={toggleDrawer(true)}>
+            <Button aria-label="Abrir lista de favoritos" sx={{ color: "#FE98CB" }} onClick={toggleDrawer(true)}>
               <FavoriteIcon />
             </Button>
             <Drawer
@@ -225,7 +225,7 @@ export default function Navbar() {
               <div className="  px-4  md:w-[320px]">
                 <div className="mt-4 flex justify-between items-center mb-3">
                   <h3 className="text-[#FE98CB] font-bold border-b border-[#FE98CB]">FAVORITOS</h3>
-                  <Button className="" onClick={toggleDrawer(false)}>
+                  <Button aria-label="cerrar lista de favoritos" className="" onClick={toggleDrawer(false)}>
                     <CloseIcon sx={{ color: "#FE98CB", fontSize: "22px" }} />
                   </Button>
                 </div>
@@ -239,6 +239,7 @@ export default function Navbar() {
                       <div className="flex  items-center overflow-hidden ">
                         <FavCard prodFav={prodFav} />
                         <Button
+                        aria-label="eliminar de favoritos"
                           sx={{
                             paddingRight: "0px",
                             fontSize: "10px",

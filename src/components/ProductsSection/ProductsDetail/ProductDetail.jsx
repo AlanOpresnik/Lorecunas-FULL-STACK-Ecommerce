@@ -66,7 +66,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     axios
-      .get(import.meta.env.VITE_API_GET_PRODUCT_DETAIL+id)
+      .get(import.meta.env.VITE_API_GET_PRODUCT_DETAIL + id)
       .then((res) => {
         if (res.data && res.data.productDetail) {
           setData(res.data);
@@ -136,9 +136,9 @@ const ProductDetail = () => {
               data.productDetail.images.map((img, i) => (
                 <SwiperSlide className="hover:opacity-75" key={i}>
                   <img
-                    alt="ecommerce"
+                    alt="imagen producto"
                     className={` cursor-pointer lg:w-full w-full lg:h-auto object-cover object-center rounded-lg h-[300px] md:min-h-[450px] md:max-h-[450px]`}
-                    src={import.meta.env.VITE_API_FAV_DRAWER+img.filename}
+                    src={import.meta.env.VITE_API_FAV_DRAWER + img.filename}
                     onClick={() => handleThumbnailClick(i)}
                   />
                 </SwiperSlide>
@@ -164,6 +164,7 @@ const ProductDetail = () => {
                   >
                     <div className="flex justify-between items-center mb-4">
                       <button
+                      aria-label="cerrar modal"
                         onClick={closeModal}
                         className="bg-slate-50 px-4 py-2 hover:bg-slate-200 rounded font-bold ml-auto"
                       >
@@ -184,7 +185,10 @@ const ProductDetail = () => {
                           <SwiperSlide key={i}>
                             <img
                               className=" w-[570px] h-[320px] sm:w-[585px] md:w-[580px] lg:w-[680px] sm:h-[450px] object-cover rounded-lg"
-                              src={import.meta.env.VITE_API_FAV_DRAWER+img.filename}
+                              src={
+                                import.meta.env.VITE_API_FAV_DRAWER +
+                                img.filename
+                              }
                               alt={`Image ${i}`}
                             />
                           </SwiperSlide>
@@ -300,10 +304,11 @@ const ProductDetail = () => {
               <span className="title-font font-medium text-2xl text-[#ff9fce]">
                 ${data.productDetail && data.productDetail.price}
               </span>
-              <button className="flex ml-auto text-white bg-[#ff9fce] border-0 py-2 px-6 focus:outline-none hover:bg-[#ffd5ea] rounded">
+              <button aria-label="comprar" className="flex ml-auto text-white bg-[#ff9fce] border-0 py-2 px-6 focus:outline-none hover:bg-[#ffd5ea] rounded">
                 Comprar
               </button>
               <button
+              aria-label="agregar a favoritos"
                 onClick={() => agregarFav(data)}
                 className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
               >
@@ -343,7 +348,7 @@ const ProductDetail = () => {
                 >
                   <img
                     className={`h-[120px] object-cover select-none w-[120px] rounded hover:opacity-75 cursor-pointer`}
-                    src={import.meta.env.VITE_API_FAV_DRAWER+img.filename}
+                    src={import.meta.env.VITE_API_FAV_DRAWER + img.filename}
                     alt={`Image ${i + 1}`}
                   />
                 </SwiperSlide>

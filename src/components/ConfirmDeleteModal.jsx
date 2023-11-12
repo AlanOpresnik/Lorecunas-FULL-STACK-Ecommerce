@@ -41,6 +41,7 @@ const ConfirmDeleteModal = ({ open, onClose, onConfirm, itemTitle }) => {
         </Typography>
 
         <Button
+        aria-label="eliminar de favoritos"
           sx={{
             bgcolor: "#fe98cb",
             color: "white",
@@ -57,6 +58,7 @@ const ConfirmDeleteModal = ({ open, onClose, onConfirm, itemTitle }) => {
           Confirmar
         </Button>
         <Button
+        aria-label="cancelar"
           sx={{ color: "black", marginTop: "1rem", marginLeft: ".5rem" }}
           className="bg-[#fe98cb]"
           onClick={onClose}
