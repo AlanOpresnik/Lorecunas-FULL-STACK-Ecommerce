@@ -30,9 +30,7 @@ const AsideCategory = ({ productDestacado }) => {
     <Link to={`/productos/${categoryText}`} />;
 
     axios
-      .get(
-        `http://localhost:3900/api/products/getProductFiltrado/${categoryText}`
-      )
+      .get(import.meta.env.VITE_API_FILTER + categoryText)
       .then((res) => {
         setCategoriaFiltrada(res.data);
       })
@@ -62,7 +60,7 @@ const AsideCategory = ({ productDestacado }) => {
     hidden: { opacity: 0, x: -100 },
   };
   return (
-    <div className="aside-category mb-4 ">
+    <div className={`aside-category mb-4 ${isMobile ? "" : "sticky top-[170px]"}`}>
       {isMobile ? (
         <div className="category-toggle text-center">
           <Button
@@ -216,119 +214,37 @@ const AsideCategory = ({ productDestacado }) => {
         </div>
       ) : (
         <>
-          <h1 className="font-bold border-b-4">Categorias</h1>
-          <div className="flex flex-col items-start py-4 ">
-            <Link
-              className="p-1 border-b-2 text-center text-md text-gray-500 border-none  hover:text-[#FE98CB]"
-              sx={{
-                color: "rgb(75 85 99)",
-              }}
-              to={"/productos"}
-            >
-              TODAS
-            </Link>
-            <Button
-              className="p-1 border-b-2  hover:text-[#FE98CB]"
-              sx={{
-                color: "rgb(75 85 99)",
-              }}
-              onClick={handleClickCategory}
-            >
-              Roperos
-            </Button>
-            <Button
-              sx={{
-                color: "rgb(75 85 99)",
-              }}
-              className="p-1 border-b-2 text-start  hover:text-[#FE98CB] text-start "
-              to={category}
-              onClick={handleClickCategory}
-            >
-              Cunas Funcionales completas
-            </Button>
-            <Button
-              sx={{
-                color: "rgb(75 85 99)",
-              }}
-              className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
-              to={category}
-              onClick={handleClickCategory}
-            >
-              Cunas funcionales solas
-            </Button>
-            <Button
-              sx={{
-                color: "rgb(75 85 99)",
-              }}
-              className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
-              to={category}
-              onClick={handleClickCategory}
-            >
-              Acolchados y chichoneras
-            </Button>
-            <Button
-              sx={{
-                color: "rgb(75 85 99)",
-              }}
-              className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
-              to={category}
-              onClick={handleClickCategory}
-            >
-              Dormitorios Completos
-            </Button>
-            <Button
-              sx={{
-                color: "rgb(75 85 99)",
-              }}
-              className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
-              to={category}
-              onClick={handleClickCategory}
-            >
-              Cajoneras
-            </Button>
-            <Button
-              sx={{
-                color: "rgb(75 85 99)",
-              }}
-              className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
-              to={category}
-              onClick={handleClickCategory}
-            >
-              Cunas colecho completas
-            </Button>
-            <Button
-              sx={{
-                color: "rgb(75 85 99)",
-              }}
-              className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
-              to={category}
-              onClick={handleClickCategory}
-            >
-              Cunas colecho solas
-            </Button>
-            <Button
-              sx={{
-                color: "rgb(75 85 99)",
-                textAlign: "center",
-              }}
-              className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
-              to={category}
-              onClick={handleClickCategory}
-            >
-              Promos Dormitorios
-            </Button>
-            <Button
-              sx={{
-                color: "rgb(75 85 99)",
-                textAlign: "center",
-              }}
-              className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
-              to={category}
-              onClick={handleClickCategory}
-            >
-              Accesorios
-            </Button>
-            {hasOutletProducts && (
+        <div className="sticky top-[180px] ">
+            <h1 className="font-bold border-b-4">Categorias</h1>
+            <div className="flex flex-col items-start py-4  sticky top-[180px]">
+              <Link
+                className="p-1 border-b-2 text-center text-md text-gray-500 border-none  hover:text-[#FE98CB]"
+                sx={{
+                  color: "rgb(75 85 99)",
+                }}
+                to={"/productos"}
+              >
+                TODAS
+              </Link>
+              <Button
+                className="p-1 border-b-2  hover:text-[#FE98CB]"
+                sx={{
+                  color: "rgb(75 85 99)",
+                }}
+                onClick={handleClickCategory}
+              >
+                Roperos
+              </Button>
+              <Button
+                sx={{
+                  color: "rgb(75 85 99)",
+                }}
+                className="p-1 border-b-2 text-start  hover:text-[#FE98CB] "
+                to={category}
+                onClick={handleClickCategory}
+              >
+                Cunas Funcionales completas
+              </Button>
               <Button
                 sx={{
                   color: "rgb(75 85 99)",
@@ -337,9 +253,93 @@ const AsideCategory = ({ productDestacado }) => {
                 to={category}
                 onClick={handleClickCategory}
               >
-                Outlet
+                Cunas funcionales solas
               </Button>
-            )}
+              <Button
+                sx={{
+                  color: "rgb(75 85 99)",
+                }}
+                className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
+                to={category}
+                onClick={handleClickCategory}
+              >
+                Acolchados y chichoneras
+              </Button>
+              <Button
+                sx={{
+                  color: "rgb(75 85 99)",
+                }}
+                className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
+                to={category}
+                onClick={handleClickCategory}
+              >
+                Dormitorios Completos
+              </Button>
+              <Button
+                sx={{
+                  color: "rgb(75 85 99)",
+                }}
+                className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
+                to={category}
+                onClick={handleClickCategory}
+              >
+                Cajoneras
+              </Button>
+              <Button
+                sx={{
+                  color: "rgb(75 85 99)",
+                }}
+                className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
+                to={category}
+                onClick={handleClickCategory}
+              >
+                Cunas colecho completas
+              </Button>
+              <Button
+                sx={{
+                  color: "rgb(75 85 99)",
+                }}
+                className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
+                to={category}
+                onClick={handleClickCategory}
+              >
+                Cunas colecho solas
+              </Button>
+              <Button
+                sx={{
+                  color: "rgb(75 85 99)",
+                  textAlign: "center",
+                }}
+                className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
+                to={category}
+                onClick={handleClickCategory}
+              >
+                Promos Dormitorios
+              </Button>
+              <Button
+                sx={{
+                  color: "rgb(75 85 99)",
+                  textAlign: "center",
+                }}
+                className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
+                to={category}
+                onClick={handleClickCategory}
+              >
+                Accesorios
+              </Button>
+              {hasOutletProducts && (
+                <Button
+                  sx={{
+                    color: "rgb(75 85 99)",
+                  }}
+                  className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
+                  to={category}
+                  onClick={handleClickCategory}
+                >
+                  Outlet
+                </Button>
+              )}
+            </div>
           </div>
         </>
       )}

@@ -41,7 +41,8 @@ const NewsLetterDivider = () => {
           className={`newsletter-divider-section lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-5 md:mb-0 items-center text-center ${
             animationsActivated ? "slide-in-left block" : "hidden"
           }`}
-        ><h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+        >
+          <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
             Lorecunas
           </h1>
           <p className="mb-8 max-w-[550px]">
