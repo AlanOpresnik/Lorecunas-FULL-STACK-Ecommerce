@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { useBannerData } from "../../hooks/BannerHook";
+import bannerImg from "../../img/banner.webp"
 import "./banner.css";
 
 export default function Banner() {
@@ -30,7 +31,7 @@ export default function Banner() {
               <img
                 className="w-full h-[24rem] max-h-full lg:h-[38rem] object-cover md:object-inherit"
                 style={{ maxHeight: "100%" }}
-                src={item.img}
+                src={bannerImg}
                 alt={`Banner`}
               />
             </SwiperSlide>
