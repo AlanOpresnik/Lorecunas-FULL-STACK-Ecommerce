@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../../../img/logo.jpg";
 import { Link } from "react-router-dom";
 import Close from "@mui/icons-material/Close";
 import MenuIcon from '@mui/icons-material/Menu';

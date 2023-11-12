@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../img/logo.jpg";
+import logo from "../img/logo.png";
 import Swal from "sweetalert2";
 import "sweetalert2/src/sweetalert2.scss";
 import { useNavigate } from 'react-router-dom';

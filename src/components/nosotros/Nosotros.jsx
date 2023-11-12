@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import nosotrosFamiliaImg from "../../img/nosotrosFamilia.jpeg";
-import nosotrosEspecialistas from "../../img/nosotrosEspecialistas.jpg";
+import nosotrosEspecialistas from "../../img/nosotrosEspecialistas.webp";
 import nosotrosFabrica from "../../img/nosotrosFabrica.jpg";
 import nosotrosFabrica3 from "../../img/nosotrosFabrica3.webp";
 import nosotrosFabrica2 from "../../img/nosotrosFabrica2.jpeg";

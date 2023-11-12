@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import logo from "../../img/logo.jpg";
+import logo from "../../img/logo.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";

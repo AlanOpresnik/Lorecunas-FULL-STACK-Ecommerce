@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../img/logo.jpg";
+import logo from "../../img/logo.png";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import { Link } from "react-router-dom";
 
