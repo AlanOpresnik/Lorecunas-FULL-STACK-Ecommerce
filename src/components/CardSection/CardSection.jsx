@@ -13,8 +13,9 @@ const CardSection = () => {
           style={{
             borderRadius: "1rem",
           }}
-          className="w-full h-[16rem]"
+          className="w-[32.2rem] h-[16rem]"
           src={cochesito}
+          loading="lazy"
           alt="Imagen de fondo"
         />
 
@@ -40,9 +41,10 @@ const CardSection = () => {
           style={{
             borderRadius: "1rem",
           }}
-          className="w-full h-[16rem]"
+          className="w-[32.2rem] h-[16rem]"
           src={"https://http2.mlstatic.com/D_NQ_NP_659418-MLA54741084711_032023-O.webp"}
           alt="Imagen de fondo"
+          loading="lazy"
         />
 
         <div
@@ -67,9 +69,10 @@ const CardSection = () => {
           style={{
             borderRadius: "1rem",
           }}
-          className="w-full h-[16rem]"
+          className="w-[32.2rem] h-[16rem]"
           src={dormitorio}
           alt="Imagen de fondo"
+          loading="lazy"
         />
 
         <div
