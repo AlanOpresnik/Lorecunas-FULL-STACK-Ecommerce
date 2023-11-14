@@ -38,17 +38,21 @@ const Nosotros = () => {
   }, []);
 
   return (
-    <section className="text-gray-600 body-font mt-[10rem] md:mt-[10rem] max-w-[1250px]">
+    <section className="text-gray-600 body-font mt-[10rem] md:mt-[10rem] max-w-[1250px] overflow-hidden">
       <div className="familia border-b-2 container mx-auto flex px-5 py-6 md:flex-row flex-col items-center">
         <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-6 items-center text-center">
           <h3 className="title-font border-b-2 border-[#FE98CB] w-fit sm:text-4xl text-4xl mb-4 font-medium text-gray-900">
             ¿Quienes Somos?
           </h3>
           <p className="mb-8 leading-relaxed">
-            Copper mug try-hard pitchfork pour-over freegan heirloom neutra air
-            plant cold-pressed tacos poke beard tote bag. Heirloom echo park
-            mlkshk tote bag selvage hot chicken authentic tumeric truffaut
-            hexagon try-hard chambray.
+            En <span className="text-[#FE98CB] font-semibold">Lore Cunas</span>,
+            nos enorgullece ofrecer una experiencia única en la elaboración de
+            muebles Infanto Juveniles, fusionando calidad excepcional y precios
+            asequibles. Nos especializamos en la confección de productos
+            utilizando maderas de Pino, Guatambu, MDF y Melamina, asegurando un
+            equilibrio perfecto entre precio y calidad. Con un compromiso
+            arraigado en la artesanía, cada uno de nuestros muebles refleja la
+            dedicación y la habilidad de nuestros artesanos.
           </p>
         </div>
         <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 flex justify-center ">
@@ -74,10 +78,16 @@ const Nosotros = () => {
             Estamos recomendados por especialistas
           </p>
           <p className="mb-8 leading-relaxed">
-            Copper mug try-hard pitchfork pour-over freegan heirloom neutra air
-            plant cold-pressed tacos poke beard tote bag. Heirloom echo park
-            mlkshk tote bag selvage hot chicken authentic tumeric truffaut
-            hexagon try-hard chambray.
+            En <span className="text-[#FE98CB] font-semibold">Lore Cunas</span>,
+            nos enorgullece contar con el respaldo y la recomendación de
+            destacados especialistas en el ámbito de mobiliario Infanto Juvenil.{" "}
+            <span className="text-[#FE98CB] font-semibold">
+              Nuestra dedicación
+            </span>{" "}
+            a la excelencia en la fabricación de muebles, junto con nuestro
+            compromiso constante con la calidad y la innovación, nos ha
+            posicionado como una elección confiable y recomendada por
+            profesionales del sector.
           </p>
         </div>
       </div>
@@ -88,10 +98,10 @@ const Nosotros = () => {
             Nuestra fabrica
           </h3>
           <p className="mb-8 leading-relaxed">
-            Copper mug try-hard pitchfork pour-over freegan heirloom neutra air
-            plant cold-pressed tacos poke beard tote bag. Heirloom echo park
-            mlkshk tote bag selvage hot chicken authentic tumeric truffaut
-            hexagon try-hard chambray.
+            En el   <span className="text-[#FE98CB] font-semibold">corazón de Lore Cunas</span>, late una fábrica comprometida con la
+            excelencia, la creatividad y la dedicación artesanal. Nos
+            enorgullece presentarles el alma de nuestros productos, donde la
+            magia de la fabricación de muebles Infanto Juveniles cobra vida.
           </p>
         </div>
         <div className="lg:max-w-lg lg:w-full md:w-1/2 w-[20rem] ">
@@ -134,7 +144,8 @@ const Nosotros = () => {
         </div>
       </div>
       <h1 className="title-font border-t-2 py-6 text-center sm:text-4xl text-4xl mb-4 font-medium text-gray-900">
-        Nuestros <span className="text-[#FE98CB]">clientes</span> te cuentan su experiencia
+        Nuestros <span className="text-[#FE98CB]">clientes</span> te cuentan su
+        experiencia
       </h1>
     </section>
   );
