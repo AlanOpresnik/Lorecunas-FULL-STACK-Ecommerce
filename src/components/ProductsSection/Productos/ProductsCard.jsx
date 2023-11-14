@@ -31,7 +31,7 @@ const ProductDestacadoCard = () => {
                           product.images[0].filename
                         }
                         alt={product.title}
-                        className="h-[350px] w-[350px] object-cover object-center lg:h-full lg:w-full"
+                        className="h-[350px] w-[400px] object-cover object-center lg:h-full lg:w-full"
                         loading="lazy"
                       />
                     </div>

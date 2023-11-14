@@ -20,8 +20,8 @@ const ProductCategorySection = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
 export default ProductCategorySection;
 

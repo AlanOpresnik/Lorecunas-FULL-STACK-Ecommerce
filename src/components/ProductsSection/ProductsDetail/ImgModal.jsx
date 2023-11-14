@@ -64,6 +64,6 @@ const ImageModal = ({ isOpen, images, initialSlide, onClose }) => {
       </div>
     </div>
   );
-};
+}
 
 export default ImageModal;

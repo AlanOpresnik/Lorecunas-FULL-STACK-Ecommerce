@@ -54,9 +54,7 @@ function App() {
     return null;
   };
 
-  return (
-    <p>1</p>
-  );
+  
 }
 
 export default App;
