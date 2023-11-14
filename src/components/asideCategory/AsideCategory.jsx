@@ -19,9 +19,6 @@ const AsideCategory = ({ productDestacado }) => {
     setShowMenu(!showMenu);
   };
 
-  const updateIsMobile = () => {
-    setIsMobile(window.innerWidth <= 768);
-  };
 
   const handleClickCategory = (event) => {
     const categoryText = event.target.innerText;
@@ -100,6 +97,9 @@ const AsideCategory = ({ productDestacado }) => {
                       color: "rgb(75 85 99)",
                     }}
                     onClick={handleClickCategory}
+                    aria-label={`cambiar de categoria a ${category}`}
+                  
+                    
                   >
                     Roperos
                   </Button>
@@ -110,6 +110,8 @@ const AsideCategory = ({ productDestacado }) => {
                     className="p-1 border-b-2 hover:text-[#FE98CB]"
                     to={category}
                     onClick={handleClickCategory}
+                    aria-label={`cambiar de categoria a ${category}`}
+                    a
                   >
                     Cunas Funcionales completas
                   </Button>
@@ -120,6 +122,8 @@ const AsideCategory = ({ productDestacado }) => {
                     className="p-1 border-b-2 hover:text-[#FE98CB]"
                     to={category}
                     onClick={handleClickCategory}
+                    aria-label={`cambiar de categoria a ${category}`}
+                    a
                   >
                     Cunas funcionales solas
                   </Button>
@@ -130,6 +134,8 @@ const AsideCategory = ({ productDestacado }) => {
                     className="p-1 border-b-2 hover:text-[#FE98CB]"
                     to={category}
                     onClick={handleClickCategory}
+                    aria-label={`cambiar de categoria a ${category}`}
+                    a
                   >
                     Acolchados y chichoneras
                   </Button>
@@ -140,6 +146,8 @@ const AsideCategory = ({ productDestacado }) => {
                     className="p-1 border-b-2 hover:text-[#FE98CB]"
                     to={category}
                     onClick={handleClickCategory}
+                    aria-label={`cambiar de categoria a ${category}`}
+                    a
                   >
                     Dormitorios Completos
                   </Button>
@@ -150,6 +158,8 @@ const AsideCategory = ({ productDestacado }) => {
                     className="p-1 border-b-2 hover:text-[#FE98CB]"
                     to={category}
                     onClick={handleClickCategory}
+                    aria-label={`cambiar de categoria a ${category}`}
+                    a
                   >
                     Cajoneras
                   </Button>
@@ -160,6 +170,8 @@ const AsideCategory = ({ productDestacado }) => {
                     className="p-1 border-b-2 hover:text-[#FE98CB]"
                     to={category}
                     onClick={handleClickCategory}
+                    aria-label={`cambiar de categoria a ${category}`}
+                    a
                   >
                     Cunas colecho completas
                   </Button>
@@ -170,6 +182,8 @@ const AsideCategory = ({ productDestacado }) => {
                     className="p-1 border-b-2 hover:text-[#FE98CB]"
                     to={category}
                     onClick={handleClickCategory}
+                    aria-label={`cambiar de categoria a ${category}`}
+                    a
                   >
                     Cunas colecho solas
                   </Button>
@@ -181,6 +195,8 @@ const AsideCategory = ({ productDestacado }) => {
                     className="p-1 border-b-2 hover:text-[#FE98CB]"
                     to={category}
                     onClick={handleClickCategory}
+                    aria-label={`cambiar de categoria a ${category}`}
+                    a
                   >
                     Promos Dormitorios
                   </Button>
@@ -192,6 +208,8 @@ const AsideCategory = ({ productDestacado }) => {
                     className="p-1 border-b-2 hover:text-[#FE98CB]"
                     to={category}
                     onClick={handleClickCategory}
+                    aria-label={`cambiar de categoria a ${category}`}
+                    a
                   >
                     Accesorios
                   </Button>
@@ -203,6 +221,8 @@ const AsideCategory = ({ productDestacado }) => {
                       className="p-1 border-b-2 hover:text-[#FE98CB]"
                       to={category}
                       onClick={handleClickCategory}
+                      aria-label={`cambiar de categoria a ${category}`}
+                      a
                     >
                       Outlet
                     </Button>
@@ -232,6 +252,8 @@ const AsideCategory = ({ productDestacado }) => {
                   color: "rgb(75 85 99)",
                 }}
                 onClick={handleClickCategory}
+                aria-label={`cambiar de categoria a ${category}`}
+                a
               >
                 Roperos
               </Button>
@@ -242,6 +264,8 @@ const AsideCategory = ({ productDestacado }) => {
                 className="p-1 border-b-2 text-start  hover:text-[#FE98CB] "
                 to={category}
                 onClick={handleClickCategory}
+                aria-label={`cambiar de categoria a ${category}`}
+                a
               >
                 Cunas Funcionales completas
               </Button>
@@ -252,6 +276,8 @@ const AsideCategory = ({ productDestacado }) => {
                 className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
                 to={category}
                 onClick={handleClickCategory}
+                aria-label={`cambiar de categoria a ${category}`}
+                a
               >
                 Cunas funcionales solas
               </Button>
@@ -262,6 +288,8 @@ const AsideCategory = ({ productDestacado }) => {
                 className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
                 to={category}
                 onClick={handleClickCategory}
+                aria-label={`cambiar de categoria a ${category}`}
+                a
               >
                 Acolchados y chichoneras
               </Button>
@@ -272,6 +300,8 @@ const AsideCategory = ({ productDestacado }) => {
                 className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
                 to={category}
                 onClick={handleClickCategory}
+                aria-label={`cambiar de categoria a ${category}`}
+                a
               >
                 Dormitorios Completos
               </Button>
@@ -282,6 +312,8 @@ const AsideCategory = ({ productDestacado }) => {
                 className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
                 to={category}
                 onClick={handleClickCategory}
+                aria-label={`cambiar de categoria a ${category}`}
+                a
               >
                 Cajoneras
               </Button>
@@ -292,6 +324,8 @@ const AsideCategory = ({ productDestacado }) => {
                 className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
                 to={category}
                 onClick={handleClickCategory}
+                aria-label={`cambiar de categoria a ${category}`}
+                a
               >
                 Cunas colecho completas
               </Button>
@@ -302,6 +336,8 @@ const AsideCategory = ({ productDestacado }) => {
                 className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
                 to={category}
                 onClick={handleClickCategory}
+                aria-label={`cambiar de categoria a ${category}`}
+                a
               >
                 Cunas colecho solas
               </Button>
@@ -313,6 +349,8 @@ const AsideCategory = ({ productDestacado }) => {
                 className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
                 to={category}
                 onClick={handleClickCategory}
+                aria-label={`cambiar de categoria a ${category}`}
+                a
               >
                 Promos Dormitorios
               </Button>
@@ -324,6 +362,8 @@ const AsideCategory = ({ productDestacado }) => {
                 className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
                 to={category}
                 onClick={handleClickCategory}
+                aria-label={`cambiar de categoria a ${category}`}
+                a
               >
                 Accesorios
               </Button>
@@ -335,6 +375,8 @@ const AsideCategory = ({ productDestacado }) => {
                   className="p-1 border-b-2 hover:text-[#FE98CB] text-start"
                   to={category}
                   onClick={handleClickCategory}
+                  aria-label={`cambiar de categoria a ${category}`}
+                  a
                 >
                   Outlet
                 </Button>
