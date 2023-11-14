@@ -17,8 +17,8 @@ const Footer = () => {
     >
       <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-center md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div className="w-64 md:w-[120px] lg:w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-          <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-            <img className="w-full md:w-[120px] lg:w-full" src={logo} />
+          <a href="/" className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+            <img className="w-full md:w-[120px] lg:w-full" src={logo} alt="logo lorecunas"/>
           </a>
           <p className="mt-2 text-sm text-gray-500">
             Hace mas de 20 años brindamos la mejor atencion, calidad y precio del mercado
@@ -167,6 +167,7 @@ const Footer = () => {
           </p>
           <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
             <a
+            aria-label="facebook"
               href="https://www.facebook.com/LORECUNASOUTLET?locale=es_LA"
               target="__BLANK"
               className="text-gray-500 hover:text-[#FD98CA] cursor-pointer"
@@ -184,6 +185,7 @@ const Footer = () => {
             </a>
 
             <a
+            aria-label="instagram"
               href="https://www.instagram.com/lorecunas/?hl=es"
               target="_BLANK"
               className="ml-3 text-gray-500 hover:text-[#FD98CA] cursor-pointer"
