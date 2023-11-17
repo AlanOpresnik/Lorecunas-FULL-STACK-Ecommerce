@@ -1,9 +1,9 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import clienteImg from "../../../img/cliente1.jpeg";
-import clienteImg2 from "../../../img/cliente2.jpeg";
+import clienteImg from "../../../img/cliente1.webp";
+import clienteImg2 from "../../../img/cliente2.webp";
 import clienteImg3 from "../../../img/cliente3.jpeg";
-import clienteImg4 from "../../../img/cliente4.jpeg";
+import clienteImg4 from "../../../img/cliente4.webp";
 import clienteImg5 from "../../../img/cliente5.jpeg";
 import clienteImg6 from "../../../img/cliente6.jpeg";
 import "swiper/css";

@@ -133,7 +133,7 @@ const ProductDetail = () => {
           variants={containerVariants}
           className="container px-5 md:py-24 mx-auto"
         >
-          <motion.div className="h-[auto] lg:w-[95%] mx-auto flex flex-wrap">
+          <motion.div className="h-[auto] lg:w-[94%] mx-auto flex flex-wrap">
             <Swiper
               slidesPerView={1}
               spaceBetween={30}
@@ -146,7 +146,7 @@ const ProductDetail = () => {
                   <SwiperSlide className="hover:opacity-75" key={i}>
                     <img
                       alt="imagen producto"
-                      className={` cursor-pointer lg:w-full w-full lg:h-auto object-cover object-center rounded-lg h-[300px] md:min-h-[450px] md:max-h-[450px]`}
+                      className={` cursor-pointer lg:w-full bg-gray-200 w-full lg:h-auto object-cover object-center rounded-lg h-[300px] md:min-h-[450px] md:max-h-[450px]`}
                       src={import.meta.env.VITE_API_FAV_DRAWER + img.filename}
                       onClick={() => handleThumbnailClick(i)}
                     />
