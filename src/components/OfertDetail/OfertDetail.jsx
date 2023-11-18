@@ -105,9 +105,9 @@ const OfertDetail = () => {
           animate="visible"
           exit="exit"
           variants={containerVariants}
-          className="container px-5 md:py-24 mx-auto"
+          className="container px-5 md:py-24 mx-auto "
         >
-          <motion.div className="h-[auto] lg:w-[95%] mx-auto flex flex-wrap">
+          <motion.div className="h-[auto] lg:w-[95%] mx-auto flex flex-wrap ">
             <Swiper
               slidesPerView={1}
               spaceBetween={30}
@@ -117,10 +117,10 @@ const OfertDetail = () => {
             >
               {data.ofertDetails &&
                 data.ofertDetails.images.map((img, i) => (
-                  <SwiperSlide className="hover:opacity-75" key={i}>
+                  <SwiperSlide className="hover:opacity-75 " key={i}>
                     <img
                       alt="ecommerce"
-                      className={` cursor-pointer lg:w-full w-full lg:h-auto object-cover object-center rounded-lg h-[300px] md:min-h-[500px] md:max-h-[500px]`}
+                      className={` cursor-pointer bg-gray-200 lg:w-full w-full lg:h-auto object-cover object-center rounded-lg h-[300px] md:min-h-[500px] md:max-h-[500px]`}
                       src={import.meta.env.VITE_API_FAV_DRAWER + img.filename}
                       onClick={() => handleThumbnailClick(i)}
                     />
@@ -153,6 +153,7 @@ const OfertDetail = () => {
                           <CloseIcon />
                         </button>
                       </div>
+                      {/*SWIPER IMAGENES */}
                       <Swiper
                         slidesPerView={1}
                         spaceBetween={30}
@@ -166,7 +167,7 @@ const OfertDetail = () => {
                           data.ofertDetails.images.map((img, i) => (
                             <SwiperSlide key={i}>
                               <img
-                                className=" w-[570px] h-[320px] sm:w-[585px] md:w-[580px] lg:w-[680px] sm:h-[450px] object-cover rounded-lg"
+                                className=" w-[570px] bg-gray-200 h-[320px] sm:w-[585px] md:w-[580px] lg:w-[680px] sm:h-[450px] object-cover rounded-lg"
                                 src={
                                   import.meta.env.VITE_API_FAV_DRAWER +
                                   img.filename
@@ -181,7 +182,7 @@ const OfertDetail = () => {
                 </Modal>
               )}
             </AnimatePresence>
-            <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+            <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 ">
               <p className="text-xs text-[#ff9fce]">
                 {data.ofertDetails && data.ofertDetails.category}
               </p>
@@ -326,7 +327,7 @@ const OfertDetail = () => {
                     }}
                   >
                     <img
-                      className={`h-[120px] object-cover select-none w-[120px] rounded hover:opacity-75 cursor-pointer`}
+                      className={`h-[120px] bg-gray-200 object-cover select-none w-[120px] rounded hover:opacity-75 cursor-pointer`}
                       src={import.meta.env.VITE_API_FAV_DRAWER + img.filename}
                       alt={`Image ${i + 1}`}
                     />

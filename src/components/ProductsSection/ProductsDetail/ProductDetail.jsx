@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Modal, Box, Typography, Button } from "@mui/material";
@@ -80,6 +80,13 @@ const ProductDetail = () => {
         setIsLoading(false);
       });
   }, [id]);
+
+  let mensaje = "";
+  if (data && data.productDetail && data.productDetail.title) {
+    mensaje = encodeURIComponent(
+      `Hola, estoy interesado en el siguiente producto ${data.productDetail.title}, con un precio de: ${data.productDetail.price}`
+    );
+  }
 
   const handleThumbnailClick = (image) => {
     setSelectedImageIndex(image);
@@ -193,7 +200,7 @@ const ProductDetail = () => {
                           data.productDetail.images.map((img, i) => (
                             <SwiperSlide key={i}>
                               <img
-                                className=" w-[570px] h-[320px] sm:w-[585px] md:w-[580px] lg:w-[680px] sm:h-[450px] object-cover rounded-lg"
+                                className=" w-[570px] h-[320px] bg-gray-200 sm:w-[585px] md:w-[580px] lg:w-[680px] sm:h-[450px] object-cover rounded-lg"
                                 src={
                                   import.meta.env.VITE_API_FAV_DRAWER +
                                   img.filename
@@ -313,12 +320,13 @@ const ProductDetail = () => {
                 <span className="title-font font-medium text-2xl text-[#ff9fce]">
                   ${data.productDetail && data.productDetail.price}
                 </span>
-                <button
-                  aria-label="comprar"
+                <Link
+                  target="_BLANK"
+                  to={`https://wa.me/+541169393427/?text=${mensaje}`}
                   className="flex ml-auto text-white bg-[#ff9fce] border-0 py-2 px-6 focus:outline-none hover:bg-[#ffd5ea] rounded"
                 >
                   Comprar
-                </button>
+                </Link>
                 <button
                   aria-label="agregar a favoritos"
                   onClick={() => agregarFav(data)}
@@ -359,7 +367,7 @@ const ProductDetail = () => {
                     }}
                   >
                     <img
-                      className={`h-[120px] object-cover select-none w-[120px] rounded hover:opacity-75 cursor-pointer`}
+                      className={`h-[120px] bg-gray-200 object-cover select-none w-[120px] rounded hover:opacity-75 cursor-pointer`}
                       src={import.meta.env.VITE_API_FAV_DRAWER + img.filename}
                       alt={`Image ${i + 1}`}
                     />
