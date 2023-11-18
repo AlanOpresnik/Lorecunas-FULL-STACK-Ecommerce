@@ -4,7 +4,12 @@ import { useProductsDestacados } from "../context/ProductsDestacadosContext";
 import ProductAdminCard from "./admin/adminComponents/productAdminCard";
 
 const Admin = () => {
-  const { productDestacado, loading } = useProductsDestacados();
+  const { productDestacado, loading, fetchProducts } = useProductsDestacados();
+  useEffect(() => {
+    fetchProducts()
+    
+  }, [])
+  
 
   if (loading) {
     return <p>Cargando Productos...</p>;

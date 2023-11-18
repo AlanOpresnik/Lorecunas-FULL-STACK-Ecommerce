@@ -12,6 +12,7 @@ export const OfertsProvider = ({ children }) => {
   const [oferts, setOferts] = useState([]);
   const [loading, setLoading] = useState(true);
   const apiOferts = import.meta.env.VITE_API_OFERTS_GET;
+
   const fetchOfert = async () => {
     try {
       const response = await axios.get(apiOferts);
@@ -30,7 +31,7 @@ export const OfertsProvider = ({ children }) => {
   const fetchImagesForOfert = async (ofertId) => {
     try {
       const response = await axios.get(
-        `http://localhost:3900/api/oferts/ofert/${ofertId}/images`
+        `https://lorecunas-backend.onrender.com/api/oferts/ofert/${ofertId}/images`
       );
       return response.data.images;
     } catch (error) {
@@ -41,7 +42,7 @@ export const OfertsProvider = ({ children }) => {
   const uploadImageForOfert = async (ofertId, formData) => {
     try {
       const response = await axios.post(
-        `http://localhost:3900/api/oferts/ofert/${ofertId}/images`,
+        `https://lorecunas-backend.onrender.com/api/oferts/ofert/${ofertId}/images`,
         formData,
         {
           headers: {
@@ -63,11 +64,14 @@ export const OfertsProvider = ({ children }) => {
       confirmButtonText: "Si, eliminar",
       denyButtonText: `Canecelar`,
       icon: "error",
-    }).then((result) => {
+    }).then(async (result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         try {
-          axios.delete(`http://localhost:3900/api/oferts/deleteOfert/${id}`);
+          axios.delete(
+            `https://lorecunas-backend.onrender.com/api/oferts/deleteOfert/${id}`
+          );
+          await fetchOfert();
           Swal.fire({
             title: "la oferta se elimino correctamente",
             icon: "success",
