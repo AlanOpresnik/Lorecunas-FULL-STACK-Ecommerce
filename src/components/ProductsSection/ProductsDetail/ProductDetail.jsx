@@ -328,7 +328,7 @@ const ProductDetail = () => {
                   to={`https://wa.me/+541169393427/?text=${mensaje}`}
                   className="flex ml-auto text-white bg-[#ff9fce] border-0 py-2 px-6 focus:outline-none hover:bg-[#ffd5ea] rounded"
                 >
-                  Comprar
+                  Consultar
                 </Link>
                 <button
                   aria-label="agregar a favoritos"

@@ -119,7 +119,7 @@ const router = createHashRouter([
         <Toaster style={{ zIndex: 999999999999 }} />
         <NavBar />
         <ProductDetail />
-        <div className=" max-w-[1380px] mx-auto">
+        <div className=" max-w-[1380px] ml-4 md:mx-auto">
           <MatchCategory />
         </div>
         <Footer />

@@ -286,7 +286,7 @@ const OfertDetail = () => {
                 <FormatoDinero monto={data.ofertDetails && data.ofertDetails.price}/>
                 </span>
                 <button className="flex ml-auto text-white bg-[#ff9fce] border-0 py-2 px-6 focus:outline-none hover:bg-[#ffd5ea] rounded">
-                  Comprar
+                  Consultar
                 </button>
 
                 <button
