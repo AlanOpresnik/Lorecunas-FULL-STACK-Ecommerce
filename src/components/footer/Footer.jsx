@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 const Footer = () => {
-  const position = [-34.6245338, -58.7328683,17]; // Latitud y longitud del Puente Márquez 978
-
+  const position = [-34.6245338, -58.7328683, 17]; // Latitud y longitud del Puente Márquez 978
 
   return (
     <footer
@@ -15,13 +14,21 @@ const Footer = () => {
         borderTop: "1px solid rgba(0,0,0,0.2)",
       }}
     >
-      <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-center md:flex-row md:flex-nowrap flex-wrap flex-col">
+      <div className="container px-5 py-20 pb-12 mx-auto flex md:items-center lg:items-center md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div className="w-64 md:w-[120px] lg:w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-          <a href="/" className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-            <img className="w-full md:w-[120px] lg:w-full" src={logo} alt="logo lorecunas"/>
+          <a
+            href="/"
+            className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"
+          >
+            <img
+              className="w-full md:w-[120px] lg:w-full"
+              src={logo}
+              alt="logo lorecunas"
+            />
           </a>
           <p className="mt-2 text-sm text-gray-500">
-            Hace mas de 20 años brindamos la mejor atencion, calidad y precio del mercado
+            Hace mas de 20 años brindamos la mejor atencion, calidad y precio
+            del mercado
           </p>
         </div>
 
@@ -74,7 +81,10 @@ const Footer = () => {
                 </a>
               </li>
               <li className="flex items-center justify-center md:justify-start">
-                <a phoneNumber="+541169393427"  className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <a
+                  phoneNumber="+541169393427"
+                  className="text-gray-600 cursor-pointer hover:text-[#FD98CA]"
+                >
                   <LocalPhoneIcon sx={{ width: "18px", height: "18px" }} />{" "}
                   +1169393427
                 </a>
@@ -114,45 +124,70 @@ const Footer = () => {
             </h2>
             <nav className="list-none mb-10">
               <li>
-                <Link to={'/'} className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <Link
+                  to={"/"}
+                  className="text-gray-600 cursor-pointer hover:text-[#FD98CA]"
+                >
                   INICIO
                 </Link>
               </li>
               <li>
-                <Link to={"/productos"} className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <Link
+                  to={"/productos"}
+                  className="text-gray-600 cursor-pointer hover:text-[#FD98CA]"
+                >
                   PRODUCTOS
                 </Link>
               </li>
               <li>
-                <Link to={"/"} className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <Link
+                  to={"/"}
+                  className="text-gray-600 cursor-pointer hover:text-[#FD98CA]"
+                >
                   OFERTAS
                 </Link>
               </li>
               <li>
-                <Link to={"/nosotros"} className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <Link
+                  to={"/nosotros"}
+                  className="text-gray-600 cursor-pointer hover:text-[#FD98CA]"
+                >
                   NOSOTROS
                 </Link>
               </li>
             </nav>
           </div>
         </div>
-        
-        <div className="flex flex-col items-center justify-end mt-6 md:mt-0">
-        <h4 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">ESTAMOS UBICADOS EN</h4>
-     
-        <MapContainer center={position} zoom={13} style={{ height: "250px", width: "250px" }}>
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; LORECUNASFABRICA'
-      />
-      <Marker position={position}>
-        <Popup><a target="_BLANK" href="https://www.google.com/maps/@-34.6245338,-58.7328683,17z?entry=ttu">VER UBICACION</a></Popup>
-      </Marker>
-    </MapContainer>
-        
-        </div>
-      </div>
 
+        <div className="flex flex-col items-center justify-end mt-6 md:mt-0">
+          <h4 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
+            ESTAMOS UBICADOS EN
+          </h4>
+
+          <MapContainer
+            center={position}
+            zoom={13}
+            style={{ height: "250px", width: "250px" }}
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution="&copy; LORECUNASFABRICA"
+            />
+            <Marker position={position}>
+              <Popup>
+                <a
+                  target="_BLANK"
+                  href="https://www.google.com/maps/@-34.6245338,-58.7328683,17z?entry=ttu"
+                >
+                  VER UBICACION
+                </a>
+              </Popup>
+            </Marker>
+          </MapContainer>
+        </div>
+
+      </div>
+      <p className="mb-6 text-gray-600 text-center">DE <span className="text-[#FF99CB] font-semibold">LUNES</span> A SABADO DE 10 A 16HRS</p>
       <div className="bg-gray-100">
         <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
           <p className="text-gray-500 text-sm text-center sm:text-left">
@@ -167,7 +202,7 @@ const Footer = () => {
           </p>
           <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
             <a
-            aria-label="facebook"
+              aria-label="facebook"
               href="https://www.facebook.com/LORECUNASOUTLET?locale=es_LA"
               target="__BLANK"
               className="text-gray-500 hover:text-[#FD98CA] cursor-pointer"
@@ -185,7 +220,7 @@ const Footer = () => {
             </a>
 
             <a
-            aria-label="instagram"
+              aria-label="instagram"
               href="https://www.instagram.com/lorecunas/?hl=es"
               target="_BLANK"
               className="ml-3 text-gray-500 hover:text-[#FD98CA] cursor-pointer"
