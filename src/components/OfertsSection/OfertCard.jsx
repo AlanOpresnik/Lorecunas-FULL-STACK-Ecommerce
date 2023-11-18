@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useOferts } from "../../context/OfertsContext"; // Asegúrate de que la ruta sea correcta
 import { Link } from "react-router-dom"; // Importa el componente Link
+import FormatoDinero from "../../helpers/FormatearDinero";
 
 const OfertCard = () => {
   const { oferts, loading } = useOferts();
@@ -39,7 +40,7 @@ const OfertCard = () => {
                       </Link>
                     </h3>
                     <p className="text-2xl font-bold text-[#ff9fce]">
-                      ${ofert.price}
+                    <FormatoDinero monto={ofert.price}/>
                     </p>
                     <p className="mt-1  line-clamp-2  text-sm text-gray-500">
                       {ofert.description}

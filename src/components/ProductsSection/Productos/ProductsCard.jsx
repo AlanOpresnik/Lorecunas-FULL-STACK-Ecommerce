@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useProductsDestacados } from "../../../context/ProductsDestacadosContext"; // Asegúrate de que la ruta sea correcta
 import { Link } from "react-router-dom"; // Importa el componente Link
 import AsideCategory from "../../asideCategory/AsideCategory";
+import FormatoDinero from "../../../helpers/FormatearDinero";
 
 const ProductDestacadoCard = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -50,7 +51,7 @@ const ProductDestacadoCard = () => {
                           </Link>
                         </h3>
                         <p className="text-2xl font-bold text-[#ff9fce]">
-                          ${product.price}
+                        <FormatoDinero monto={product.price}/>
                         </p>
                         <p className="mt-1 line-clamp-2 text-sm text-gray-500">
                           {product.description}
@@ -99,7 +100,7 @@ const ProductDestacadoCard = () => {
                           </Link>
                         </h3>
                         <p className="text-2xl font-bold text-[#ff9fce]">
-                          ${product.price}
+                         <FormatoDinero monto={product.price}/>
                         </p>
                         <p className="mt-1 line-clamp-2 text-sm text-gray-500">
                           {product.description}

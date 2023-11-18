@@ -6,6 +6,7 @@ import { Modal, Box, Typography, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { motion, AnimatePresence } from "framer-motion";
 import toast from "react-hot-toast";
+import FormatoDinero from "../../../helpers/FormatearDinero"
 
 // Import Swiper styles
 import "swiper/css";
@@ -23,6 +24,7 @@ const ProductDetail = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [modalImages, setModalImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  
 
   const openModal = (index) => {
     setCurrentImageIndex(index);
@@ -318,7 +320,8 @@ const ProductDetail = () => {
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5"></div>
               <div className="flex">
                 <span className="title-font font-medium text-2xl text-[#ff9fce]">
-                  ${data.productDetail && data.productDetail.price}
+                <FormatoDinero monto={data.productDetail && data.productDetail.price}/>
+                  
                 </span>
                 <Link
                   target="_BLANK"
