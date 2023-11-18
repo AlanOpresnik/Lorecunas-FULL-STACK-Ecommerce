@@ -145,7 +145,7 @@ export default function Navbar() {
             </Drawer>
           </div>
           <span
-            className="text-2xl cursor-pointer mx-2 md:hidden flex mt-[12px] mr-[2rem]"
+            className="text-2xl cursor-pointer mx-2 md:hidden flex mt-[12px] mr-[1rem]"
             onClick={toggleMenu}
           >
             {menuOpen ? (
