@@ -42,6 +42,29 @@ const CargarProdForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    let timerInterval;
+    Swal.fire({
+      title: "Su producto se esta subiendo",
+      html: "Este cartel se cerrara en <b></b> milisegundos.",
+      timer: 10000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        const timer = Swal.getPopup().querySelector("b");
+        timerInterval = setInterval(() => {
+          timer.textContent = `${Swal.getTimerLeft()}`;
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log("I was closed by the timer");
+      }
+    });
+
     const formDataToSend = new FormData();
 
     formDataToSend.append("title", formData.title);
