@@ -45,7 +45,7 @@ const CargarProdForm = () => {
     let timerInterval;
     Swal.fire({
       title: "Su producto se esta subiendo",
-      html: "Este cartel se cerrara en <b></b> milisegundos.",
+      html: "Este cartel se cerrara en <b></b> milisegundos .",
       timer: 10000,
       timerProgressBar: true,
       didOpen: () => {
