@@ -5,11 +5,10 @@ import ProductsSection from "./ProductsSection";
 import { motion } from "framer-motion";
 
 const ProductDestacados = () => {
-  const { productDestacado, loading, fetchProductDestacados } =
-    useProductsDestacados();
+  const { productDestacado, loading, fetchProducts } = useProductsDestacados();
   useEffect(() => {
-    fetchProductDestacados;
-  }, [productDestacado]);
+    fetchProducts();
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -17,7 +16,7 @@ const ProductDestacados = () => {
   };
 
   return (
-    <motion.div initial="hidden" animate="visible"  variants={containerVariants}>
+    <motion.div initial="hidden" animate="visible" variants={containerVariants}>
       <ProductsSection />
       <ProductCard />
     </motion.div>

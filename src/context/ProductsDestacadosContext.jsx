@@ -13,39 +13,37 @@ export const ProductsDestacadosProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const apiUrl = import.meta.env.VITE_API;
   const apiDelete = import.meta.env.VITE_API_DELETE;
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get(apiUrl);
 
-        setProductDestacado(response.data.products);
-
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []);
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get(apiUrl);
+      setProductDestacado(response.data.products);
+      
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
+  };
 
   const handleDeleteProduct = (id) => {
     Swal.fire({
-      title: "Estas seguro que deseas eliminar este producto?",
+      title: "¿Estás seguro de que deseas eliminar este producto?",
       showDenyButton: true,
-      confirmButtonText: "Si, eliminar",
-      denyButtonText: `Canecelar`,
+      confirmButtonText: "Sí, eliminar",
+      denyButtonText: "Cancelar",
       icon: "error",
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
+    }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          axios.delete(apiDelete + id);
+          await axios.delete(apiDelete + id);
           Swal.fire({
-            title: "el producto se elimino correctamente",
+            title: "El producto se eliminó correctamente",
             icon: "success",
           });
+  
+          // Después de eliminar, volver a obtener la lista de productos
+          fetchProducts();
         } catch (error) {
           console.log(error);
         }
@@ -54,10 +52,9 @@ export const ProductsDestacadosProvider = ({ children }) => {
       }
     });
   };
-
   return (
     <ProductsDestacadosContext.Provider
-      value={{ productDestacado, loading, handleDeleteProduct }}
+      value={{ productDestacado, loading, handleDeleteProduct,fetchProducts }}
     >
       {children}
     </ProductsDestacadosContext.Provider>
