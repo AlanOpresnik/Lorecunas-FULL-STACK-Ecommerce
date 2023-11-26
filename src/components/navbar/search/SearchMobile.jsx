@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ResultProductsCard from "./resultProducts/resultProductsCard";
 import { useLocation } from "react-router-dom";
-
-const searchMobile = () => {
+import { useDebouncedCallback } from "use-debounce";
+const SearchMobile = () => {
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState([]);
   const [inputFocused, setInputFocused] = useState(false);
 
-    const location = useLocation()
+  const location = useLocation();
 
   const handleInputFocus = () => {
     setInputFocused(true);
@@ -20,26 +20,37 @@ const searchMobile = () => {
 
   useEffect(() => {
     setInputFocused(false);
-    setSearch("")
-}, [location.pathname])
+    setSearch("");
+  }, [location.pathname]);
 
-    useEffect(() => {
-    if (search) {
-      // Realiza una solicitud a tu API para obtener sugerencias de búsqueda
-      axios(
-        import.meta.env.VITE_API_GET_SEARCH_PRODUCTS+search
-      ).then((res) => {
-        setProducts(res.data);
-      });
-    } else {
-      // Si el campo de búsqueda está vacío, borra las sugerencias
-      setProducts([]);
-    }
-  }, [search]);
+  // Utiliza useDebouncedCallback para manejar el evento onChange
+  const handleSearchDebounced = useDebouncedCallback(
+    (value) => {
+      if (value) {
+        axios(import.meta.env.VITE_API_GET_SEARCH_PRODUCTS + value).then(
+          (res) => {
+            setProducts(res.data);
+          }
+        );
+      } else {
+        setProducts([]);
+      }
+      console.log(value)
+    },
+    // Establece el tiempo de debounce en milisegundos
+    200
+  );
+
+  const handleSearchChange = (e) => {
+    const { value } = e.target;
+    setSearch(value);
+
+    // Llama a la función debounced con el valor del input
+    handleSearchDebounced(value);
+  };
 
   const handleSuggestionClick = (product) => {
-    // Al hacer clic en una sugerencia, establece el valor del input y borra las sugerencias
-    setSearch(suggestion);
+    setSearch(product);
     setProducts([]);
   };
 
@@ -55,7 +66,7 @@ const searchMobile = () => {
           type="text"
           placeholder="Buscar"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={handleSearchChange}
           onFocus={handleInputFocus}
         />
         <div className="text-gray-500 right-0 absolute">
@@ -86,4 +97,4 @@ const searchMobile = () => {
   );
 };
 
-export default searchMobile;
+export default SearchMobile;
