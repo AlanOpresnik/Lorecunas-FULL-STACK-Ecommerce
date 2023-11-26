@@ -19,7 +19,7 @@ const ProductDestacadoCard = () => {
           <>
             <AsideCategory productDestacado={productDestacado} />
             <div className="col-span-4 lg:col-span-4">
-              <div className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+              <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-3 xl:gap-x-8">
                 {productDestacado.map((product) => (
                   <div
                     key={product._id}
@@ -32,13 +32,13 @@ const ProductDestacadoCard = () => {
                           product.images[0].filename
                         }
                         alt={product.title}
-                        className="h-[350px] w-[400px] object-cover object-center lg:h-full lg:w-full"
+                        className="h-[200px] w-[400px] object-cover object-center lg:h-full lg:w-full"
                         loading="lazy"
                       />
                     </div>
                     <div className="mt-4 flex justify-between">
                       <div className="p-3">
-                        <h3 className="text-lg font-bold">
+                        <h3 className=" font-bold">
                           <Link
                             className="line-clamp-1 mr-5"
                             to={`/productDetail/${product._id}`}
@@ -50,7 +50,7 @@ const ProductDestacadoCard = () => {
                             {product.title}
                           </Link>
                         </h3>
-                        <p className="text-2xl font-bold text-[#ff9fce]">
+                        <p className="text-lg font-bold text-[#ff9fce]">
                         <FormatoDinero monto={product.price}/>
                         </p>
                         <p className="mt-1 line-clamp-2 text-sm text-gray-500">
