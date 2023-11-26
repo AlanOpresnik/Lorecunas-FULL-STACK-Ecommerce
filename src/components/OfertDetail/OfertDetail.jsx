@@ -73,11 +73,11 @@ const OfertDetail = () => {
           setData(res.data);
           console.log(res.data);
         }
-        setIsLoading(false)
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error(error);
-        setIsLoading(false)
+        setIsLoading(false);
       });
   }, [id]);
 
@@ -239,7 +239,12 @@ const OfertDetail = () => {
                   <span className="text-gray-600 ml-3">4 Reviews</span>
                 </span>
                 <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2">
-                  <a className="text-gray-500">
+                  <a
+                    aria-label="facebook"
+                    target="_BLANK"
+                    href="https://www.facebook.com/profile.php?id=100064492640082"
+                    className="text-gray-500"
+                  >
                     <svg
                       fill="currentColor"
                       stroke-linecap="round"
@@ -251,19 +256,38 @@ const OfertDetail = () => {
                       <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
                     </svg>
                   </a>
-                  <a className="text-gray-500">
+                  <a
+                    aria-label="instagram"
+                    href="https://www.instagram.com/lorecunas/?hl=es"
+                    target="_BLANK"
+                    className="ml-3 text-gray-500 cursor-pointer"
+                  >
                     <svg
-                      fill="currentColor"
+                      fill="none"
+                      stroke="currentColor"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeWidth="2"
                       className="w-5 h-5"
                       viewBox="0 0 24 24"
                     >
-                      <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                      <rect
+                        width="20"
+                        height="20"
+                        x="2"
+                        y="2"
+                        rx="5"
+                        ry="5"
+                      ></rect>
+                      <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
                     </svg>
                   </a>
-                  <a className="text-gray-500">
+                  <a
+                    aria-label="mensaje para la cuna"
+                    target="_BLANK"
+                    href={`https://wa.me/+541169393427`}
+                    className="text-gray-500"
+                  >
                     <svg
                       fill="currentColor"
                       stroke-linecap="round"
@@ -283,7 +307,9 @@ const OfertDetail = () => {
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5"></div>
               <div className="flex">
                 <span className="title-font font-medium text-2xl text-[#ff9fce]">
-                <FormatoDinero monto={data.ofertDetails && data.ofertDetails.price}/>
+                  <FormatoDinero
+                    monto={data.ofertDetails && data.ofertDetails.price}
+                  />
                 </span>
                 <button className="flex ml-auto text-white bg-[#ff9fce] border-0 py-2 px-6 focus:outline-none hover:bg-[#ffd5ea] rounded">
                   Consultar

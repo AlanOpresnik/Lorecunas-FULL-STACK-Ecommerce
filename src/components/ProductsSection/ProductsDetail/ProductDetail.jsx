@@ -6,7 +6,7 @@ import { Modal, Box, Typography, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { motion, AnimatePresence } from "framer-motion";
 import toast from "react-hot-toast";
-import FormatoDinero from "../../../helpers/FormatearDinero"
+import FormatoDinero from "../../../helpers/FormatearDinero";
 
 // Import Swiper styles
 import "swiper/css";
@@ -24,7 +24,7 @@ const ProductDetail = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [modalImages, setModalImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  
+  const [existeFavorito, setExisteFavorito] = useState(false);
 
   const openModal = (index) => {
     setCurrentImageIndex(index);
@@ -68,19 +68,25 @@ const ProductDetail = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(import.meta.env.VITE_API_GET_PRODUCT_DETAIL + id)
-      .then((res) => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(import.meta.env.VITE_API_GET_PRODUCT_DETAIL + id);
         if (res.data && res.data.productDetail) {
           setData(res.data);
+          const favoritosGuardados = JSON.parse(localStorage.getItem("favoritos")) || [];
+          const productoEnFavoritos = favoritosGuardados.some(
+            (favorito) => favorito.productDetail._id === res.data.productDetail._id
+          );
+          setExisteFavorito(productoEnFavoritos);
         }
-        setIsLoading(false);
-      })
-
-      .catch((error) => {
+      } catch (error) {
         console.error(error);
+      } finally {
         setIsLoading(false);
-      });
+      }
+    };
+
+    fetchData();
   }, [id]);
 
   let mensaje = "";
@@ -92,36 +98,40 @@ const ProductDetail = () => {
 
   const handleThumbnailClick = (image) => {
     setSelectedImageIndex(image);
-    openModal(image); // Open the modal with the selected image
+    openModal(image)
   };
 
   const agregarFav = (nuevoFavorito) => {
     const favoritosGuardados =
       JSON.parse(localStorage.getItem("favoritos")) || [];
-
+  
     // Verificar si ya existe un favorito con el mismo ID
-    const existeFavorito = favoritosGuardados.some(
+    const favoritoExistenteIndex = favoritosGuardados.findIndex(
       (favorito) =>
         favorito.productDetail._id === nuevoFavorito.productDetail._id
     );
-
-    if (existeFavorito) {
-      toast.error("Este producto ya está en favoritos.", {
+  
+    if (favoritoExistenteIndex !== -1) {
+      
+      favoritosGuardados.splice(favoritoExistenteIndex, 1);
+      setExisteFavorito(false); 
+      toast("Producto eliminado de favoritos 🙁", {
         duration: 1500,
         position: "top-right",
-        iconTheme: {
-          primary: "red",
-        },
+        disableHover: true,
       });
     } else {
+     
       favoritosGuardados.push(nuevoFavorito);
-      localStorage.setItem("favoritos", JSON.stringify(favoritosGuardados));
+      setExisteFavorito(true); 
       toast("Producto agregado a favoritos ❤️", {
         duration: 1500,
         position: "top-right",
         disableHover: true,
       });
     }
+  
+    localStorage.setItem("favoritos", JSON.stringify(favoritosGuardados));
   };
 
   const firstSwiperRef = useRef(null);
@@ -276,7 +286,12 @@ const ProductDetail = () => {
                   <span className="text-gray-600 ml-3">24 Reviews</span>
                 </span>
                 <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2">
-                  <a className="text-gray-500">
+                  <a
+                    aria-label="facebook"
+                    target="_BLANK"
+                    href="https://www.facebook.com/profile.php?id=100064492640082"
+                    className="text-gray-500"
+                  >
                     <svg
                       fill="currentColor"
                       stroke-linecap="round"
@@ -288,19 +303,38 @@ const ProductDetail = () => {
                       <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
                     </svg>
                   </a>
-                  <a className="text-gray-500">
+                  <a
+                    aria-label="instagram"
+                    href="https://www.instagram.com/lorecunas/?hl=es"
+                    target="_BLANK"
+                    className="ml-3 text-gray-500 cursor-pointer"
+                  >
                     <svg
-                      fill="currentColor"
+                      fill="none"
+                      stroke="currentColor"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeWidth="2"
                       className="w-5 h-5"
                       viewBox="0 0 24 24"
                     >
-                      <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                      <rect
+                        width="20"
+                        height="20"
+                        x="2"
+                        y="2"
+                        rx="5"
+                        ry="5"
+                      ></rect>
+                      <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
                     </svg>
                   </a>
-                  <a className="text-gray-500">
+                  <a
+                    aria-label="mensaje para la cuna"
+                    target="_BLANK"
+                    href={`https://wa.me/+541169393427/?text=${mensaje}`}
+                    className="text-gray-500"
+                  >
                     <svg
                       fill="currentColor"
                       stroke-linecap="round"
@@ -320,8 +354,9 @@ const ProductDetail = () => {
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5"></div>
               <div className="flex">
                 <span className="title-font font-medium text-2xl text-[#ff9fce]">
-                <FormatoDinero monto={data.productDetail && data.productDetail.price}/>
-                  
+                  <FormatoDinero
+                    monto={data.productDetail && data.productDetail.price}
+                  />
                 </span>
                 <Link
                   target="_BLANK"
@@ -333,7 +368,9 @@ const ProductDetail = () => {
                 <button
                   aria-label="agregar a favoritos"
                   onClick={() => agregarFav(data)}
-                  className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
+                  className={`rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 ${
+                    existeFavorito ? "bg-red-200 text-red-500" : ""
+                  }`}
                 >
                   <svg
                     fill="currentColor"
