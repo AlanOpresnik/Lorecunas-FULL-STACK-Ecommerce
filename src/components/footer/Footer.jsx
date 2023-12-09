@@ -16,8 +16,8 @@ const Footer = () => {
     >
       <div className="container px-5 py-20 pb-12 mx-auto flex md:items-center lg:items-center md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div className="w-64 md:w-[120px] lg:w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-          <a
-            href="/"
+          <Link
+            to={"/"}
             className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"
           >
             <img
@@ -25,7 +25,7 @@ const Footer = () => {
               src={logo}
               alt="logo lorecunas"
             />
-          </a>
+          </Link>
           <p className="mt-2 text-sm text-gray-500">
             Hace mas de 20 años brindamos la mejor atencion, calidad y precio
             del mercado
@@ -39,24 +39,36 @@ const Footer = () => {
             </h2>
             <nav className="list-none mb-10">
               <li>
-                <a className="text-gray-600 cursor-pointer  hover:text-[#FD98CA]">
+                <Link
+                  to={"/productos/CUNAS%20FUNCIONALES%20COMPLETAS"}
+                  className="text-gray-600 cursor-pointer  hover:text-[#FD98CA]"
+                >
                   CUNAS FUNCIONALES
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA] uppercase">
+                <Link
+                  to={"/productos/DORMITORIOS%20COMPLETOS"}
+                  className="text-gray-600 cursor-pointer hover:text-[#FD98CA] uppercase"
+                >
                   Dormitorios
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <Link
+                  to={"/productos/ROPEROS"}
+                  className="text-gray-600 cursor-pointer hover:text-[#FD98CA]"
+                >
                   ROPEROS
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA] uppercase ">
+                <Link
+                  to={"/productos/PROMOS%20DORMITORIOS"}
+                  className="text-gray-600 cursor-pointer hover:text-[#FD98CA] uppercase "
+                >
                   PROMOS
-                </a>
+                </Link>
               </li>
             </nav>
           </div>
@@ -66,28 +78,40 @@ const Footer = () => {
             </h2>
             <nav className="list-none mb-10">
               <li>
-                <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <Link
+                  target="_BLANK"
+                  to={"https://wa.me/+541169393427"}
+                  className="text-gray-600 cursor-pointer hover:text-[#FD98CA]"
+                >
                   WATSHAPP
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <Link
+                  target="_BLANK"
+                  to={"https://www.instagram.com/lorecunas/?hl=es"}
+                  className="text-gray-600 cursor-pointer hover:text-[#FD98CA]"
+                >
                   INSTAGRAM
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <Link
+                  target="_BLANK"
+                  to={"https://www.tiktok.com/@lorecunasfuncionales"}
+                  className="text-gray-600 cursor-pointer hover:text-[#FD98CA]"
+                >
                   TIK TOK
-                </a>
+                </Link>
               </li>
               <li className="flex items-center justify-center md:justify-start">
-                <a
+                <Link
                   phoneNumber="+541169393427"
                   className="text-gray-600 cursor-pointer hover:text-[#FD98CA]"
                 >
                   <LocalPhoneIcon sx={{ width: "18px", height: "18px" }} />{" "}
                   +1169393427
-                </a>
+                </Link>
               </li>
             </nav>
           </div>
@@ -97,24 +121,24 @@ const Footer = () => {
             </h2>
             <nav className="list-none mb-10">
               <li>
-                <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <Link className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
                   MERCADO PAGO
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <Link className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
                   DEBITO/CREDITO
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <Link className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
                   EFECTIVO
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
+                <Link className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
                   TRANSFERENCIA BANCARIA
-                </a>
+                </Link>
               </li>
             </nav>
           </div>
@@ -175,33 +199,35 @@ const Footer = () => {
             />
             <Marker position={position}>
               <Popup>
-                <a
+                <Link
                   target="_BLANK"
                   href="https://www.google.com/maps/@-34.6245338,-58.7328683,17z?entry=ttu"
                 >
                   VER UBICACION
-                </a>
+                </Link>
               </Popup>
             </Marker>
           </MapContainer>
         </div>
-
       </div>
-      <p className="mb-6 text-gray-600 text-center">DE <span className="text-[#FF99CB] font-semibold">LUNES</span> A SABADO DE 10 A 16HRS</p>
+      <p className="mb-6 text-gray-600 text-center">
+        DE <span className="text-[#FF99CB] font-semibold">LUNES</span> A SABADO
+        DE 10 A 16HRS
+      </p>
       <div className="bg-gray-100">
         <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
           <p className="text-gray-500 text-sm text-center sm:text-left">
             © 2023 Lorecunas —
-            <a
+            <Link
               href="https://www.instagram.com/lorecunas/?hl=es"
               className="text-gray-600 ml-1"
               target="_blank"
             >
               @alan_opk
-            </a>
+            </Link>
           </p>
           <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
-            <a
+            <Link
               aria-label="facebook"
               href="https://www.facebook.com/LORECUNASOUTLET?locale=es_LA"
               target="__BLANK"
@@ -217,9 +243,9 @@ const Footer = () => {
               >
                 <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
               </svg>
-            </a>
+            </Link>
 
-            <a
+            <Link
               aria-label="instagram"
               href="https://www.instagram.com/lorecunas/?hl=es"
               target="_BLANK"
@@ -237,7 +263,7 @@ const Footer = () => {
                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
                 <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
               </svg>
-            </a>
+            </Link>
           </span>
         </div>
       </div>

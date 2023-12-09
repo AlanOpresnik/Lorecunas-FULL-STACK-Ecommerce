@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import wsp from '../../img/wspLogo.webp'
 import './wspLogo.css'
+import { Link } from 'react-router-dom'
 
 const WspLogo = () => {
   const [visible, setVisible] = useState('wsp-Logo-container')
@@ -29,7 +30,7 @@ const WspLogo = () => {
 
   return (
     <div className={visible}>
-      <a href='https://web.whatsapp.com/' target='BlANK'><img className='wsp-logo-img' src={wsp} alt='Logo de WhatsApp'/></a>
+      <Link to={"https://wa.me/+541169393427"} target='BlANK'><img className='wsp-logo-img' src={wsp} alt='Logo de WhatsApp'/></Link>
     </div>
   )
 }

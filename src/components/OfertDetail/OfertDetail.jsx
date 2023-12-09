@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Modal, Box, Typography, Button } from "@mui/material";
@@ -80,6 +80,13 @@ const OfertDetail = () => {
         setIsLoading(false);
       });
   }, [id]);
+
+  let mensaje = "";
+  if (data && data.ofertDetails && data.ofertDetails.title) {
+    mensaje = encodeURIComponent(
+      `Hola, estoy interesado en la siguiente oferta: ${data.ofertDetails.title}, con un precio de: $${data.ofertDetails.price} pesos`
+    );
+  }
 
   const handleThumbnailClick = (image) => {
     setSelectedImageIndex(image);
@@ -282,10 +289,10 @@ const OfertDetail = () => {
                       <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
                     </svg>
                   </a>
-                  <a
+                  <Link
                     aria-label="mensaje para la cuna"
                     target="_BLANK"
-                    href={`https://wa.me/+541169393427`}
+                    to={`https://wa.me/+541169393427/?text=${mensaje}`}
                     className="text-gray-500"
                   >
                     <svg
@@ -298,7 +305,7 @@ const OfertDetail = () => {
                     >
                       <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
                     </svg>
-                  </a>
+                  </Link>
                 </span>
               </div>
               <p className="leading-relaxed">
@@ -311,9 +318,13 @@ const OfertDetail = () => {
                     monto={data.ofertDetails && data.ofertDetails.price}
                   />
                 </span>
-                <button className="flex ml-auto text-white bg-[#ff9fce] border-0 py-2 px-6 focus:outline-none hover:bg-[#ffd5ea] rounded">
+                <Link
+                  target="_BLANK"
+                  to={`https://wa.me/+541169393427/?text=${mensaje}`}
+                  className="flex ml-auto text-white bg-[#ff9fce] border-0 py-2 px-6 focus:outline-none hover:bg-[#ffd5ea] rounded"
+                >
                   Consultar
-                </button>
+                </Link>
 
                 <button
                   onClick={() => agregarFav(data)}

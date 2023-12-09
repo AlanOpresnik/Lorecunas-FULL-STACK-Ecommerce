@@ -92,7 +92,7 @@ const ProductDetail = () => {
   let mensaje = "";
   if (data && data.productDetail && data.productDetail.title) {
     mensaje = encodeURIComponent(
-      `Hola, estoy interesado en el siguiente producto ${data.productDetail.title}, con un precio de: ${data.productDetail.price}`
+      `Hola, estoy interesado en el siguiente producto: ${data.productDetail.title}, con un precio de: $${data.productDetail.price} pesos`
     );
   }
 

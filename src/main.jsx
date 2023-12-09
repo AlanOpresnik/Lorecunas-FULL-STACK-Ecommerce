@@ -39,6 +39,7 @@ import CargarOfertaForm from "./pages/admin/adminComponents/CargarOfertaForm.jsx
 import OfertsAdminSection from "./pages/admin/adminComponents/OfertsAdminSection.jsx";
 import ScrollToTop from "./scrollTop.jsx";
 
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
@@ -78,7 +79,7 @@ const router = createHashRouter([
           </div>
         </div>
       </>
-    )
+    ),
   },
   {
     path: "/ofertDetail/:id",
@@ -108,7 +109,6 @@ const router = createHashRouter([
           </>
           <ScrollToTop />
         </ProductsDestacadosProvider>
-        
       </>
     ),
   },
