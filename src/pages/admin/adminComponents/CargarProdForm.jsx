@@ -57,7 +57,7 @@ const CargarProdForm = () => {
       },
       willClose: () => {
         clearInterval(timerInterval);
-      }
+      },
     }).then((result) => {
       /* Read more about handling dismissals below */
       if (result.dismiss === Swal.DismissReason.timer) {
@@ -88,11 +88,11 @@ const CargarProdForm = () => {
         category: "",
       });
       setFileInput(null);
-      setImagePreviews([]); 
+      setImagePreviews([]);
       Swal.fire({
         title: "Producto cargado con exito",
         text: `el producto ${formData.title} fui subido con exito `,
-        icon: "success"
+        icon: "success",
       });
     } catch (error) {
       console.error("Error al enviar los datos", error);

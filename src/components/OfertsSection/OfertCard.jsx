@@ -2,9 +2,11 @@ import React, { useEffect } from "react";
 import { useOferts } from "../../context/OfertsContext"; // Asegúrate de que la ruta sea correcta
 import { Link } from "react-router-dom"; // Importa el componente Link
 import FormatoDinero from "../../helpers/FormatearDinero";
+import { Chip } from "@mui/material";
 
 const OfertCard = () => {
   const { oferts, loading } = useOferts();
+  console.log(oferts);
 
   if (loading) {
     return <p>Cargando ofertas...</p>;
@@ -23,9 +25,12 @@ const OfertCard = () => {
               >
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none transition-opacity group-hover:opacity-75 lg:h-80">
                   <img
-                   src={import.meta.env.VITE_API_FAV_DRAWER+ofert.images[0].filename}
+                    src={
+                      import.meta.env.VITE_API_FAV_DRAWER +
+                      ofert.images[0].filename
+                    }
                     alt={ofert.title}
-                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                    className="h-[22rem] w-full object-cover object-center lg:h-full lg:w-full"
                   />
                 </div>
                 <div className="mt-4 flex justify-between">
@@ -39,9 +44,14 @@ const OfertCard = () => {
                         {ofert.title}
                       </Link>
                     </h3>
-                    <p className="text-2xl font-bold text-[#ff9fce]">
-                    <FormatoDinero monto={ofert.price}/>
-                    </p>
+                    <div className="flex items-center gap-2">
+                      <p className="text-2xl font-bold text-[#ff9fce]">
+                        <FormatoDinero monto={ofert.price} />
+                      </p>
+                      <p className="text-xl  text-gray-400 line-through">
+                        <FormatoDinero monto={ofert.beforePrice} />
+                      </p>
+                    </div>
                     <p className="mt-1  line-clamp-2  text-sm text-gray-500">
                       {ofert.description}
                     </p>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import toast from "react-hot-toast";
 import {
   Button,
@@ -13,14 +14,15 @@ import {
 import { useProductsDestacados } from "../../../context/ProductsDestacadosContext";
 import axios from "axios";
 import Swal from "sweetalert2";
-
+import { useNavigate } from "react-router-dom";
+import Tooltip from "@mui/material/Tooltip";
 const ProductAdminCard = ({ prod }) => {
   const { handleDeleteProduct } = useProductsDestacados();
   const [isEditing, setIsEditing] = useState(false);
   const [editedProduct, setEditedProduct] = useState({ ...prod });
   const [selectedImage, setSelectedImage] = useState(null);
   const [isOverlayHovered, setIsOverlayHovered] = useState([]);
-
+  const navigate = useNavigate();
   const handleOverlayHoverEnter = (index) => {
     const updatedIsOverlayHovered = [...isOverlayHovered];
     updatedIsOverlayHovered[index] = true;
@@ -50,17 +52,17 @@ const ProductAdminCard = ({ prod }) => {
     try {
       // Enviar los datos editados a través de la solicitud PUT
       await axios.put(
-        import.meta.env.VITE_API_PUT_PRODUCT+editedProduct._id,
+        import.meta.env.VITE_API_PUT_PRODUCT + editedProduct._id,
         editedProduct
       );
 
       // Cerrar el modal de edición
-    
+
       setIsEditing(false);
       Swal.fire({
         title: "Producto editado con exito",
         text: `el producto ${editedProduct.title} fue editado correctamente `,
-        icon: "success"
+        icon: "success",
       });
     } catch (error) {
       console.error("Error al actualizar el producto", error);
@@ -74,7 +76,6 @@ const ProductAdminCard = ({ prod }) => {
     }
 
     try {
-      // Obten la ID de la imagen que deseas eliminar
       const imageId = editedProduct.images[index]._id;
 
       // Realiza una solicitud DELETE al servidor para eliminar la imagen
@@ -95,9 +96,12 @@ const ProductAdminCard = ({ prod }) => {
     }
   };
 
+  const handleRedirect = (id) => {
+    navigate(`/productDetail/${id}`);
+  };
+
   const handleUploadImage = async () => {
     try {
-
       const formData = new FormData();
       formData.append("image", selectedImage);
 
@@ -122,31 +126,38 @@ const ProductAdminCard = ({ prod }) => {
 
   return (
     <div className="flex gap-6 overflow-x-auto max-w-[600px]">
-    <div>
-      <img
-        className="max-w-[120px]"
-        src={import.meta.env.VITE_API_FAV_DRAWER+prod.images[0].filename}
-        alt={`Product ${prod._id}`}
-      />
-    </div>
-    <div className="flex flex-col items-center lg:flex-row lg:items-start w-full">
       <div>
-        <p className="text-lg font-bold">{prod.title}</p>
-        <p className="text-sm text-gray-500 line-clamp-2">
-          {prod.description}
-        </p>
+        <img
+          className="max-w-[120px]"
+          src={import.meta.env.VITE_API_FAV_DRAWER + prod.images[0].filename}
+          alt={`Product ${prod._id}`}
+        />
       </div>
-      <div className="flex mt-2 lg:mt-0">
-        <Button onClick={handleEditClick}>
-          <ModeEditIcon />
-        </Button>
-        <Button onClick={() => handleDeleteProduct(prod._id)}>
-          <DeleteIcon sx={{ color: "red" }} />
-        </Button>
+      <div className="flex flex-col items-center lg:flex-row lg:items-start w-full">
+        <div>
+          <p className="text-lg font-bold">{prod.title}</p>
+          <p className="text-sm text-gray-500 line-clamp-2">
+            {prod.description}
+          </p>
+        </div>
+        <div className="flex mt-2 lg:mt-0">
+          <Tooltip title="Editar" arrow>
+            <Button onClick={handleEditClick}>
+              <ModeEditIcon />
+            </Button>
+          </Tooltip>
+          <Tooltip title="Eliminar" arrow>
+            <Button onClick={() => handleDeleteProduct(prod._id)}>
+              <DeleteIcon sx={{ color: "red" }} />
+            </Button>
+          </Tooltip>
+          <Tooltip title="Ver Producto" arrow>
+            <Button onClick={() => handleRedirect(prod._id)}>
+              <OpenInNewIcon sx={{ color: "#ff9fce" }} />
+            </Button>
+          </Tooltip>
+        </div>
       </div>
-    </div>
-
-
 
       {/* Modal de edición */}
       <Modal
@@ -234,9 +245,10 @@ const ProductAdminCard = ({ prod }) => {
                   onMouseEnter={() => handleOverlayHoverEnter(index)}
                   onMouseLeave={() => handleOverlayHoverLeave(index)}
                   onClick={() => handleRemoveImage(index)}
+                  key={index}
                 >
                   <img
-                    src={import.meta.env.VITE_API_FAV_DRAWER+image.filename}
+                    src={import.meta.env.VITE_API_FAV_DRAWER + image.filename}
                     alt={`Image ${index}`}
                     className="w-full h-full object-cover"
                   />
@@ -287,17 +299,17 @@ const ProductAdminCard = ({ prod }) => {
                 Guardar cambios
               </Button>
               <Button
-              className=" bg-red-400"
+                className=" bg-red-400"
                 onClick={() => {
-                  setIsEditing(false)
+                  setIsEditing(false);
                 }}
                 sx={{
-                    bgcolor: "red",
-                    color:"white",
-                    "&:hover":{backgroundColor:"rgb(248 113 113)"}
+                  bgcolor: "red",
+                  color: "white",
+                  "&:hover": { backgroundColor: "rgb(248 113 113)" },
                 }}
               >
-               Cancelar
+                Cancelar
               </Button>
             </div>
           </div>

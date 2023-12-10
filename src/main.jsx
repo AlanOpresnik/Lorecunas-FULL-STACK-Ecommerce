@@ -51,7 +51,7 @@ const router = createHashRouter([
     element: (
       <>
         <div className="bg-primary w-full overflow-hidden">
-          <div className={`px-2 justify-center items-center`}>
+          <div className={`justify-center items-center`}>
             <motion.div
               initial="hidden"
               animate="visible"

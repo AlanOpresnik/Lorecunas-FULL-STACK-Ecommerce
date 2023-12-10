@@ -5,15 +5,18 @@ import toast from "react-hot-toast";
 import {
   Button,
   Checkbox,
+  Chip,
   FormControlLabel,
   Modal,
   Paper,
   TextField,
+  Tooltip,
 } from "@mui/material";
 import { useOferts } from "../../../context/OfertsContext";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 const OfertAdminCard = ({ ofert, index }) => {
   const {
@@ -29,6 +32,8 @@ const OfertAdminCard = ({ ofert, index }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isOverlayHovered, setIsOverlayHovered] = useState([]);
   const [isDataUpdated, setIsDataUpdated] = useState(false);
+
+const navigate = useNavigate()
 
   useEffect(() => {
     if (isDataUpdated) {
@@ -68,7 +73,7 @@ const OfertAdminCard = ({ ofert, index }) => {
     try {
       // Enviar los datos editados a través de la solicitud PUT
       await axios.put(
-        import.meta.env.VITE_API_PUT_OFERT+editedOfert._id,
+        import.meta.env.VITE_API_PUT_OFERT + editedOfert._id,
         editedOfert
       );
 
@@ -168,14 +173,16 @@ const OfertAdminCard = ({ ofert, index }) => {
       category: e.target.value,
     }); // Assign the input value to the state
   };
-
+  const handleRedirect = (id) => {
+    navigate(`/ofertDetail/${id}`);
+  }
   return (
     <>
-   <div className="flex gap-6 overflow-x-auto max-w-[600px]">
+      <div className="flex gap-6 overflow-x-auto max-w-[600px] border-b pb-2 ">
         <div>
           <img
-            className="max-w-[120px]"
-            src={import.meta.env.VITE_API_FAV_DRAWER+ofert.images[0].filename}
+            className="max-w-[120px] h-[120px] rounded-lg"
+            src={import.meta.env.VITE_API_FAV_DRAWER + ofert.images[0].filename}
             alt={`Product ${ofert._id}`}
           />
         </div>
@@ -187,16 +194,23 @@ const OfertAdminCard = ({ ofert, index }) => {
             </p>
           </div>
           <div className="flex mt-2 lg:mt-0">
-            <Button onClick={handleEditClick}>
-              <ModeEditIcon />
-            </Button>
-            <Button onClick={() => handleDeleteOfert(ofert._id)}>
-              <DeleteIcon sx={{ color: "red" }} />
-            </Button>
+            <Tooltip title="Editar" arrow>
+              <Button onClick={handleEditClick}>
+                <ModeEditIcon />
+              </Button>
+            </Tooltip>
+            <Tooltip title="Eliminar" arrow>
+              <Button onClick={() => handleDeleteOfert(ofert._id)}>
+                <DeleteIcon sx={{ color: "red" }} />
+              </Button>
+            </Tooltip>
+            <Tooltip title="Ver oferta" arrow>
+              <Button onClick={() => handleRedirect(ofert._id)}>
+                <OpenInNewIcon sx={{ color: "#ff9fce" }} />
+              </Button>
+            </Tooltip>
           </div>
         </div>
-
-        {/* Modal de edición */}
         <Modal
           className=" overflow-y-auto"
           open={isEditing}
@@ -218,7 +232,7 @@ const OfertAdminCard = ({ ofert, index }) => {
                 width: 350, // Estilo para pantallas de 768px o menos
               },
               "@media (max-width: 398px)": {
-                height:660, // Estilo para pantallas de 768px o menos
+                height: 660, // Estilo para pantallas de 768px o menos
               },
             }}
           >
@@ -270,7 +284,7 @@ const OfertAdminCard = ({ ofert, index }) => {
                     onClick={() => handleRemoveImage(index)}
                   >
                     <img
-                      src={import.meta.env.VITE_API_FAV_DRAWER+image.filename}
+                      src={import.meta.env.VITE_API_FAV_DRAWER + image.filename}
                       alt={`Image ${index}`}
                       className="w-full h-full object-cover"
                     />

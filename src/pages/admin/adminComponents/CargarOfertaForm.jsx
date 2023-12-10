@@ -2,12 +2,14 @@ import axios from "axios";
 import React, { useState } from "react";
 
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import Swal from "sweetalert2";
 
 const CargarOfertaForm = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     price: 0,
+    beforePrice: 0,
     category: "",
   });
 
@@ -55,9 +57,8 @@ const CargarOfertaForm = () => {
       },
       willClose: () => {
         clearInterval(timerInterval);
-      }
+      },
     }).then((result) => {
-      /* Read more about handling dismissals below */
       if (result.dismiss === Swal.DismissReason.timer) {
         console.log("I was closed by the timer");
       }
@@ -68,6 +69,7 @@ const CargarOfertaForm = () => {
     formDataToSend.append("title", formData.title);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("price", formData.price);
+    formDataToSend.append("beforePrice", formData.beforePrice);
     formDataToSend.append("category", formData.category);
 
     for (let i = 0; i < fileInput.length; i++) {
@@ -84,6 +86,7 @@ const CargarOfertaForm = () => {
         title: "",
         description: "",
         price: 0,
+        beforePrice: 0,
         category: "",
       });
       setFileInput(null);
@@ -101,7 +104,7 @@ const CargarOfertaForm = () => {
       className="mt-12 md:ml-[15rem]"
     >
       <div className="space-y-12">
-        <div className="border-b border-gray-900/10 pb-12">
+        <div className="border-b border-gray-900/10 pb-12 flex flex-col">
           <h2 className="text-xl font-bold leading-7 text-gray-900 border-b">
             Subir una nueva{" "}
             <span className="text-indigo-500 uppercase">oferta</span>
@@ -151,24 +154,46 @@ const CargarOfertaForm = () => {
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                   />
                 </div>
+                <div className="sm:col-span-4">
+                  <div className="mt-6">
+                    <label
+                      htmlFor="price"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Precio anterior
+                    </label>
+
+                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                      <input
+                        type="number"
+                        name="beforePrice"
+                        placeholder="Precio anterior"
+                        value={formData.beforePrice}
+                        onChange={handleChange}
+                        autoComplete="beforePrice"
+                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      />
+                    </div>
+                  </div>
+                </div>
                 <div className="sm:col-span-4 mt-6">
                   <label
                     htmlFor="category"
                     className="block text-sm font-medium leading-6 text-gray-900"
                   >
-                   Categoria
+                    Categoria
                   </label>
                   <div className="mt-2">
-                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                    <input
-                      type="text"
-                      name="category"
-                      placeholder="category"
-                      value={formData.category}
-                      onChange={handleChange}
-                      autoComplete="price"
-                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    />
+                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                      <input
+                        type="text"
+                        name="category"
+                        placeholder="category"
+                        value={formData.category}
+                        onChange={handleChange}
+                        autoComplete="price"
+                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      />
                     </div>
                   </div>
                 </div>
@@ -233,10 +258,10 @@ const CargarOfertaForm = () => {
             </div>
           </div>
           {/* Previsualización de imágenes */}
-          <div className="flex gap-6" >
+          <div className="flex gap-6">
             {imagePreviews.map((preview, index) => (
               <img
-              key={index}
+                key={index}
                 src={preview}
                 alt={`Preview ${index}`}
                 className="max-w-[120px] flex"
