@@ -17,6 +17,7 @@ import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import FormatoDinero from "../../../helpers/FormatearDinero";
 
 const OfertAdminCard = ({ ofert, index }) => {
   const {
@@ -33,7 +34,7 @@ const OfertAdminCard = ({ ofert, index }) => {
   const [isOverlayHovered, setIsOverlayHovered] = useState([]);
   const [isDataUpdated, setIsDataUpdated] = useState(false);
 
-const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isDataUpdated) {
@@ -166,6 +167,12 @@ const navigate = useNavigate()
       price: e.target.value,
     }); // Assign the input value to the state
   };
+  const handleBeforePriceChange = (e) => {
+    setEditedOfert({
+      ...editedOfert,
+      beforePrice: e.target.value,
+    }); // Assign the input value to the state
+  };
 
   const handleCategoryChange = (e) => {
     setEditedOfert({
@@ -175,7 +182,7 @@ const navigate = useNavigate()
   };
   const handleRedirect = (id) => {
     navigate(`/ofertDetail/${id}`);
-  }
+  };
   return (
     <>
       <div className="flex gap-6 overflow-x-auto max-w-[600px] border-b pb-2 ">
@@ -191,6 +198,11 @@ const navigate = useNavigate()
             <p className="text-lg font-bold">{ofert.title}</p>
             <p className="text-sm text-gray-500 line-clamp-2">
               {ofert.description}
+            </p>
+
+            <p className="text-[#ff9fce]">
+              {" "}
+              <FormatoDinero monto={ofert.price} />
             </p>
           </div>
           <div className="flex mt-2 lg:mt-0">
@@ -236,7 +248,7 @@ const navigate = useNavigate()
               },
             }}
           >
-            <div className="modal-content flex flex-col  max-w-full gap-6">
+            <div className="modal-content flex flex-col max-h-[920px] md:max-h-[56rem] max-w-full gap-6">
               <h2>Editar Oferta</h2>
               <TextField
                 label="Título"
@@ -252,6 +264,11 @@ const navigate = useNavigate()
                 label="Precio"
                 value={editedOfert.price}
                 onChange={handlePriceChange}
+              />
+              <TextField
+                label="Precio anterior"
+                value={editedOfert.beforePrice}
+                onChange={handleBeforePriceChange}
               />
               <TextField
                 label="Categoria"
@@ -325,7 +342,7 @@ const navigate = useNavigate()
                 onChange={handleImageChange}
               />
 
-              <div className="flex justify-end gap-6">
+              <div className="flex justify-end gap-6 ">
                 <Button
                   onClick={() => {
                     handleSaveEdit();

@@ -6,6 +6,7 @@ import { Navigate } from "react-router-dom";
 
 const OfertsAdminSection = () => {
   const { oferts } = useOferts();
+  console.log(oferts)
 
   return (
     <>
