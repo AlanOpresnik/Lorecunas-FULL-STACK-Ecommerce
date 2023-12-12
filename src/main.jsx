@@ -12,7 +12,7 @@ import {
   createHashRouter,
   useLocation,
 } from "react-router-dom";
-import { BannerProvider } from "./context/BannerContext.jsx";
+
 import Banner from "./components/banner/banner.jsx";
 import InfoIcons from "./components/InfoIcons/InfoIcons.jsx";
 import CardSection from "./components/CardSection/CardSection.jsx";
@@ -39,7 +39,6 @@ import CargarOfertaForm from "./pages/admin/adminComponents/CargarOfertaForm.jsx
 import OfertsAdminSection from "./pages/admin/adminComponents/OfertsAdminSection.jsx";
 import ScrollToTop from "./scrollTop.jsx";
 
-
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
@@ -58,9 +57,7 @@ const router = createHashRouter([
               variants={containerVariants}
             >
               <NavBar />
-              <BannerProvider>
                 <Banner />
-              </BannerProvider>
               <div className={`flex flex-col items-center w-full`}>
                 <InfoIcons />
                 <CardSection />
