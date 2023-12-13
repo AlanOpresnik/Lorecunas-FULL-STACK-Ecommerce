@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Close from "@mui/icons-material/Close";
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from "@mui/icons-material/Menu";
 import { Button } from "@mui/material";
 
 const NavbarAdmin = () => {
@@ -19,13 +19,13 @@ const NavbarAdmin = () => {
 
   return (
     <>
-   <div className="bg-gray-900 w-full  h-[65px] flex items-center justify-end p-2 lg:hidden left-[-8px] relative ">
+      <div className="bg-gray-900 w-full  h-[65px] flex items-center justify-end p-2 lg:hidden left-[-8px] relative ">
         <Button
           className="absolute text-black text-4xl  left-4 cursor-pointer transition-all transform hover:scale-110"
           onClick={openSidebar}
         >
-       <MenuIcon sx={{color:"white", marginRight:"20px"}} />
-      </Button>
+          <MenuIcon sx={{ color: "white", marginRight: "20px" }} />
+        </Button>
       </div>
       <div className="sidebar z-50 fixed left-[-5px] top-0 bottom-0 lg:left-0 p-2 lg:w-[300px] overflow-y-auto text-center bg-gray-900 lg:block hidden transition-all transform duration-300">
         <div className="text-gray-100 text-xl">
@@ -41,14 +41,6 @@ const NavbarAdmin = () => {
             </p>
           </div>
           <div className="my-2 bg-gray-600 h-[1px]"></div>
-        </div>
-        <div className="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 text-white">
-          <i className="bi bi-search text-sm"></i>
-          <input
-            type="text"
-            placeholder="Search"
-            className="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
-          />
         </div>
 
         <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
@@ -95,9 +87,8 @@ const NavbarAdmin = () => {
             </span>
           </Link>
         </div>
-
       </div>
-      </>
+    </>
   );
 };
 

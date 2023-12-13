@@ -20,14 +20,7 @@ import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import FormatoDinero from "../../../helpers/FormatearDinero";
 
 const OfertAdminCard = ({ ofert, index }) => {
-  const {
-    oferts,
-    loading,
-    fetchOfert,
-    handleDeleteOfert,
-    fetchImagesForOfert,
-    uploadImageForOfert,
-  } = useOferts();
+  const { fetchOfert, handleDeleteOfert } = useOferts();
   const [isEditing, setIsEditing] = useState(false);
   const [editedOfert, setEditedOfert] = useState({ ...ofert });
   const [selectedImage, setSelectedImage] = useState(null);
@@ -72,7 +65,6 @@ const OfertAdminCard = ({ ofert, index }) => {
 
   const handleSaveEdit = async () => {
     try {
-      // Enviar los datos editados a través de la solicitud PUT
       await axios.put(
         import.meta.env.VITE_API_PUT_OFERT + editedOfert._id,
         editedOfert
@@ -80,7 +72,6 @@ const OfertAdminCard = ({ ofert, index }) => {
 
       setIsDataUpdated(true);
 
-      // Cerrar el modal de edición
       setIsEditing(false);
       Swal.fire({
         title: "Oferta actualizada con exito",
@@ -102,15 +93,14 @@ const OfertAdminCard = ({ ofert, index }) => {
     );
 
     try {
-      // Obten la ID de la imagen que deseas eliminar
+      
       const imageId = editedOfert.images[index]._id;
 
-      // Realiza una solicitud DELETE al servidor para eliminar la imagen
+     
       await axios.delete(
         `https://lorecunas-backend.onrender.com/api/oferts/ofert/${editedOfert._id}/images/${imageId}`
       );
 
-      // Actualiza el estado con las imágenes actualizadas
       const updatedImages = editedOfert.images.filter(
         (image, i) => i !== index
       );
@@ -151,34 +141,34 @@ const OfertAdminCard = ({ ofert, index }) => {
     setEditedOfert({
       ...editedOfert,
       title: e.target.value,
-    }); // Assign the input value to the state
+    });
   };
 
   const handleDescriptionChange = (e) => {
     setEditedOfert({
       ...editedOfert,
       description: e.target.value,
-    }); // Assign the input value to the state
+    }); 
   };
 
   const handlePriceChange = (e) => {
     setEditedOfert({
       ...editedOfert,
       price: e.target.value,
-    }); // Assign the input value to the state
+    }); 
   };
   const handleBeforePriceChange = (e) => {
     setEditedOfert({
       ...editedOfert,
       beforePrice: e.target.value,
-    }); // Assign the input value to the state
+    }); 
   };
 
   const handleCategoryChange = (e) => {
     setEditedOfert({
       ...editedOfert,
       category: e.target.value,
-    }); // Assign the input value to the state
+    }); 
   };
   const handleRedirect = (id) => {
     navigate(`/ofertDetail/${id}`);
@@ -200,10 +190,19 @@ const OfertAdminCard = ({ ofert, index }) => {
               {ofert.description}
             </p>
 
-            <p className="text-[#ff9fce]">
+            <p
+             className="text-[#ff9fce]">
               {" "}
               <FormatoDinero monto={ofert.price} />
             </p>
+            <div>
+            <p className="text-gray-500 line-through">
+              {" "}
+              <FormatoDinero monto={ofert.beforePrice} />
+            </p>
+            </div>
+
+           
           </div>
           <div className="flex mt-2 lg:mt-0">
             <Tooltip title="Editar" arrow>

@@ -1,7 +1,5 @@
-import { Button } from "@mui/material";
+
 import React from "react";
-import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 import { Link, Navigate } from "react-router-dom";
 
 const FavCard = ({ prodFav, toggleDrawer }) => {

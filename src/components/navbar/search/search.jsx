@@ -19,7 +19,6 @@ const Search = () => {
     setSearch("");
   }, [location.pathname]);
 
-  // Utiliza useDebouncedCallback para manejar el evento onChange
   const handleSearchDebounced = useDebouncedCallback(
     (value) => {
       if (value) {
@@ -41,10 +40,6 @@ const Search = () => {
     handleSearchDebounced(value);
   };
 
-  const handleSuggestionClick = (product) => {
-    setSearch(product);
-    setProducts([]);
-  };
 
   return (
     <>

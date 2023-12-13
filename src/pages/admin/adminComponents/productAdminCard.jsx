@@ -52,13 +52,13 @@ const ProductAdminCard = ({ prod }) => {
 
   const handleSaveEdit = async () => {
     try {
-      // Enviar los datos editados a través de la solicitud PUT
+      
       await axios.put(
         import.meta.env.VITE_API_PUT_PRODUCT + editedProduct._id,
         editedProduct
       );
 
-      // Cerrar el modal de edición
+      
 
       setIsEditing(false);
       Swal.fire({

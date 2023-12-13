@@ -264,7 +264,7 @@ const router = createHashRouter([
           />
         </Helmet>
         <ProductsDestacadosProvider>
-          <div className="p-0">
+          <div className="p-0 overflow-x-hidden w-full">
             <Toaster />
             <NavbarAdmin />
             <div className={`flex  flex-col items-center w-full`}>
@@ -280,7 +280,7 @@ const router = createHashRouter([
     path: "/adminLorecunas/logeado/estadoDelIncioSucces=a878373734674674238283283723467426712/cargarProductos",
     element: (
       <div classname={"px-0"}>
-           <Helmet>
+        <Helmet>
           <meta charSet="utf-8" />
           <title>Lorecunas - cargar producto</title>
           <meta name="description" />
@@ -307,7 +307,7 @@ const router = createHashRouter([
     path: "/adminLorecunas/logeado/estadoDelIncioSucces=a878373734674674238283283723467426712/ofertas",
     element: (
       <ProductsDestacadosProvider>
-           <Helmet>
+        <Helmet>
           <meta charSet="utf-8" />
           <title>Lorecunas - cargar oferta</title>
           <meta name="description" />
@@ -332,7 +332,7 @@ const router = createHashRouter([
     path: "/adminLorecunas/logeado/estadoDelIncioSucces=a878373734674674238283283723467426712/mis-ofertas",
     element: (
       <OfertsProvider>
-           <Helmet>
+        <Helmet>
           <meta charSet="utf-8" />
           <title>Lorecunas - Admin</title>
           <meta name="description" />

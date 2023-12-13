@@ -9,6 +9,7 @@ const AsideCategory = ({ productDestacado }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [category, setCategory] = useState("");
+  const [loading, setLoading] = useState(false)
   const [categoriaFiltrada, setCategoriaFiltrada] = useState({});
   const hasOutletProducts =
     Array.isArray(productDestacado) &&
@@ -38,12 +39,10 @@ const AsideCategory = ({ productDestacado }) => {
 
   const openCategoryList = () => {
     setShowMenu(true);
-
-    // Asegura que la animación de apertura funcione correctamente
     setTimeout(() => {
       const categoryList = document.querySelector(".category-list");
       if (categoryList) {
-        categoryList.style.maxHeight = "500px"; // Ajusta la altura máxima según tus necesidades
+        categoryList.style.maxHeight = "500px"; 
       }
     }, 0);
   };

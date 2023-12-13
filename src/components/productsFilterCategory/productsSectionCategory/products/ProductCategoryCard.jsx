@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useProductsCategory } from "../../../../context/ProductsCategoryFilter";
 import { Link } from "react-router-dom"; // Importa el componente Link
 import AsideCategory from "../../../asideCategory/AsideCategory";
-import { motion } from "framer-motion";
 
 const ProductCategoryCard = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -21,7 +20,11 @@ const ProductCategoryCard = () => {
             <AsideCategory />
             <div className="col-span-4 lg:col-span-4">
               <div className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-              {productCategory.length < 1 && <p className="mt-[1.8rem] w-full">No hay productos en esta categoria. 😔</p>}
+                {productCategory.length < 1 && (
+                  <p className="mt-[1.8rem] w-full">
+                    No hay productos en esta categoria. 😔
+                  </p>
+                )}
                 {productCategory.map((product) => (
                   <div
                     key={product._id}
@@ -72,7 +75,11 @@ const ProductCategoryCard = () => {
 
             <div className="col-span-4 lg:col-span-4">
               <div className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-                {productCategory.length < 1 && <p className="ml-[7.2rem] w-full">No hay productos en esta categoria. 😔</p>}
+                {productCategory.length < 1 && (
+                  <p className="ml-[7.2rem] w-full">
+                    No hay productos en esta categoria. 😔
+                  </p>
+                )}
                 {productCategory.map((product) => (
                   <div
                     key={product._id}
