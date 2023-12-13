@@ -8,8 +8,8 @@ const CargarOfertaForm = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    price: 0,
-    beforePrice: 0,
+    price: "",
+    beforePrice: "",
     category: "",
   });
 
@@ -42,6 +42,14 @@ const CargarOfertaForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (imagePreviews.length === 0) {
+      return Swal.fire({
+        icon: "error",
+        title: "Porfavor seleccione una imagen",
+        text: "Es nesecario una imagen valida para subir el producto",
+        footer: 'si seguis teniendo este problema contactate con @alan_opk',
+      });
+    }
     let timerInterval;
     Swal.fire({
       title: "Su oferta se esta subiendo",

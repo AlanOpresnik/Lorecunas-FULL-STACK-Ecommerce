@@ -16,6 +16,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import Tooltip from "@mui/material/Tooltip";
+import FormatoDinero from "../../../helpers/FormatearDinero";
+
 const ProductAdminCard = ({ prod }) => {
   const { handleDeleteProduct } = useProductsDestacados();
   const [isEditing, setIsEditing] = useState(false);
@@ -125,10 +127,10 @@ const ProductAdminCard = ({ prod }) => {
   };
 
   return (
-    <div className="flex gap-6 overflow-x-auto max-w-[600px]">
+    <div className="flex gap-6 overflow-x-auto max-w-[600px] ma">
       <div>
         <img
-          className="max-w-[120px]"
+          className="w-[160px] h-[100px] object-cover rounded"
           src={import.meta.env.VITE_API_FAV_DRAWER + prod.images[0].filename}
           alt={`Product ${prod._id}`}
         />
@@ -138,6 +140,10 @@ const ProductAdminCard = ({ prod }) => {
           <p className="text-lg font-bold">{prod.title}</p>
           <p className="text-sm text-gray-500 line-clamp-2">
             {prod.description}
+          </p>
+          <p className="text-sm text-[#FF9FCE]">
+            {" "}
+            <FormatoDinero monto={prod.price} />
           </p>
         </div>
         <div className="flex mt-2 lg:mt-0">

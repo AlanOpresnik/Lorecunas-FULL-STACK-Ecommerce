@@ -8,7 +8,7 @@ const CargarProdForm = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    price: 0,
+    price: "",
     category: "",
   });
 
@@ -41,7 +41,14 @@ const CargarProdForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (imagePreviews.length === 0) {
+      return Swal.fire({
+        icon: "error",
+        title: "Porfavor seleccione una imagen",
+        text: "Es nesecario una imagen valida para subir el producto",
+        footer: 'si seguis teniendo este problema contactate con @alan_opk',
+      });
+    }
     let timerInterval;
     Swal.fire({
       title: "Su producto se esta subiendo",
@@ -157,25 +164,56 @@ const CargarProdForm = () => {
                   />
                 </div>
               </div>
-              <div className="sm:col-span-4 mt-6">
-                <label
-                  htmlFor="price"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Categoria del producto
-                </label>
-                <div className="mt-2">
-                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                    <input
-                      type="Text"
-                      name="category"
-                      placeholder="category"
-                      value={formData.category}
-                      onChange={handleChange}
-                      autoComplete="Categoria"
-                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    />
-                  </div>
+            </div>
+            <div className="sm:col-span-4 mt-6">
+              <label
+                htmlFor="category"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Categoria del producto
+              </label>
+              <div className="mt-2">
+                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                  <select
+                    name="category"
+                    value={formData.category}
+                    onChange={handleChange}
+                    autoComplete="Categoria"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                  >
+                    <option value="" disabled>
+                      Selecciona una categoría
+                    </option>
+                    <option value="CAJONERAS">Cajoneras</option>
+                    <option value="CUNAS COLECHO COMPLETAS">
+                      Cunas colecho completas
+                    </option>
+                    <option value="ROPEROS">Ropero</option>
+                    <option value="CUNAS COLECHO SOLAS">
+                      Cunas colecho solas
+                    </option>
+                    <option value="PROMOS DORMITORIOS">
+                      Promo dormitorios
+                    </option>
+                    <option value="DORMITORIOS COMPLETOS">
+                      Dormitorios completos
+                    </option>
+                    <option value="Accesorios">Accesorios</option>
+                    <option value="CUNAS FUNCIONALES COMPLETAS">
+                      Cunas funcionales completas
+                    </option>
+                    <option value="CUNAS FUNCIONALES SOLAS">
+                      Cunas funcionales solas
+                    </option>
+                    <option value="ACOLCHADOS Y CHICHONERAS">
+                      Acolchados y chichoneras
+                    </option>
+                    <option value="DORMITORIOS COMPLETOS">
+                      Dormitorios completos
+                    </option>
+                    <option value="CHIFONIERS">Chifoniers</option>
+                    <option value="OUTLET">OUTLET</option>
+                  </select>
                 </div>
               </div>
             </div>

@@ -31,7 +31,6 @@ const Search = () => {
       } else {
         setProducts([]);
       }
-      console.log(value)
     }, 200);
 
   const handleSearchChange = (e) => {

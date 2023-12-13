@@ -19,12 +19,12 @@ const AsideCategory = ({ productDestacado }) => {
     setShowMenu(!showMenu);
   };
 
-
   const handleClickCategory = (event) => {
     const categoryText = event.target.innerText;
     setCategory(categoryText);
     navigate(`/productos/${categoryText}`, { replace: false });
     <Link to={`/productos/${categoryText}`} />;
+    setShowMenu(false);
 
     axios
       .get(import.meta.env.VITE_API_FILTER + categoryText)
@@ -57,7 +57,9 @@ const AsideCategory = ({ productDestacado }) => {
     hidden: { opacity: 0, x: -100 },
   };
   return (
-    <div className={`aside-category mb-4 ${isMobile ? "" : "sticky top-[170px]"}`}>
+    <div
+      className={`aside-category mb-4 ${isMobile ? "" : "sticky top-[170px]"}`}
+    >
       {isMobile ? (
         <div className="category-toggle text-center">
           <Button
@@ -98,8 +100,6 @@ const AsideCategory = ({ productDestacado }) => {
                     }}
                     onClick={handleClickCategory}
                     aria-label={`cambiar de categoria a ${category}`}
-                  
-                    
                   >
                     Roperos
                   </Button>
@@ -198,6 +198,19 @@ const AsideCategory = ({ productDestacado }) => {
                     aria-label={`cambiar de categoria a ${category}`}
                     a
                   >
+                    Chifoniers
+                  </Button>
+                  <Button
+                    sx={{
+                      color: "rgb(75 85 99)",
+                      textAlign: "center",
+                    }}
+                    className="p-1 border-b-2 hover:text-[#FE98CB]"
+                    to={category}
+                    onClick={handleClickCategory}
+                    aria-label={`cambiar de categoria a ${category}`}
+                    a
+                  >
                     Promos Dormitorios
                   </Button>
                   <Button
@@ -234,7 +247,7 @@ const AsideCategory = ({ productDestacado }) => {
         </div>
       ) : (
         <>
-        <div className="sticky top-[180px] ">
+          <div className="sticky top-[180px] ">
             <h1 className="font-bold border-b-4">Categorias</h1>
             <div className="flex flex-col items-start py-4  sticky top-[180px]">
               <Link
@@ -353,6 +366,19 @@ const AsideCategory = ({ productDestacado }) => {
                 a
               >
                 Promos Dormitorios
+              </Button>
+              <Button
+                sx={{
+                  color: "rgb(75 85 99)",
+                  textAlign: "center",
+                }}
+                className="p-1 border-b-2 hover:text-[#FE98CB]"
+                to={category}
+                onClick={handleClickCategory}
+                aria-label={`cambiar de categoria a ${category}`}
+                a
+              >
+                Chifoniers
               </Button>
               <Button
                 sx={{

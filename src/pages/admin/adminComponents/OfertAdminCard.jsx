@@ -188,7 +188,7 @@ const OfertAdminCard = ({ ofert, index }) => {
       <div className="flex gap-6 overflow-x-auto max-w-[600px] border-b pb-2 ">
         <div>
           <img
-            className="max-w-[120px] h-[120px] rounded-lg"
+            className="w-[160px] h-[120px] object-cover rounded"
             src={import.meta.env.VITE_API_FAV_DRAWER + ofert.images[0].filename}
             alt={`Product ${ofert._id}`}
           />
