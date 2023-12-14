@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, Typography } from "@mui/material";
 const ActiveOferts = ({ oferts }) => {
   return (
     <div className="">
-      <Card>
+  <Card sx={{bgcolor:"black", color:"white", opacity:".8", marginBottom:"2.5rem"}}>
         <CardContent>
           <div className="flex items-center justify-between">
             <p>Actualmente tienes:</p>

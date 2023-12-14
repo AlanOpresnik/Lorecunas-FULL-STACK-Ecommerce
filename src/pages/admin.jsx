@@ -27,7 +27,7 @@ const Admin = () => {
       <div className="mt-6  pb-6 ">
         {productDestacado.length > 0 ? (
           productDestacado.map((prod) => (
-            <div className="mt-6 border-b p-2">
+            <div key={prod._id} className="mt-6 border-b p-2">
               <ProductAdminCard key={prod._id} prod={prod} />
             </div>
           ))

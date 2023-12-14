@@ -47,7 +47,7 @@ const CargarOfertaForm = () => {
         icon: "error",
         title: "Porfavor seleccione una imagen",
         text: "Es nesecario una imagen valida para subir el producto",
-        footer: 'si seguis teniendo este problema contactate con @alan_opk',
+        footer: "si seguis teniendo este problema contactate con @alan_opk",
       });
     }
     let timerInterval;
@@ -103,6 +103,7 @@ const CargarOfertaForm = () => {
       console.error("Error al enviar los datos", error);
     }
   };
+  
 
   return (
     <form

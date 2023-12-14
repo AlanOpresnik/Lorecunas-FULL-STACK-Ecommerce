@@ -4,7 +4,7 @@ import React from "react";
 const ActiveProducts = ({ productDestacado }) => {
   return (
     <div className="">
-      <Card>
+      <Card sx={{bgcolor:"black", color:"white", opacity:".8", marginBottom:"3rem"}}>
         <CardContent>
           <div className="flex items-center justify-between">
             <p>Actualmente tienes:</p>
