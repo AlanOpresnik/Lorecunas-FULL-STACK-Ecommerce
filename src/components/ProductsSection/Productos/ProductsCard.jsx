@@ -53,7 +53,7 @@ const ProductDestacadoCard = () => {
                         <p className="text-lg font-bold text-[#ff9fce]">
                         <FormatoDinero monto={product.price}/>
                         </p>
-                        <p className="mt-1 line-clamp-2 text-sm text-gray-500">
+                        <p className="mt-1 line-clamp-2 text-sm max-w-[250px] text-gray-500">
                           {product.description}
                         </p>
                       </div>
