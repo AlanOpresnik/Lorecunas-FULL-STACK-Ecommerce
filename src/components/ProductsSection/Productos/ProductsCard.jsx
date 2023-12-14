@@ -3,7 +3,7 @@ import { useProductsDestacados } from "../../../context/ProductsDestacadosContex
 import { Link } from "react-router-dom"; // Importa el componente Link
 import AsideCategory from "../../asideCategory/AsideCategory";
 import FormatoDinero from "../../../helpers/FormatearDinero";
-
+import "./ProductCard.css"
 const ProductDestacadoCard = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const { productDestacado, loading } = useProductsDestacados();
@@ -37,7 +37,7 @@ const ProductDestacadoCard = () => {
                       />
                     </div>
                     <div className="mt-4 flex justify-between">
-                      <div className="p-3">
+                      <div className="p-3 contentCard">
                         <h3 className=" font-bold">
                           <Link
                             className="line-clamp-1 mr-5"
@@ -85,10 +85,8 @@ const ProductDestacadoCard = () => {
                         className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                       />
                     </div>
-                    <div className="mt-4 flex justify-between">
-                      <div className="p-3" style={{
-                        maxWidth:"160px"
-                      }}>
+                    <div className="mt-4 flex justify-between ">
+                      <div className="p-3 ">
                         <h3 className="text-lg font-bold">
                           <Link
                             className="line-clamp-1 mr-5"
@@ -104,7 +102,7 @@ const ProductDestacadoCard = () => {
                         <p className="text-2xl font-bold text-[#ff9fce]">
                          <FormatoDinero monto={product.price}/>
                         </p>
-                        <p className="mt-1 line-clamp-2 text-sm text-gray-500">
+                        <p className="mt-1 line-clamp-2 w-[250px] text-sm text-gray-500">
                           {product.description}
                         </p>
                       </div>
