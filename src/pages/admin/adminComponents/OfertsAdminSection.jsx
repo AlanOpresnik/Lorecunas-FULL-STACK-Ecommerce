@@ -12,7 +12,7 @@ const OfertsAdminSection = () => {
   return (
     <>
       <div>
-        <div className="mt-6 ">
+        <div className="mt-6  ">
           <h3 className="text-center mb-8 text-xl font-bold border-b-2 py-2">
             TUS OFERTAS ACTUALES
           </h3>

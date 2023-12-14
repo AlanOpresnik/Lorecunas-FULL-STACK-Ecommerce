@@ -52,7 +52,7 @@ const OfertCard = () => {
                         <FormatoDinero monto={ofert.beforePrice} />
                       </p>
                     </div>
-                    <p className="mt-1  line-clamp-2  text-sm text-gray-500">
+                    <p className="mt-1  line-clamp-2 max-w-[320px]  text-sm text-gray-500">
                       {ofert.description}
                     </p>
                   </div>

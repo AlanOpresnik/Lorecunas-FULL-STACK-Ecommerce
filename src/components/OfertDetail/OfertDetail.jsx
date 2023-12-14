@@ -190,7 +190,7 @@ const OfertDetail = () => {
                 </Modal>
               )}
             </AnimatePresence>
-            <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 ">
+            <div className="lg:w-1/2 lg:pl-10 lg:py-6 mt-6 lg:mt-0 ">
               <p className="text-xs text-[#ff9fce]">
                 {data.ofertDetails && data.ofertDetails.category}
               </p>
@@ -308,7 +308,7 @@ const OfertDetail = () => {
                   </Link>
                 </span>
               </div>
-              <p className="leading-relaxed">
+              <p className="leading-relaxed max-w-[200px]">
                 {data.ofertDetails && data.ofertDetails.description}
               </p>
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5"></div>

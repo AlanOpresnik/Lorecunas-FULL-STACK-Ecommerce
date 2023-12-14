@@ -186,7 +186,7 @@ const OfertAdminCard = ({ ofert, index }) => {
         <div className="w-full lg:w-[450px] flex flex-col lg:flex-row items-center">
           <div>
             <p className="text-lg font-bold">{ofert.title}</p>
-            <p className="text-sm text-gray-500 line-clamp-2">
+            <p className="text-sm text-gray-500 max-w-[250px] line-clamp-2">
               {ofert.description}
             </p>
 

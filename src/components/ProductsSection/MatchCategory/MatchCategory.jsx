@@ -99,7 +99,7 @@ const MatchCategory = () => {
                     <p className="text-2xl font-bold text-[#ff9fce]">
                       ${product.price}
                     </p>
-                    <p className="mt-1 line-clamp-2 text-sm text-gray-500">
+                    <p className="mt-1 line-clamp-2 text-sm max-w-[250px] text-gray-500">
                       {product.description}
                     </p>
                   </div>
