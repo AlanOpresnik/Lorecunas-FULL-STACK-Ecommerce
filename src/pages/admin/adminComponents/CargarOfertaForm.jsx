@@ -1,8 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import Swal from "sweetalert2";
+
 
 const CargarOfertaForm = () => {
   const [formData, setFormData] = useState({
@@ -41,6 +42,8 @@ const CargarOfertaForm = () => {
   };
 
   const handleSubmit = async (e) => {
+ 
+    
     e.preventDefault();
     if (imagePreviews.length === 0) {
       return Swal.fire({

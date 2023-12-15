@@ -93,10 +93,8 @@ const OfertAdminCard = ({ ofert, index }) => {
     );
 
     try {
-      
       const imageId = editedOfert.images[index]._id;
 
-     
       await axios.delete(
         `https://lorecunas-backend.onrender.com/api/oferts/ofert/${editedOfert._id}/images/${imageId}`
       );
@@ -148,27 +146,27 @@ const OfertAdminCard = ({ ofert, index }) => {
     setEditedOfert({
       ...editedOfert,
       description: e.target.value,
-    }); 
+    });
   };
 
   const handlePriceChange = (e) => {
     setEditedOfert({
       ...editedOfert,
       price: e.target.value,
-    }); 
+    });
   };
   const handleBeforePriceChange = (e) => {
     setEditedOfert({
       ...editedOfert,
       beforePrice: e.target.value,
-    }); 
+    });
   };
 
   const handleCategoryChange = (e) => {
     setEditedOfert({
       ...editedOfert,
       category: e.target.value,
-    }); 
+    });
   };
   const handleRedirect = (id) => {
     navigate(`/ofertDetail/${id}`);
@@ -186,23 +184,20 @@ const OfertAdminCard = ({ ofert, index }) => {
         <div className="w-full lg:w-[450px] flex flex-col lg:flex-row items-center">
           <div>
             <p className="text-lg font-bold">{ofert.title}</p>
-            <p className="text-sm text-gray-500 max-w-[250px] line-clamp-2">
+            <p className="text-sm text-gray-500 max-w-[220px] line-clamp-2">
               {ofert.description}
             </p>
 
-            <p
-             className="text-[#ff9fce]">
+            <p className="text-[#ff9fce]">
               {" "}
               <FormatoDinero monto={ofert.price} />
             </p>
             <div>
-            <p className="text-gray-500 line-through">
-              {" "}
-              <FormatoDinero monto={ofert.beforePrice} />
-            </p>
+              <p className="text-gray-500 line-through">
+                {" "}
+                <FormatoDinero monto={ofert.beforePrice} />
+              </p>
             </div>
-
-           
           </div>
           <div className="flex mt-2 lg:mt-0">
             <Tooltip title="Editar" arrow>

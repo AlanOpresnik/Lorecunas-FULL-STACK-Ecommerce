@@ -17,18 +17,19 @@ const Admin = () => {
   }
 
   return (
-    <div className="overflowX-hidden">
+    <div className="">
       <h3 className="text-center mb-8 text-xl font-bold border-b-2 py-2">
         Manejo de productos
       </h3>
       <div>
         <ActiveProducts productDestacado={productDestacado} />
       </div>
-      <div className="mt-6  pb-6 ">
+      <div className="mt-6  overflow-y-scroll max-h-[35rem] pb-6 ">
         {productDestacado.length > 0 ? (
           productDestacado.map((prod) => (
-            <div key={prod._id} className="mt-6 border-b p-2">
+            <div key={prod._id} className="mt-6 border-b p-2 ">
               <ProductAdminCard key={prod._id} prod={prod} />
+       
             </div>
           ))
         ) : (

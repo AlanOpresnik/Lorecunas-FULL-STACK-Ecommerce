@@ -138,7 +138,7 @@ const ProductAdminCard = ({ prod }) => {
       <div className="flex flex-col items-center lg:flex-row lg:items-start w-full">
         <div>
           <p className="text-lg font-bold">{prod.title}</p>
-          <p className="text-sm text-gray-500 max-w-[250px] line-clamp-2">
+          <p className="text-sm text-gray-500 max-w-[220px] line-clamp-2">
             {prod.description}
           </p>
           <p className="text-sm text-[#FF9FCE]">

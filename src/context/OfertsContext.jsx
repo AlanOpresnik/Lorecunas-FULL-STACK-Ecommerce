@@ -65,7 +65,6 @@ export const OfertsProvider = ({ children }) => {
       denyButtonText: `Canecelar`,
       icon: "error",
     }).then(async (result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         try {
           axios.delete(

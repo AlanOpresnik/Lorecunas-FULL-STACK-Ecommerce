@@ -5,10 +5,15 @@ import ActiveOferts from "./ActiveOferts";
 import { Link } from "react-router-dom";
 
 const OfertsAdminSection = () => {
-  const { oferts, loading } = useOferts();
+  const { oferts, loading, fetchOfert } = useOferts();
   if (loading) {
     return <p>Cargando Ofertas...</p>;
   }
+
+
+  
+
+  
   return (
     <>
       <div>
@@ -19,17 +24,19 @@ const OfertsAdminSection = () => {
           <div>
             <ActiveOferts oferts={oferts} />
           </div>
-          {oferts.length > 0 ? (
-            oferts.map((ofert, index) => (
-              <div className="mt-6" key={ofert._id}>
-                <OfertAdminCard key={ofert._id} ofert={ofert} index={index} />
-              </div>
-            ))
-          ) : (
-            <p className="text-center text-xl">
-              No hay ninguna oferta activa 😔
-            </p>
-          )}
+          <div className=" overflow-y-scroll max-h-[35rem] ">
+            {oferts.length > 0 ? (
+              oferts.map((ofert, index) => (
+                <div className="mt-6" key={ofert._id}>
+                  <OfertAdminCard key={ofert._id} ofert={ofert} index={index} />
+                </div>
+              ))
+            ) : (
+              <p className="text-center text-xl">
+                No hay ninguna oferta activa 😔
+              </p>
+            )}
+          </div>
         </div>
         <div className="flex justify-center mt-4">
           <Link
