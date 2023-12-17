@@ -82,7 +82,7 @@ const ProductAdminCard = ({ prod }) => {
 
       // Realiza una solicitud DELETE al servidor para eliminar la imagen
       await axios.delete(
-        `https://lorecunas-backend.onrender.com/api/products/products/${editedProduct._id}/images/${imageId}`
+        `http://www.lorecunas.com.ar/api/products/products/${editedProduct._id}/images/${imageId}`
       );
 
       // Actualiza el estado con las imágenes actualizadas
@@ -108,7 +108,7 @@ const ProductAdminCard = ({ prod }) => {
       formData.append("image", selectedImage);
 
       const response = await axios.post(
-        `https://lorecunas-backend.onrender.com/api/products/products/${editedProduct._id}/images`,
+        `http://www.lorecunas.com.ar/api/products/products/${editedProduct._id}/images`,
         formData,
         {
           headers: {
