@@ -96,7 +96,7 @@ const OfertAdminCard = ({ ofert, index }) => {
       const imageId = editedOfert.images[index]._id;
 
       await axios.delete(
-        `https://lorecunas-backend.onrender.com/api/oferts/ofert/${editedOfert._id}/images/${imageId}`
+        `http://www.lorecunas.com.ar/api/oferts/ofert/${editedOfert._id}/images/${imageId}`
       );
 
       const updatedImages = editedOfert.images.filter(
@@ -117,7 +117,7 @@ const OfertAdminCard = ({ ofert, index }) => {
       formData.append("image", selectedImage);
 
       const response = await axios.post(
-        `https://lorecunas-backend.onrender.com/api/oferts/ofert/${editedOfert._id}/images`,
+        `http://lorecunas.com.ar/api/oferts/ofert/${editedOfert._id}/images`,
         formData,
         {
           headers: {
