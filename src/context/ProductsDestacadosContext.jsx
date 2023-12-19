@@ -52,6 +52,7 @@ export const ProductsDestacadosProvider = ({ children }) => {
       }
     });
   };
+  
   return (
     <ProductsDestacadosContext.Provider
       value={{ productDestacado, loading, handleDeleteProduct,fetchProducts }}

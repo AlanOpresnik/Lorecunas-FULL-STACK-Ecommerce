@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Close from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
+import Search from "../../../components/navbar/search/search";
 import { Button } from "@mui/material";
 
 const NavbarAdmin = () => {
@@ -40,9 +41,10 @@ const NavbarAdmin = () => {
               <Close />
             </p>
           </div>
+
           <div className="my-2 bg-gray-600 h-[1px]"></div>
         </div>
-
+        
         <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
           <Link
             to={

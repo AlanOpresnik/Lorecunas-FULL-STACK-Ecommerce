@@ -308,7 +308,7 @@ const OfertDetail = () => {
                   </Link>
                 </span>
               </div>
-              <p className="leading-relaxed max-w-[200px]">
+              <p className="leading-relaxed max-w-[350px] md:max-w-full">
                 {data.ofertDetails && data.ofertDetails.description}
               </p>
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5"></div>
