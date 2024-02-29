@@ -331,6 +331,16 @@ export default function Navbar() {
                 Accesorios
               </Link>
             </SwiperSlide>
+            <SwiperSlide>
+              <Link to={"/productos/roperos"} className="text-[#FE98CB] text-sm">
+                Roperos
+              </Link>
+            </SwiperSlide>
+            <SwiperSlide>
+              <Link to={"/productos/chifoniers"} className="text-[#FE98CB] text-sm">
+                Chifoniers
+              </Link>
+            </SwiperSlide>
           </Swiper>
         ) : (
           <>
@@ -363,6 +373,12 @@ export default function Navbar() {
               </Link>
               <Link to={"/productos/DORMITORIOS%20COMPLETOS"} className="text-center pb-3">
                 Dormitorios completos
+              </Link>
+              <Link to={"/productos/chifoniers"} className="text-center pb-3">
+                Chifoniers
+              </Link>
+              <Link to={"/productos/roperos"} className="text-center pb-3">
+                Roperos
               </Link>
             </div>
           </>
