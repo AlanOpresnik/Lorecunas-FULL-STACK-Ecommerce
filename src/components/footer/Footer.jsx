@@ -120,14 +120,9 @@ const Footer = () => {
               METODOS DE PAGO
             </h2>
             <nav className="list-none mb-10">
-              <li>
-                <Link className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
-                  MERCADO PAGO
-                </Link>
-              </li>
-              <li>
-                <Link className="text-gray-600 cursor-pointer hover:text-[#FD98CA]">
-                  DEBITO/CREDITO
+            <li>
+                <Link className="text-gray-600 uppercase cursor-pointer hover:text-[#FD98CA]">
+                  Tarjetas de credito consultar
                 </Link>
               </li>
               <li>
@@ -210,9 +205,13 @@ const Footer = () => {
           </MapContainer>
         </div>
       </div>
-      <p className="mb-6 text-gray-600 text-center">
-        DE <span className="text-[#FF99CB] font-semibold">LUNES</span> A SABADO
-        DE 10 A 16HRS
+      <p className=" text-gray-600 text-center">
+        DE <span className="text-[#FF99CB] font-semibold">LUNES, MARTES Y MIERCOLES </span>
+        DE 14 A 17HR
+      </p>
+      <p className="mb-6 text-sm text-gray-600 text-center">
+        DE <span className=" font-semibold">JUEVES, VIERNES Y SABADOS</span>
+        DE 10 A 16HR
       </p>
       <div className="bg-gray-100">
         <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
