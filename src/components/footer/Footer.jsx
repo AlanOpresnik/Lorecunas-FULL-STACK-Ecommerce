@@ -207,11 +207,11 @@ const Footer = () => {
       </div>
       <p className=" text-gray-600 text-center">
         DE <span className="text-[#FF99CB] font-semibold">LUNES, MARTES Y MIERCOLES </span>
-        DE 14 A 17HR
+        DE 14:30 A 18HR
       </p>
       <p className="mb-6 text-sm text-gray-600 text-center">
         DE <span className=" font-semibold">JUEVES, VIERNES Y SABADOS</span>
-        DE 10 A 16HR
+        DE 8HR A 13HR
       </p>
       <div className="bg-gray-100">
         <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
